@@ -117,6 +117,19 @@ class _MyAppBar extends State<MyAppBar> {
             color: Color(0xFF645647),
             child: ListView(
               children: [
+                DrawerHeader(
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 20, 83, 112),
+                    ),
+                    child: Center(
+                        child: Text(
+                      'Following The Prophet',
+                      style: TextStyle(
+                        color: Color(0xFFFD9727),
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ))),
                 const SizedBox(
                   height: 48,
                 ),
