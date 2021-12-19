@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:following_the_prophet/helper/database.dart';
@@ -68,9 +68,9 @@ class _EventViewScreenState extends State<EventViewScreen> {
                         ),)],
                       ),
                     ),
-                    SizedBox(
-                      height: 60,
-                    ),
+                    // SizedBox(
+                    //   height: 60,
+                    // ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [

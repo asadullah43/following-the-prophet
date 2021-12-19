@@ -140,7 +140,7 @@ class _YearPageState extends State<YearPage> {
                   ],
                 ), //till this
                 Container(
-                  height: MediaQuery.of(context).size.height * (0.69), //was 75
+                  height: MediaQuery.of(context).size.height * (0.50), //was 75//asad i reduce it from 0.69 to 0.50
                   child: yearData == null
                       ? Container(
                           child: Center(

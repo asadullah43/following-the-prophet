@@ -24,8 +24,8 @@ class _QuizScoreState extends State<QuizScore> {
     ),
     body: Center(
       child: Center(
-        child: Text("You answered ${widget.correct} questions correctly from "
-            "${widget.total} and give wrong ${widget.total-widget.correct}",style: TextStyle(fontSize: 30),),
+        child: Text(" Score: ${widget.correct} \n Total:  "
+            "${widget.total}\n Wrong:  ${widget.total-widget.correct}",style: TextStyle(fontSize: 30),),
       ),
     ),
     );

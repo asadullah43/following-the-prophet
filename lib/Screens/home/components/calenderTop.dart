@@ -51,7 +51,7 @@ class _CalenderTopState extends State<CalenderTop> {
               )
             ],
           ),
-          SizedBox(height: 20.0),
+         // SizedBox(height: 20.0),
           Container(
             height: MediaQuery.of(context).size.height * (0.40),
             alignment: Alignment.center,
