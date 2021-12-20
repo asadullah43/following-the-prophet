@@ -95,7 +95,6 @@ class _DailyEventState extends State<DailyEvent> {
         child: Text("Hadees",style: TextStyle(
 fontWeight: FontWeight.bold,
 
-
         ),),
 
       ),

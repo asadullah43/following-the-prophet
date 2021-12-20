@@ -65,48 +65,48 @@ class _MyAppBar extends State<MyAppBar> {
                       ),
                     ],
                   ),
-                  Container(
-                    padding: EdgeInsets.only(bottom: 25.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        IconButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) {
-                                  return FavoritePage(user: userdata);
-                                },
-                              ),
-                            );
-                          },
-                          icon: Icon(
-                            Icons.favorite,
-                            size: 30.0,
-                            color: Colors.white,
-                          ),
-                        ),
-                        IconButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) {
-                                  return SettingScreen();
-                                },
-                              ),
-                            );
-                          },
-                          icon: Icon(
-                            Icons.settings,
-                            size: 30.0,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                  // Container(
+                  //   padding: EdgeInsets.only(bottom: 25.0),
+                    // child: Row(
+                    //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //   children: [
+                    //     IconButton(
+                    //       onPressed: () {
+                    //         Navigator.push(
+                    //           context,
+                    //           MaterialPageRoute(
+                    //             builder: (context) {
+                    //               return FavoritePage(user: userdata);
+                    //             },
+                    //           ),
+                    //         );
+                    //       },
+                    //       icon: Icon(
+                    //         Icons.favorite,
+                    //         size: 30.0,
+                    //         color: Colors.white,
+                    //       ),
+                    //     ),
+                    //     IconButton(
+                    //       onPressed: () {
+                    //         Navigator.push(
+                    //           context,
+                    //           MaterialPageRoute(
+                    //             builder: (context) {
+                    //               return SettingScreen();
+                    //             },
+                    //           ),
+                    //         );
+                    //       },
+                    //       icon: Icon(
+                    //         Icons.settings,
+                    //         size: 30.0,
+                    //         color: Colors.white,
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
+                  //),
                 ],
               ),
             ),
@@ -348,15 +348,19 @@ class _MyAppBar extends State<MyAppBar> {
   getHadees() async {
     SharedPreferences prefs = await _prefs;
     String date = prefs.getString('date');
+    int id=prefs.getInt('hadeesId');
     if (date == null) {
       setCurrentDate();
+    }if(id==null){
+      prefs.setInt('hadeesId', 1);
     }
     String todayDate =
         "${DateTime.now().day}-${DateTime.now().month}-${DateTime.now().year}";
     if (todayDate.compareTo(date) != 0) {
       setCurrentDate();
     }
-    hadees = await _db.getHadees();
+    print("hadeesID: $id");
+    hadees = await _db.getHadees(id);
 
     setState(() {});
   }

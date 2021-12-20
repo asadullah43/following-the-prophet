@@ -10,7 +10,7 @@ class Calender extends StatelessWidget {
       margin: EdgeInsets.all(5),
       decoration: BoxDecoration(
         color: Color(0xFF787777),
-        borderRadius: BorderRadius.circular(20),
+        //borderRadius: BorderRadius.circular(20),
       ),
       height: MediaQuery.of(context).size.height * (0.61),
       width: 400,

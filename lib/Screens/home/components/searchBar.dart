@@ -12,10 +12,10 @@ class _SearchBarState extends State<SearchBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 5),
+      //margin: EdgeInsets.only(top: 5),
       child: SizedBox(
         width: MediaQuery.of(context).size.width * (65),
-        height: 40.0,
+        height: 50.0,
         child: GestureDetector(
           onTap: () {
             Navigator.push(
@@ -29,8 +29,8 @@ class _SearchBarState extends State<SearchBar> {
           },
           child: Container(
 
-            padding: EdgeInsets.all(5),
-            margin: EdgeInsets.fromLTRB(20, 5, 20, 5),
+            padding: EdgeInsets.all(10),
+            margin: EdgeInsets.fromLTRB(30, 5, 30, 5),
 
             child: Text('Search'),
 

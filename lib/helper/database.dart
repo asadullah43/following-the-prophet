@@ -52,9 +52,9 @@ class Database {
     return result.docs[0].data();
   }
 
-  getHadees() async {
+  getHadees(int id) async {
     var result = await FirebaseFirestore.instance
-        .collection('Hadees')
+        .collection('Hadees').where('id',isEqualTo: id)
         .get()
         .catchError((e) {
       print(e);
