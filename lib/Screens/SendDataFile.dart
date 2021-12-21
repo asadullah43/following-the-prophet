@@ -8,6 +8,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import "package:image_picker/image_picker.dart";
 
 import 'package:path/path.dart' as path;
+import 'package:file_picker/file_picker.dart';
 
 class SendData extends StatefulWidget {
   const SendData({Key key}) : super(key: key);
@@ -25,110 +26,127 @@ class _SendDataState extends State<SendData> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: Scaffold(
-          backgroundColor: Colors.white,
-            appBar: AppBar(
-              title: Center(child: Text("Insert Data")),
-            ),
-            body: isloading
-                ? Container(
-                    child: Center(
-                      child: CircularProgressIndicator(),
-                    ),
-                  )
-                : ListView(
-                    children: [
-                      Container(
-                        alignment: Alignment.center,
-                        child: Column(
-                          children: [
-                            Container(
-                              margin: EdgeInsets.all(15),
-                              padding: EdgeInsets.all(8),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    "Title",
-                                    style: TextStyle(
-                                      fontSize: 22,
-                                      fontWeight: FontWeight.bold,
-                                        color: Colors.amberAccent,
-
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 20,
-                                  ),
-                                  Expanded(
-                                    child: TextField(
-                                      style: TextStyle(
-                                        fontSize: 18,
-                                      ),
-                                      controller: _titleController,
-                                      decoration: InputDecoration(
-                                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(10),),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            SizedBox(
-                              height: 17,
-                            ),
-                            Container(
-                              child: Text(
-                                "Details:",
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          title: Center(child: Text("Insert Data")),
+        ),
+        body: isloading
+            ? Container(
+                child: Center(
+                  child: CircularProgressIndicator(),
+                ),
+              )
+            : ListView(
+                children: [
+                  Container(
+                    alignment: Alignment.center,
+                    child: Column(
+                      children: [
+                        Container(
+                          margin: EdgeInsets.all(15),
+                          padding: EdgeInsets.all(8),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "Title",
                                 style: TextStyle(
-                                  fontSize: 20,
+                                  fontSize: 22,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.amberAccent,
                                 ),
                               ),
-                            ),
-                            Container(
-                              margin: EdgeInsets.all(15),
-                              child: TextFormField(
-                                maxLines: 10,
-                                minLines: 10,
-                                decoration: InputDecoration(
-                                  hintText: "Details",
-                                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(10),),
+                              SizedBox(
+                                width: 20,
+                              ),
+                              Expanded(
+                                child: TextField(
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                  ),
+                                  controller: _titleController,
+                                  decoration: InputDecoration(
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                  ),
                                 ),
-                                controller: _detailController,
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 17,
+                        ),
+                        Container(
+                          child: Text(
+                            "Details:",
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.amberAccent,
+                            ),
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.all(15),
+                          child: TextFormField(
+                            maxLines: 10,
+                            minLines: 10,
+                            decoration: InputDecoration(
+                              hintText: "Details",
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
                               ),
                             ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.fromLTRB(50, 16, 50, 0),
-                        child: TextButton(
-                          style: TextButton.styleFrom(
-                            padding: const EdgeInsets.all(16.0),
-                            textStyle: TextStyle(),
-                            backgroundColor: Colors.blue,
+                            controller: _detailController,
                           ),
-                          onPressed: () {
-                            setState(
-                              () {},
-                            );
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        ElevatedButton(
+                          child: Text('Pick File'),
+                          onPressed: () async {
+                            FilePickerResult result =
+                                await FilePicker.platform.pickFiles();
+
+                            if (result != null) {
+                              File file = File(result.files.single.path);
+                            } else {
+                              // User canceled the picker
+                            }
                           },
-                          child: Text(
-                            "Submit",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ),
+                        )
+                      ],
+                    ),
+                  ),
+                  Container(
+                    padding: const EdgeInsets.fromLTRB(50, 16, 50, 0),
+                    child: TextButton(
+                      style: TextButton.styleFrom(
+                        padding: const EdgeInsets.all(16.0),
+                        textStyle: TextStyle(),
+                        backgroundColor: Colors.blue,
                       ),
-                    ],
-                  )));
+                      onPressed: () {
+                        setState(
+                          () {},
+                        );
+                      },
+                      child: Text(
+                        "Submit",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+      ),
+    );
   }
 }
