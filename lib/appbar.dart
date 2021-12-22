@@ -4,6 +4,7 @@ import 'package:following_the_prophet/Screens/Login/login_screen.dart';
 import 'package:following_the_prophet/Screens/UserInfoScreen.dart';
 import 'package:following_the_prophet/Screens/favorite/favorite_page.dart';
 import 'package:following_the_prophet/Screens/home/components/quickButton.dart';
+import 'package:following_the_prophet/Screens/requestForData.dart';
 import 'package:following_the_prophet/helper/database.dart';
 import 'package:following_the_prophet/models/User.dart';
 import 'package:following_the_prophet/models/contentModel.dart';
@@ -153,14 +154,7 @@ class _MyAppBar extends State<MyAppBar> {
                     text: 'Rate us',
                     icon: Icons.rate_review,
                     onClicked: () => selectPage(context, 5)),
-                const SizedBox(
-                  height: 5,
-                ),
-                buildMenuItem(
-                  text: 'SignIn/Logout',
-                  icon: Icons.account_circle,
-                  onClicked: () => selectPage(context, 6),
-                ),
+
                 const SizedBox(
                   height: 5,
                 ),
@@ -168,6 +162,21 @@ class _MyAppBar extends State<MyAppBar> {
                     text: 'Send data file',
                     icon: Icons.upload_file,
                     onClicked: () => selectPage(context, 7)),
+                const SizedBox(
+                  height: 5,
+                ),
+                buildMenuItem(
+                    text: 'Request for Data',
+                    icon: Icons.upload_file,
+                    onClicked: () => selectPage(context, 8)),
+                const SizedBox(
+                  height: 5,
+                ),
+                // buildMenuItem(
+                //   text: 'SignIn/Logout',
+                //   icon: Icons.account_circle,
+                //   onClicked: () => selectPage(context, 6),
+                // ),
                 const SizedBox(
                   height: 25,
                 ),
@@ -289,7 +298,12 @@ class _MyAppBar extends State<MyAppBar> {
         break;
       case 7:
         Navigator.of(context).push(MaterialPageRoute(
-          // builder: (context) => SendDataFile(),
+          builder: (context) => SendData(),
+        ));
+        break;
+      case 8:
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => RequestForData(),
         ));
         break;
     }

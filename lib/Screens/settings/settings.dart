@@ -23,14 +23,14 @@ class _SettingScreenState extends State<SettingScreen> {
           child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          buildSettingItem(
-            text: 'Language',
-            icon: Icons.language,
-            postWidget: DropDownBtn(),
-            width: MediaQuery.of(context).size.width - 50,
-          ),
+          // buildSettingItem(
+          //   text: 'Language',
+          //   icon: Icons.language,
+          //   postWidget: DropDownBtn(),
+          //   width: MediaQuery.of(context).size.width - 50,
+          // ),
           SizedBox(
-            height: 5,
+            height: 15,
           ),
           buildSettingItem(
             text: 'Change Mode',
