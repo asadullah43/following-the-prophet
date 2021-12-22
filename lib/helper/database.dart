@@ -49,7 +49,10 @@ class Database {
         .catchError((e) {
       print(e);
     });
-    return result.docs[0].data();
+    if(result.docs[0].data()==null){
+      return null;
+    }else
+      return result.docs[0].data();
   }
 
   getHadees(int id) async {
@@ -59,7 +62,7 @@ class Database {
         .catchError((e) {
       print(e);
     });
-    return result.docs[0].data()['hadees'];
+    return result.docs[0].data()['title'];
   }
 
   addLastRead(String title, String username) async {

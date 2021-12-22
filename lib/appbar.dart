@@ -4,17 +4,16 @@ import 'package:following_the_prophet/Screens/Login/login_screen.dart';
 import 'package:following_the_prophet/Screens/UserInfoScreen.dart';
 import 'package:following_the_prophet/Screens/favorite/favorite_page.dart';
 import 'package:following_the_prophet/Screens/home/components/quickButton.dart';
-import 'package:following_the_prophet/Screens/requestForData.dart';
 import 'package:following_the_prophet/helper/database.dart';
 import 'package:following_the_prophet/models/User.dart';
 import 'package:following_the_prophet/models/contentModel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
-
+import 'Screens/RateUsPage.dart';
 import 'Screens/SendDataFile.dart';
-
+import 'Screens/contactUsPage.dart';
 import 'Screens/home/components/calender.dart';
-import 'Screens/home/components/dailyEent.dart';
+import 'Screens/home/components/daily_event.dart';
 import 'Screens/lastRead/lastRead.dart';
 import 'Screens/settings/settings.dart';
 
@@ -65,48 +64,48 @@ class _MyAppBar extends State<MyAppBar> {
                       ),
                     ],
                   ),
-                  // Container(
-                  //   padding: EdgeInsets.only(bottom: 25.0),
-                    // child: Row(
-                    //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    //   children: [
-                    //     IconButton(
-                    //       onPressed: () {
-                    //         Navigator.push(
-                    //           context,
-                    //           MaterialPageRoute(
-                    //             builder: (context) {
-                    //               return FavoritePage(user: userdata);
-                    //             },
-                    //           ),
-                    //         );
-                    //       },
-                    //       icon: Icon(
-                    //         Icons.favorite,
-                    //         size: 30.0,
-                    //         color: Colors.white,
-                    //       ),
-                    //     ),
-                    //     IconButton(
-                    //       onPressed: () {
-                    //         Navigator.push(
-                    //           context,
-                    //           MaterialPageRoute(
-                    //             builder: (context) {
-                    //               return SettingScreen();
-                    //             },
-                    //           ),
-                    //         );
-                    //       },
-                    //       icon: Icon(
-                    //         Icons.settings,
-                    //         size: 30.0,
-                    //         color: Colors.white,
-                    //       ),
-                    //     ),
-                    //   ],
-                    // ),
-                  //),
+                  Container(
+                    padding: EdgeInsets.only(bottom: 25.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        IconButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return FavoritePage(user: userdata);
+                                },
+                              ),
+                            );
+                          },
+                          icon: Icon(
+                            Icons.favorite,
+                            size: 30.0,
+                            color: Colors.white,
+                          ),
+                        ),
+                        IconButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return SettingScreen();
+                                },
+                              ),
+                            );
+                          },
+                          icon: Icon(
+                            Icons.settings,
+                            size: 30.0,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -117,19 +116,6 @@ class _MyAppBar extends State<MyAppBar> {
             color: Color(0xFF645647),
             child: ListView(
               children: [
-                DrawerHeader(
-                    decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 20, 83, 112),
-                    ),
-                    child: Center(
-                        child: Text(
-                      'Following The Prophet',
-                      style: TextStyle(
-                        color: Color(0xFFFD9727),
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ))),
                 const SizedBox(
                   height: 48,
                 ),
@@ -155,10 +141,11 @@ class _MyAppBar extends State<MyAppBar> {
                   height: 5,
                 ),
                 buildMenuItem(
-                  text: 'Request For Data',
-                  icon: Icons.contact_mail,
-                  onClicked: () => selectPage(context, 3),
-                ),
+                    text: 'Contact Us',
+                    icon: Icons.contact_mail,
+                    onClicked: () async {
+                      await _launchInBrowser("www.google.com");
+                    }),
                 const SizedBox(
                   height: 5,
                 ),
@@ -281,20 +268,19 @@ class _MyAppBar extends State<MyAppBar> {
         ));
         break;
       case 2:
-        //visit to website
         // Navigator.of(context).push(MaterialPageRoute(
-        // builder: (context) =>
+        //   builder: (context) => VisitOurWebsitePage(),
         // ));
         break;
       case 3:
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => RequestForData(),
+          builder: (context) => ContactUsPage(),
         ));
         break;
       case 5:
-        // Navigator.of(context).push(MaterialPageRoute(
-        //   builder: (context) => RateUsPage(),
-        // ));
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => RateUsPage(),
+        ));
         break;
       case 6:
         Navigator.of(context).push(MaterialPageRoute(
@@ -303,7 +289,7 @@ class _MyAppBar extends State<MyAppBar> {
         break;
       case 7:
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => SendData(),
+          // builder: (context) => SendDataFile(),
         ));
         break;
     }
@@ -332,35 +318,43 @@ class _MyAppBar extends State<MyAppBar> {
         DateTime.now().month.toString(),
       ),
     );
-    event = ContentModel(
-      title: results['title'],
-      subtitle: results['subtitle'],
-      year: results['year'],
-    );
+    if(results!=null){
+      event = ContentModel(
+        title: results['title'],
+        subtitle: results['subtitle'],
+        year: results['year'],
+      );
+    }
     if (event.title != '' || event.title != null) {
       pref.setString('todayEvent', event.title);
     } else {
-      event.title = pref.getString('todayEvent');
+      event=ContentModel(title: pref.getString('todayEvent'),) ;
     }
-    setState(() {});
+    setState(() {
+      print('Event: ${event.title}');
+    });
   }
 
   getHadees() async {
     SharedPreferences prefs = await _prefs;
+    var id = prefs.getInt('hadeesId');
     String date = prefs.getString('date');
-    int id=prefs.getInt('hadeesId');
     if (date == null) {
       setCurrentDate();
-    }if(id==null){
+    }
+    if (id == null) {
       prefs.setInt('hadeesId', 1);
+      id = 1;
+      setCurrentDate();
     }
     String todayDate =
         "${DateTime.now().day}-${DateTime.now().month}-${DateTime.now().year}";
     if (todayDate.compareTo(date) != 0) {
+      id += 1;
       setCurrentDate();
+      prefs.setInt('hadeesId', id);
     }
-    print("hadeesID: $id");
-    hadees = await _db.getHadees(id);
+    hadees = await _db.getHadees(19);
 
     setState(() {});
   }

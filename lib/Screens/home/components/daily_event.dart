@@ -12,13 +12,11 @@ class DailyEvent extends StatefulWidget {
   @override
   State<DailyEvent> createState() => _DailyEventState();
 }
-
 class _DailyEventState extends State<DailyEvent> {
   @override
   void initState() {
     super.initState();
   }
-
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -37,6 +35,42 @@ class _DailyEventState extends State<DailyEvent> {
           } else {
             showAlertDialog(context);
           }
+        },
+        child: Container(
+
+          child: (widget.text.compareTo('Today\'s Hadith') == 0)
+              ? Column(
+            children: [
+              Text(widget.text),
+              widget.hadees == null ? Text('') : Text(widget.hadees),
+            ],
+          )
+              : Column(
+            children: [
+              Text(widget.text),
+              widget.event == null || widget.event.title == null
+                  ? Text('No Event occured on today date')
+                  : Text(widget.event.title),
+              widget.event == null || widget.event.title == null
+                  ? Text('')
+                  : Text(widget.event.year.toString()),
+            ],
+          ),
+          margin: EdgeInsets.all(5),
+          decoration: BoxDecoration(
+            color: Color(0xFF9BBB94),
+          ),
+          height: 140,
+          width: 200,
+        ),
+      ),
+    );
+  }
+  /*Widget build(BuildContext context) {
+    return Expanded(
+      child: GestureDetector(
+        onTap: () {
+            showAlertDialog(context);
         },
         child: Container(
 
@@ -77,7 +111,8 @@ class _DailyEventState extends State<DailyEvent> {
         ),
       ),
     );
-  }
+  }*/
+
 
   showAlertDialog(BuildContext context) {
     // set up the button
@@ -98,9 +133,8 @@ fontWeight: FontWeight.bold,
         ),),
 
       ),
-      content: Text(widget.hadees),
+      content: Text(widget.hadees==null?'':widget.hadees),
       backgroundColor: Colors.teal,
-
       actions: [
         okButton,
       ],
