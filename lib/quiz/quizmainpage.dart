@@ -71,7 +71,6 @@ class _QuizMainPageState extends State<QuizMainPage> {
                         });
                       },
                       child: Container(
-                        
                         child: Text(quizData[indexNum].option1,
                             style: selectedOption == quizData[indexNum].option1
                                 ? TextStyle(
@@ -132,7 +131,6 @@ class _QuizMainPageState extends State<QuizMainPage> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      
                       setState(() {
                         selectedOption = quizData[indexNum].option4;
                       });
@@ -195,9 +193,10 @@ class _QuizMainPageState extends State<QuizMainPage> {
                       });
                     },
                     child: Text(
-                      indexNum == quizData.length - 2
-                          ? "Next Question"
-                          : "Submit",
+                      indexNum == quizData.length - 1
+                          ? "Submit"
+                          : "Next Question",
+                      //: "Submit",
                       style: TextStyle(fontSize: 30),
                     ),
                   ),
