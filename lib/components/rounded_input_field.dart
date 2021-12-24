@@ -19,6 +19,7 @@ class RoundedInputField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFieldContainer(
       child: TextField(
+        
         onChanged: onChanged,
         controller: controller,
         cursorColor: Color(0xFF080603),
@@ -29,6 +30,7 @@ class RoundedInputField extends StatelessWidget {
           ),
           hintText: hintText,
           border: InputBorder.none,
+          
         ),
       ),
     );

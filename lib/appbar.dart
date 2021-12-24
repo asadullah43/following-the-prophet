@@ -38,6 +38,15 @@ class _MyAppBar extends State<MyAppBar> {
     getEvent();
     super.initState();
   }
+  //function for playstore rating
+  _launchURL() async {
+  const url = 'https://play.google.com/store/apps';
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
+  }
+}
 
   @override
   Widget build(BuildContext context) {
@@ -134,26 +143,29 @@ class _MyAppBar extends State<MyAppBar> {
                 const SizedBox(
                   height: 5,
                 ),
-                buildMenuItem(
-                    text: 'Visit Our Website',
-                    icon: Icons.language,
-                    onClicked: () => selectPage(context, 2)),
-                const SizedBox(
-                  height: 5,
-                ),
-                buildMenuItem(
-                    text: 'Contact Us',
-                    icon: Icons.contact_mail,
-                    onClicked: () async {
-                      await _launchInBrowser("www.google.com");
-                    }),
-                const SizedBox(
-                  height: 5,
-                ),
+                // buildMenuItem(
+                //     text: 'Visit Our Website',
+                //     icon: Icons.language,
+                //     onClicked: () => selectPage(context, 2)),
+                // const SizedBox(
+                //   height: 5,
+                // ),
+                // buildMenuItem(
+                //     text: 'Contact Us',
+                //     icon: Icons.contact_mail,
+                //     onClicked: () async {
+                //       await _launchInBrowser("www.google.com");
+                //     }),
+                // const SizedBox(
+                //   height: 5,
+                // ),
                 buildMenuItem(
                     text: 'Rate us',
                     icon: Icons.rate_review,
-                    onClicked: () => selectPage(context, 5)),
+                    onClicked: () {
+_launchURL();
+                    }
+                    ),
 
                 const SizedBox(
                   height: 5,
@@ -276,36 +288,37 @@ class _MyAppBar extends State<MyAppBar> {
           ),
         ));
         break;
-      case 2:
-        // Navigator.of(context).push(MaterialPageRoute(
-        //   builder: (context) => VisitOurWebsitePage(),
-        // ));
-        break;
-      case 3:
-        Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => ContactUsPage(),
-        ));
-        break;
-      case 5:
-        Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => RateUsPage(),
-        ));
-        break;
-      case 6:
-        Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => LoginScreen(),
-        ));
-        break;
+      // case 2:
+      //   // Navigator.of(context).push(MaterialPageRoute(
+      //   //   builder: (context) => VisitOurWebsitePage(),
+      //   // ));
+      //   break;
+      // case 3:
+      //   Navigator.of(context).push(MaterialPageRoute(
+      //     builder: (context) => ContactUsPage(),
+      //   ));
+      //   break;
+      // case 5:
+      //   Navigator.of(context).push(MaterialPageRoute(
+      //     builder: (context) => RateUsPage(),
+      //   ));
+      //   break;
+      // case 6:
+      //   Navigator.of(context).push(MaterialPageRoute(
+      //     builder: (context) => LoginScreen(),
+      //   ));
+      //   break;
       case 7:
         Navigator.of(context).push(MaterialPageRoute(
           builder: (context) => SendData(),
         ));
         break;
-      case 8:
+        case 8:
         Navigator.of(context).push(MaterialPageRoute(
           builder: (context) => RequestForData(),
         ));
         break;
+      
     }
   }
 
