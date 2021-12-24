@@ -19,19 +19,48 @@ class EventViewScreen extends StatefulWidget {
 class _EventViewScreenState extends State<EventViewScreen> {
   Database db = Database();
   String username;
+  double fontSize = 16;
   bool isLoading = false;
+
+  IncreaseFontSize(){
+    this.fontSize = fontSize + 2;
+    setState(() {
+      
+    });
+  } 
+
+    DecreaseFontSize(){
+    this.fontSize = fontSize - 2;
+    setState(() {
+      
+    });
+  } 
+  getEver() async{
+    
+isLoading = true;
+     await  getUserName();
+
+   if(username != null) await  isFav();
+
+   isLoading = false;
+   setState(() {
+     
+   });
+  }
   @override
   void initState() {
-    favButtonColor = Colors.white;
+
+   getEver();
     if (widget.fromEvent) {
-      isLoading = true;
+     
       getData();
     }
-    getUserName();
+
+   
     super.initState();
   }
 
-  var favButtonColor;
+  var favButtonColor = Colors.white;
 
   @override
   Widget build(BuildContext context) {
@@ -52,19 +81,31 @@ class _EventViewScreenState extends State<EventViewScreen> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Center(
-                      child: Text(
-                        "Details:",
-                        style: TextStyle(
-                          fontSize: 24,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Center(
+                          child: Text(
+                            "Details:",
+                            style: TextStyle(
+                              fontSize: 24,
+                            ),
+                          ),
                         ),
-                      ),
+                        Row(children: [
+                          IconButton(onPressed: (){
+                            IncreaseFontSize();
+                          }, icon: Icon(Icons.add)), IconButton(onPressed: (){
+                            DecreaseFontSize();
+                          }, icon: Icon(Icons.remove))
+                        ],)
+                      ],
                     ),
                     Container(
                       height: MediaQuery.of(context).size.height * (0.70),
                       child: ListView(
                         children: [Text(widget.data.details,style: TextStyle(
-                          fontSize: 16,
+                          fontSize: fontSize,
                         ),)],
                       ),
                     ),
@@ -132,14 +173,15 @@ class _EventViewScreenState extends State<EventViewScreen> {
     }
   }
 
-  isFav() async {
+Future isFav() async {
     if (await db.checkFav(widget.data.title, username)) {
       favButtonColor = Colors.red[100];
     } else {
-      favButtonColor = Colors.red[100];
+      favButtonColor = Colors.white;
     }
     setState(() {});
   }
+ 
 
   _favMethod() async {
     if (username == null) {
@@ -156,7 +198,7 @@ class _EventViewScreenState extends State<EventViewScreen> {
     setState(() {});
   }
 
-  getUserName() async {
+ Future  getUserName() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     username = prefs.getString('username');
   }

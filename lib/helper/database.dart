@@ -86,6 +86,8 @@ class Database {
     print('done');
   }
 
+  
+
   addFav(String title, String username) async {
     var result = await FirebaseFirestore.instance
         .collection('userContent')
