@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-const kPrimaryColor = Color(0xFF080603);
+//const kPrimaryColor = Color(0xFF080603);
+const kPrimaryColor = Colors.blue;
 
 class RoundedButton extends StatelessWidget {
   final String text;
