@@ -45,12 +45,12 @@ class _SettingScreenState extends State<SettingScreen> {
           SizedBox(
             height: 5,
           ),
-          buildSettingItem(
-            text: 'Font Size',
-            icon: Icons.format_indent_decrease,
-            postWidget: DropDownBtn(),
-            width: MediaQuery.of(context).size.width - 50,
-          ),
+          // buildSettingItem(
+          //   text: 'Font Size',
+          //   icon: Icons.format_indent_decrease,
+          //   postWidget: DropDownBtn(),
+          //   width: MediaQuery.of(context).size.width - 50,
+          // ),
           SizedBox(
             height: 5,
           ),

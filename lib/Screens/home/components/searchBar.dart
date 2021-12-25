@@ -116,14 +116,20 @@ class _SearchScreenState extends State<SearchScreen> {
                                       .contains(data.toString().toLowerCase())
                                   ? GestureDetector(
                                       onTap: () {
-                                        model  =   ContentModel(
-      title: snapshot.data.docs[index].data()['title'],
-      subtitle: snapshot.data.docs[index].data()['subtitle'],
-      year: snapshot.data.docs[index].data()['year'],
-      details: snapshot.data.docs[index].data()['details'],
-      youtubeLink:snapshot.data.docs[index].data()['youtubeLink'],
-      image: snapshot.data.docs[index].data()['images'],
-    );
+                                        model = ContentModel(
+                                          title: snapshot.data.docs[index]
+                                              .data()['title'],
+                                          subtitle: snapshot.data.docs[index]
+                                              .data()['subtitle'],
+                                          year: snapshot.data.docs[index]
+                                              .data()['year'],
+                                          details: snapshot.data.docs[index]
+                                              .data()['details'],
+                                          youtubeLink: snapshot.data.docs[index]
+                                              .data()['youtubeLink'],
+                                          image: snapshot.data.docs[index]
+                                              .data()['images'],
+                                        );
                                         Navigator.push(
                                           context,
                                           MaterialPageRoute(
@@ -144,29 +150,38 @@ class _SearchScreenState extends State<SearchScreen> {
                                             borderRadius:
                                                 BorderRadius.circular(10)),
                                         child: ListTile(
-                                          leading: Text((index+1).toString()),
-                                          title: Text(snapshot.data.docs[index]
-                                              .data()['title'],style: TextStyle(color: Colors.white ),),
+                                          leading: Text((index + 1).toString()),
+                                          title: Text(
+                                            snapshot.data.docs[index]
+                                                .data()['title'],
+                                            style:
+                                                TextStyle(color: Colors.white),
+                                          ),
                                         ),
                                       ),
                                     )
                                   : Container()
                               : GestureDetector(
                                   onTap: () {
-                                    model  =   ContentModel(
-      title: snapshot.data.docs[index].data()['title'],
-      subtitle: snapshot.data.docs[index].data()['subtitle'],
-      year: snapshot.data.docs[index].data()['year'],
-      details: snapshot.data.docs[index].data()['details'],
-      youtubeLink:snapshot.data.docs[index].data()['youtubeLink'],
-      image: snapshot.data.docs[index].data()['images'],
-    );
+                                    model = ContentModel(
+                                      title: snapshot.data.docs[index]
+                                          .data()['title'],
+                                      subtitle: snapshot.data.docs[index]
+                                          .data()['subtitle'],
+                                      year: snapshot.data.docs[index]
+                                          .data()['year'],
+                                      details: snapshot.data.docs[index]
+                                          .data()['details'],
+                                      youtubeLink: snapshot.data.docs[index]
+                                          .data()['youtubeLink'],
+                                      image: snapshot.data.docs[index]
+                                          .data()['images'],
+                                    );
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
                                         builder: (context) => EventViewScreen(
-                                          data:
-                                              model,
+                                          data: model,
                                           fromEvent: false,
                                         ),
                                       ),
@@ -180,9 +195,12 @@ class _SearchScreenState extends State<SearchScreen> {
                                         borderRadius:
                                             BorderRadius.circular(10)),
                                     child: ListTile(
-                                      leading: Text((index+1).toString()),
-                                      title: Text(snapshot.data.docs[index]
-                                          .data()['title'],style: TextStyle(color: Colors.white )),
+                                      leading: Text((index + 1).toString()),
+                                      title: Text(
+                                          snapshot.data.docs[index]
+                                              .data()['title'],
+                                          style:
+                                              TextStyle(color: Colors.white)),
                                     ),
                                   ),
                                 );

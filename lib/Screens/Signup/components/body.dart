@@ -5,6 +5,7 @@ import 'package:following_the_prophet/Screens/Login/components/background.dart';
 import 'package:following_the_prophet/Screens/Login/login_screen.dart';
 import 'package:following_the_prophet/Screens/Signup/components/or_divider.dart';
 import 'package:following_the_prophet/Screens/Signup/components/social_icon.dart';
+import 'package:following_the_prophet/Screens/Signup/components/verify.dart';
 import 'package:following_the_prophet/appbar.dart';
 import 'package:following_the_prophet/components/already_have_an_account_acheck.dart';
 import 'package:following_the_prophet/components/rounded_button.dart';
@@ -43,11 +44,11 @@ class _BodyState extends State<Body> {
             )
           : SingleChildScrollView(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                   Text(
                     "SIGNUP",
-                    style: TextStyle(fontWeight: FontWeight.bold,fontSize: 30,),
+                    style: TextStyle(color:Colors.blue,fontWeight: FontWeight.bold,fontSize: 30,),
                   ),
                   SizedBox(height: size.height * 0.03),
                   RoundedInputField(
@@ -133,7 +134,7 @@ class _BodyState extends State<Body> {
             print(e);
           }
           Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => MyAppBar()));
+              context, MaterialPageRoute(builder: (context) => Verify()));
         } else {
           Fluttertoast.showToast(msg: 'Couldn\'t sign up');
           loading = false;
