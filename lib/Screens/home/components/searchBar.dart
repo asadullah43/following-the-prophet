@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:following_the_prophet/Screens/eventViewPage.dart';
 import 'package:following_the_prophet/helper/database.dart';
@@ -54,9 +55,12 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
+
+   var streams = FirebaseFirestore.instance.collection('content').snapshots();
+
   Database _db = Database();
 
-  ContentModel data;
+  String data="";
 
   @override
   Widget build(BuildContext context) {
@@ -73,9 +77,14 @@ class _SearchScreenState extends State<SearchScreen> {
                 width: MediaQuery.of(context).size.width * (65),
                 height: 50.0,
                 child: TextField(
-                  onSubmitted: (value) {
-                    getDataAndRoute(value);
+                  onChanged: (value){
+                    setState(() {
+                      data = value; 
+                    });
                   },
+                  // onSubmitted: (value) {
+                  // //  getDataAndRoute(value);
+                  // },
                   decoration: new InputDecoration(
                     icon: new Icon(Icons.search,color: Colors.white,),
                     hintText: "Search by title",
@@ -93,19 +102,28 @@ class _SearchScreenState extends State<SearchScreen> {
             SizedBox(
               height: 10,
             ),
-            (data == null || data.title == '' || data.title == null)
-                ? Container(
-                    child: Center(
-                      child: Text("Not found"),
-                    ),
-                  )
-                : GestureDetector(
+            Expanded(
+              child: StreamBuilder(
+                  stream: streams,
+                  builder: (context, AsyncSnapshot snapshot) {
+                    if(snapshot.data == null) return Center(child: CircularProgressIndicator());
+                    return ListView.builder(
+                        itemCount: snapshot.data.docs.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return data != ""
+                                    ? (snapshot.data.docs[index].data()
+                                                as Map)["title"]
+                                            .toString()
+                                            .toLowerCase()
+                                            .contains(
+                                                data.toString().toLowerCase())
+                              ? GestureDetector(
                     onTap: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) => EventViewScreen(
-                            data: data,
+                            data: snapshot.data.docs[index].data(),
                             fromEvent: false,
                           ),
                         ),
@@ -117,29 +135,44 @@ class _SearchScreenState extends State<SearchScreen> {
                           color: Colors.brown,
                           borderRadius: BorderRadius.circular(10)),
                       child: ListTile(
-                        leading: Text("1"),
-                        title: Text(data.title),
+                        leading: Text(index.toString()) ,
+                        title: Text(snapshot.data.docs[index].data()['title']),
                       ),
                     ),
-                  ),
+                  )
+                  
+                  : Container()
+                  : GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => EventViewScreen(
+                            data: snapshot.data.docs[index].data(),
+                            fromEvent: false,
+                          ),
+                        ),
+                      );
+                    },
+                    child: Container(
+                      width: MediaQuery.of(context).size.width * (0.90),
+                      decoration: BoxDecoration(
+                          color: Colors.brown,
+                          borderRadius: BorderRadius.circular(10)),
+                      child: ListTile(
+                        leading: Text(index.toString()),
+                        title: Text(snapshot.data.docs[index].data()['title']),
+                      ),
+                    ),
+                  );
+                  //: Container();
+                        });
+                  }),
+            ),
           ],
         ),
       ),
-    );
-  }
-
-  getDataAndRoute(String event) async {
-    var docs = await _db.dataByTitle(event);
-    data = ContentModel(
-      title: docs[0].data()['title'],
-      subtitle: docs[0].data()['subtitle'],
-      year: docs[0].data()['year'],
-      details: docs[0].data()['details'],
-      youtubeLink: docs[0].data()['youtubeLink'],
-      image: docs[0].data()['images'],
-    );
-    setState(() {
-      print(data);
-    });
+          
+        );
   }
 }
