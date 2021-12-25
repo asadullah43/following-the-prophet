@@ -55,6 +55,7 @@ class _SearchScreenState extends State<SearchScreen> {
   Database _db = Database();
 
   String data = "";
+  ContentModel model;
 
   @override
   Widget build(BuildContext context) {
@@ -115,13 +116,20 @@ class _SearchScreenState extends State<SearchScreen> {
                                       .contains(data.toString().toLowerCase())
                                   ? GestureDetector(
                                       onTap: () {
+                                        model  =   ContentModel(
+      title: snapshot.data.docs[index].data()['title'],
+      subtitle: snapshot.data.docs[index].data()['subtitle'],
+      year: snapshot.data.docs[index].data()['year'],
+      details: snapshot.data.docs[index].data()['details'],
+      youtubeLink:snapshot.data.docs[index].data()['youtubeLink'],
+      image: snapshot.data.docs[index].data()['images'],
+    );
                                         Navigator.push(
                                           context,
                                           MaterialPageRoute(
                                             builder: (context) =>
                                                 EventViewScreen(
-                                              data: snapshot.data.docs[index]
-                                                  .data(),
+                                              data: model,
                                               fromEvent: false,
                                             ),
                                           ),
@@ -145,12 +153,20 @@ class _SearchScreenState extends State<SearchScreen> {
                                   : Container()
                               : GestureDetector(
                                   onTap: () {
+                                    model  =   ContentModel(
+      title: snapshot.data.docs[index].data()['title'],
+      subtitle: snapshot.data.docs[index].data()['subtitle'],
+      year: snapshot.data.docs[index].data()['year'],
+      details: snapshot.data.docs[index].data()['details'],
+      youtubeLink:snapshot.data.docs[index].data()['youtubeLink'],
+      image: snapshot.data.docs[index].data()['images'],
+    );
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
                                         builder: (context) => EventViewScreen(
                                           data:
-                                              snapshot.data.docs[index].data(),
+                                              model,
                                           fromEvent: false,
                                         ),
                                       ),
