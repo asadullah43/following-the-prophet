@@ -136,9 +136,9 @@ class _SearchScreenState extends State<SearchScreen> {
                                             borderRadius:
                                                 BorderRadius.circular(10)),
                                         child: ListTile(
-                                          leading: Text(index.toString()),
+                                          leading: Text((index+1).toString()),
                                           title: Text(snapshot.data.docs[index]
-                                              .data()['title']),
+                                              .data()['title'],style: TextStyle(color: Colors.white ),),
                                         ),
                                       ),
                                     )
@@ -164,9 +164,9 @@ class _SearchScreenState extends State<SearchScreen> {
                                         borderRadius:
                                             BorderRadius.circular(10)),
                                     child: ListTile(
-                                      leading: Text(index.toString()),
+                                      leading: Text((index+1).toString()),
                                       title: Text(snapshot.data.docs[index]
-                                          .data()['title']),
+                                          .data()['title'],style: TextStyle(color: Colors.white )),
                                     ),
                                   ),
                                 );
