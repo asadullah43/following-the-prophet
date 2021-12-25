@@ -29,17 +29,12 @@ class _SearchBarState extends State<SearchBar> {
             );
           },
           child: Container(
-
             padding: EdgeInsets.all(10),
             margin: EdgeInsets.fromLTRB(30, 5, 30, 5),
-
             child: Text('Search'),
-
             decoration: BoxDecoration(
-
-              border: Border.all(color: Colors.white, width: 2),
-              borderRadius: BorderRadius.circular(20)
-            ),
+                border: Border.all(color: Colors.white, width: 2),
+                borderRadius: BorderRadius.circular(20)),
           ),
         ),
       ),
@@ -55,12 +50,11 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
-
-   var streams = FirebaseFirestore.instance.collection('content').snapshots();
+  var streams = FirebaseFirestore.instance.collection('content').snapshots();
 
   Database _db = Database();
 
-  String data="";
+  String data = "";
 
   @override
   Widget build(BuildContext context) {
@@ -77,20 +71,22 @@ class _SearchScreenState extends State<SearchScreen> {
                 width: MediaQuery.of(context).size.width * (65),
                 height: 50.0,
                 child: TextField(
-                  onChanged: (value){
+                  onChanged: (value) {
                     setState(() {
-                      data = value; 
+                      data = value;
                     });
                   },
                   // onSubmitted: (value) {
                   // //  getDataAndRoute(value);
                   // },
                   decoration: new InputDecoration(
-                    icon: new Icon(Icons.search,color: Colors.white,),
+                    icon: new Icon(
+                      Icons.search,
+                      color: Colors.white,
+                    ),
                     hintText: "Search by title",
                     enabledBorder: const OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(20)),
-
                       borderSide: const BorderSide(
                         color: Colors.white,
                       ),
@@ -106,73 +102,80 @@ class _SearchScreenState extends State<SearchScreen> {
               child: StreamBuilder(
                   stream: streams,
                   builder: (context, AsyncSnapshot snapshot) {
-                    if(snapshot.data == null) return Center(child: CircularProgressIndicator());
+                    if (snapshot.data == null)
+                      return Center(child: CircularProgressIndicator());
                     return ListView.builder(
                         itemCount: snapshot.data.docs.length,
                         itemBuilder: (BuildContext context, int index) {
                           return data != ""
-                                    ? (snapshot.data.docs[index].data()
-                                                as Map)["title"]
-                                            .toString()
-                                            .toLowerCase()
-                                            .contains(
-                                                data.toString().toLowerCase())
-                              ? GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => EventViewScreen(
-                            data: snapshot.data.docs[index].data(),
-                            fromEvent: false,
-                          ),
-                        ),
-                      );
-                    },
-                    child: Container(
-                      width: MediaQuery.of(context).size.width * (0.90),
-                      decoration: BoxDecoration(
-                          color: Colors.brown,
-                          borderRadius: BorderRadius.circular(10)),
-                      child: ListTile(
-                        leading: Text(index.toString()) ,
-                        title: Text(snapshot.data.docs[index].data()['title']),
-                      ),
-                    ),
-                  )
-                  
-                  : Container()
-                  : GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => EventViewScreen(
-                            data: snapshot.data.docs[index].data(),
-                            fromEvent: false,
-                          ),
-                        ),
-                      );
-                    },
-                    child: Container(
-                      width: MediaQuery.of(context).size.width * (0.90),
-                      decoration: BoxDecoration(
-                          color: Colors.brown,
-                          borderRadius: BorderRadius.circular(10)),
-                      child: ListTile(
-                        leading: Text(index.toString()),
-                        title: Text(snapshot.data.docs[index].data()['title']),
-                      ),
-                    ),
-                  );
-                  //: Container();
+                              ? (snapshot.data.docs[index].data()
+                                          as Map)["title"]
+                                      .toString()
+                                      .toLowerCase()
+                                      .contains(data.toString().toLowerCase())
+                                  ? GestureDetector(
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                EventViewScreen(
+                                              data: snapshot.data.docs[index]
+                                                  .data(),
+                                              fromEvent: false,
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                      child: Container(
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                (0.90),
+                                        decoration: BoxDecoration(
+                                            color: Colors.brown,
+                                            borderRadius:
+                                                BorderRadius.circular(10)),
+                                        child: ListTile(
+                                          leading: Text(index.toString()),
+                                          title: Text(snapshot.data.docs[index]
+                                              .data()['title']),
+                                        ),
+                                      ),
+                                    )
+                                  : Container()
+                              : GestureDetector(
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => EventViewScreen(
+                                          data:
+                                              snapshot.data.docs[index].data(),
+                                          fromEvent: false,
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                  child: Container(
+                                    width: MediaQuery.of(context).size.width *
+                                        (0.90),
+                                    decoration: BoxDecoration(
+                                        color: Colors.brown,
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
+                                    child: ListTile(
+                                      leading: Text(index.toString()),
+                                      title: Text(snapshot.data.docs[index]
+                                          .data()['title']),
+                                    ),
+                                  ),
+                                );
                         });
                   }),
             ),
           ],
         ),
       ),
-          
-        );
+    );
   }
 }
