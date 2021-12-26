@@ -9,11 +9,9 @@ class RoundedPasswordField extends StatefulWidget {
     this.onChanged,
     this.controller,
   }) : super(key: key);
-
   @override
   State<RoundedPasswordField> createState() => _RoundedPasswordFieldState();
 }
-
 class _RoundedPasswordFieldState extends State<RoundedPasswordField> {
  bool _showPassword = true;
 
@@ -22,7 +20,6 @@ class _RoundedPasswordFieldState extends State<RoundedPasswordField> {
       _showPassword = !_showPassword;
     });
   }
-
   @override
   Widget build(BuildContext context) {
     return TextFieldContainer(
@@ -34,7 +31,7 @@ class _RoundedPasswordFieldState extends State<RoundedPasswordField> {
         decoration: InputDecoration(
           hintText: "Password",
           icon: Icon(
-            
+
             Icons.lock,
             color: Color(0xFF080603),
           ),

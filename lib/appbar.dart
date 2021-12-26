@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:following_the_prophet/Screens/Login/login_screen.dart';
@@ -122,10 +124,20 @@ class _MyAppBar extends State<MyAppBar> {
           ],
         ),
         drawer: Drawer(
+          
           child: Material(
             color: Color(0xFF645647),
             child: ListView(
               children: [
+const DrawerHeader(
+        decoration: BoxDecoration(
+          color: Colors.blue,
+        ),
+        child: Center(child: Text('Following The Prophet(SAW)',style:TextStyle(
+          fontSize: 20,
+        ))),
+      ),
+
                 const SizedBox(
                   height: 48,
                 ),
