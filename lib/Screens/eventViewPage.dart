@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:following_the_prophet/helper/database.dart';
@@ -16,47 +15,42 @@ class EventViewScreen extends StatefulWidget {
   @override
   _EventViewScreenState createState() => _EventViewScreenState();
 }
+
 class _EventViewScreenState extends State<EventViewScreen> {
   Database db = Database();
   String username;
   double fontSize = 16;
   bool isLoading = false;
 
-  IncreaseFontSize(){
+  IncreaseFontSize() {
     this.fontSize = fontSize + 2;
-    setState(() {
-      
-    });
-  } 
-
-    DecreaseFontSize(){
-    this.fontSize = fontSize - 2;
-    setState(() {
-      
-    });
-  } 
-  getEver() async{
-    
-isLoading = true;
-     await  getUserName();
-
-   if(username != null) await  isFav();
-
-   isLoading = false;
-   setState(() {
-     
-   });
+    setState(() {});
   }
+
+  DecreaseFontSize() {
+    this.fontSize = fontSize - 2;
+    setState(() {});
+  }
+
+  getEver() async {
+    isLoading = true;
+    await getUserName();
+
+    if (username != null) await isFav();
+  }
+
   @override
   void initState() {
-
-   getEver();
+    getEver();
     if (widget.fromEvent) {
-     
       getData();
+      setState(() {
+        isLoading = false;
+      });
     }
-
-   
+    setState(() {
+      isLoading = false;
+    });
     super.initState();
   }
 
@@ -92,21 +86,33 @@ isLoading = true;
                             ),
                           ),
                         ),
-                        Row(children: [
-                          IconButton(onPressed: (){
-                            IncreaseFontSize();
-                          }, icon: Icon(Icons.add)), IconButton(onPressed: (){
-                            DecreaseFontSize();
-                          }, icon: Icon(Icons.remove))
-                        ],)
+                        Row(
+                          children: [
+                            IconButton(
+                                onPressed: () {
+                                  IncreaseFontSize();
+                                },
+                                icon: Icon(Icons.add)),
+                            IconButton(
+                                onPressed: () {
+                                  DecreaseFontSize();
+                                },
+                                icon: Icon(Icons.remove))
+                          ],
+                        )
                       ],
                     ),
                     Container(
                       height: MediaQuery.of(context).size.height * (0.70),
                       child: ListView(
-                        children: [Text(widget.data.details,style: TextStyle(
-                          fontSize: fontSize,
-                        ),)],
+                        children: [
+                          Text(
+                            widget.data.details,
+                            style: TextStyle(
+                              fontSize: fontSize,
+                            ),
+                          )
+                        ],
                       ),
                     ),
                     // SizedBox(
@@ -132,9 +138,11 @@ isLoading = true;
                                   GalleryPage(widget.data.title),
                             ));
                           },
-                          icon: Icon(Icons.collections,
-                          size: 35,
-                          color: Colors.lightBlueAccent,),
+                          icon: Icon(
+                            Icons.collections,
+                            size: 35,
+                            color: Colors.lightBlueAccent,
+                          ),
                         ),
                         IconButton(
                           onPressed: () {
@@ -173,7 +181,7 @@ isLoading = true;
     }
   }
 
-Future isFav() async {
+  Future isFav() async {
     if (await db.checkFav(widget.data.title, username)) {
       favButtonColor = Colors.red[100];
     } else {
@@ -181,7 +189,6 @@ Future isFav() async {
     }
     setState(() {});
   }
- 
 
   _favMethod() async {
     if (username == null) {
@@ -198,7 +205,7 @@ Future isFav() async {
     setState(() {});
   }
 
- Future  getUserName() async {
+  Future getUserName() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     username = prefs.getString('username');
   }
@@ -214,7 +221,7 @@ Future isFav() async {
       image: docs[0].data()['images'],
     );
     setState(() {
-      isLoading = !isLoading;
+      isLoading = false;
     });
   }
 }
