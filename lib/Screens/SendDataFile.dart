@@ -266,16 +266,20 @@ class _SendDataState extends State<SendData> {
                         Container(
                             margin: EdgeInsets.all(15),
                             padding: EdgeInsets.all(20),
-                            child: Row(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text(
-                                  "Subtitle",
-                                  style: TextStyle(
-                                    fontSize: 22,
-                                    color: Colors.amber,
-                                  ),
-                                ),
-                                SizedBox(
+                                Row(
+                                  children: [
+                                    Text(
+                                      "Subtitle",
+                                      style: TextStyle(
+                                        fontSize: 22,
+                                        color: Colors.amber,
+                                      ),
+                                    ),
+                                       SizedBox(
                                   width: 20,
                                 ),
                                 DropdownButton<String>(
@@ -310,37 +314,40 @@ class _SendDataState extends State<SendData> {
                                     );
                                   }).toList(),
                                 ),
+                                  ],
+                                ),
+                             
                                 SizedBox(
                                   width: 40,
                                 ),
+                                
                                 Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceEvenly,
                                   children: [
                                     Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Text(
-                                          "Year",
-                                          style: TextStyle(
-                                            fontSize: 20,
-                                            color: Colors.amber,
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          width: 15,
-                                        ),
-                                        Container(
+                                     
+                                            Text(
+                                              "Year",
+                                              style: TextStyle(
+                                                fontSize: 20,
+                                                color: Colors.amber,
+                                              ),
+                                            ),Container(
                                           width: 40,
                                           child: TextField(
                                             keyboardType: TextInputType.number,
                                             controller: yearController,
                                           ),
+                                       
                                         ),
+                                      
+                                        
                                       ],
                                     ),
-                                    SizedBox(
-                                      width: 40,
-                                    ),
+                               
                                     Row(
                                       children: [
                                         Text(
@@ -350,9 +357,7 @@ class _SendDataState extends State<SendData> {
                                             color: Colors.amber,
                                           ),
                                         ),
-                                        SizedBox(
-                                          width: 15,
-                                        ),
+                                      
                                         Container(
                                           width: 40,
                                           child: TextField(
@@ -362,9 +367,7 @@ class _SendDataState extends State<SendData> {
                                         ),
                                       ],
                                     ),
-                                    SizedBox(
-                                      width: 40,
-                                    ),
+                                 
                                     Row(
                                       children: [
                                         Text(
@@ -374,9 +377,7 @@ class _SendDataState extends State<SendData> {
                                             color: Colors.amber,
                                           ),
                                         ),
-                                        SizedBox(
-                                          width: 15,
-                                        ),
+                                    
                                         Container(
                                           width: 40,
                                           child: TextField(

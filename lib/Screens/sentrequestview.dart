@@ -25,15 +25,13 @@ class _ViewdataviewState extends State<viewrequest> {
       child: Column(
         children: <Widget>[
           ListTile(
-            leading: FittedBox(
-              child: Text(
-                'Description: ${widget.comp.data()['Description']}',
-                style: TextStyle(
-                  color: Colors.green,
-                ),
-                softWrap: true,
-              ),
-            ),
+            leading: Text(
+                      'Topic:${widget.comp.data()['Topic']}',
+                      softWrap: true,
+                      style: TextStyle(
+                        color: Colors.grey,
+                      ),
+                    ),
             trailing: Container(
               width: 100,
               child: Row(
@@ -54,172 +52,172 @@ class _ViewdataviewState extends State<viewrequest> {
               ),
             ),
           ),
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 4),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Container(
-                  child: FittedBox(
-                    fit: BoxFit.contain,
-                    child: Text(
-                      'Topic:${widget.comp.data()['Topic']}',
-                      softWrap: true,
-                      style: TextStyle(
-                        color: Colors.grey,
-                      ),
-                    ),
-                  ),
-                ),
+          // Container(
+          //   padding: EdgeInsets.symmetric(horizontal: 15, vertical: 4),
+          //   child: Row(
+          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //     children: <Widget>[
+          //       Container(
+          //         child: FittedBox(
+          //           fit: BoxFit.contain,
+          //           child: Text(
+          //             'Topic:${widget.comp.data()['Topic']}',
+          //             softWrap: true,
+          //             style: TextStyle(
+          //               color: Colors.grey,
+          //             ),
+          //           ),
+          //         ),
+          //       ),
               ],
             ),
-          )
-        ],
-      ),
-    );
+          );
+     
   }
 }
 
 Widget editEmail(BuildContext context, data, id) {
-  return Padding(
-      padding: MediaQuery.of(context).viewInsets,
-      child: Container(
-          margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-          child: Column(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Text('Detail'),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                      'Status: ${data['status'] == "pending" ? "data not uploaded" : "Data uploaded"}',
-                      softWrap: true,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.grey,
-                      )),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text('Description:' + (data['Description']),
-                      softWrap: true,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.grey,
-                      )),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text('Topic:' + (data['Topic'].toString()),
-                      softWrap: true,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.grey,
-                      )),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text('Requested Data:',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.grey,
-                      )),
-                ),
-                data['status'] != "pending"
-                    ? data['Main'] == "Content"
-                        ? Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(
-                                    'details:' + (data['details'].toString()),
-                                    softWrap: true,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.grey,
-                                    )),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child:
-                                    Text('titile:' + (data['title'].toString()),
-                                        softWrap: true,
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.grey,
-                                        )),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(
-                                    'subtitle:' + (data['subtitle'].toString()),
-                                    softWrap: true,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.grey,
-                                    )),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(
-                                    'youtubeLink:' +
-                                        (data['youtubeLink'].toString()),
-                                    softWrap: true,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.grey,
-                                    )),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(
-                                    'Date :${data['day'].toString()}-${data['month'].toString()}-${data['year'].toString()}',
-                                    softWrap: true,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.grey,
-                                    )),
-                              ),
-                            ],
-                          )
-                        : data['Main'] == "Hadees" || data['Main'] == "A-Hadees"
-                            ? Column(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text(
-                                        'Hadees:' + (data['title'].toString()),
-                                        softWrap: true,
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.grey,
-                                        )),
-                                  ),
-                                ],
-                              )
-                            : Column(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text(
-                                        'Description from Admin:' +
-                                            (data['Completedetail'].toString()),
-                                        softWrap: true,
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.grey,
-                                        )),
-                                  ),
-                                ],
-                              )
-                    : Text(
-                        "Uploaded data will be show here and on content page",
+  return SingleChildScrollView(
+    child: Padding(
+        padding: MediaQuery.of(context).viewInsets,
+        child: Container(
+            margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+            child: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Text('Detail'),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                        'Status: ${data['status'] == "pending" ? "data not uploaded" : "Data uploaded"}',
+                        softWrap: true,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.grey,
                         )),
-              ])));
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text('Description:' + (data['Description']),
+                        softWrap: true,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey,
+                        )),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text('Topic:' + (data['Topic'].toString()),
+                        softWrap: true,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey,
+                        )),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text('Requested Data:',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey,
+                        )),
+                  ),
+                  data['status'] != "pending"
+                      ? data['Main'] == "Content"
+                          ? Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                      'details:' + (data['details'].toString()),
+                                      softWrap: true,
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.grey,
+                                      )),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child:
+                                      Text('titile:' + (data['title'].toString()),
+                                          softWrap: true,
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.grey,
+                                          )),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                      'subtitle:' + (data['subtitle'].toString()),
+                                      softWrap: true,
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.grey,
+                                      )),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                      'youtubeLink:' +
+                                          (data['youtubeLink'].toString()),
+                                      softWrap: true,
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.grey,
+                                      )),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(
+                                      'Date :${data['day'].toString()}-${data['month'].toString()}-${data['year'].toString()}',
+                                      softWrap: true,
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.grey,
+                                      )),
+                                ),
+                              ],
+                            )
+                          : data['Main'] == "Hadees" || data['Main'] == "A-Hadees"
+                              ? Column(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(
+                                          'Hadees:' + (data['title'].toString()),
+                                          softWrap: true,
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.grey,
+                                          )),
+                                    ),
+                                  ],
+                                )
+                              : Column(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(
+                                          'Description from Admin:' +
+                                              (data['Completedetail'].toString()),
+                                          softWrap: true,
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.grey,
+                                          )),
+                                    ),
+                                  ],
+                                )
+                      : Text(
+                          "Uploaded data will be show here and on content page",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey,
+                          )),
+                ]))),
+  );
 }
 // Padding(
 //     padding: const EdgeInsets.only(bottom: 8.0),

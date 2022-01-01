@@ -87,10 +87,12 @@ class _MyAppBar extends State<MyAppBar> {
                               text: 'Today\'s Event',
                               event: event,
                             ),
-                            DailyEvent(
-                              text: 'Today\'s Hadith',
-                              hadees: hadees,
-                            ),
+                            
+                              DailyEvent(
+                                text: 'Today\'s Hadith',
+                                hadees: hadees,
+                              ),
+                            
                           ],
                         ),
                         Container(
@@ -200,23 +202,24 @@ class _MyAppBar extends State<MyAppBar> {
                   height: 5,
                 ),
                 buildMenuItem(
-                    text: 'Send data file',
+                    text: 'Send Data',
                     icon: Icons.upload_file,
                     onClicked: () => selectPage(context, 7)),
                 const SizedBox(
                   height: 5,
                 ),
+                 buildMenuItem(
+                    text: 'My Sended Data',
+                    icon: Icons.upload_file,
+                    onClicked: () => selectPage(context, 9)),
                 buildMenuItem(
-                    text: 'Request for Data',
+                    text: 'Request Data',
                     icon: Icons.upload_file,
                     onClicked: () => selectPage(context, 8)),
                 const SizedBox(
                   height: 5,
                 ),
-                buildMenuItem(
-                    text: 'My Data',
-                    icon: Icons.upload_file,
-                    onClicked: () => selectPage(context, 9)),
+               
                 const SizedBox(
                   height: 5,
                 ),
@@ -359,13 +362,48 @@ class _MyAppBar extends State<MyAppBar> {
             builder: (context) => SendData(),
           ));
         } else {
-          Fluttertoast.showToast(msg: "Please Login First");
-        }
+              return showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text("Oho!"),
+                content: Text("Please Login First"),
+                actions: [
+                  TextButton(onPressed:()=>{ Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => LoginScreen(),
+          ))} , child: Text("Login")),
+                   TextButton(onPressed: ()=>{Navigator.of(context).pop(true)}, child: Text("Cancel"))
+                ],
+              );
+            });}
+        
         break;
       case 8:
-        Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => RequestForData(),
-        ));
+       
+             SharedPreferences prefs = await SharedPreferences.getInstance();
+        var username = prefs.getString('username');
+        if (username != null) {
+          Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => RequestForData(),
+          ));}
+      
+          else{
+              return showDialog(
+            context: context,
+             builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text("Oho!"),
+                content: Text("Please Login First"),
+                actions: [
+                  TextButton(onPressed:()=>{ Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => LoginScreen(),
+          ))} , child: Text("Login")),
+                   TextButton(onPressed: ()=>{Navigator.of(context).pop(true)}, child: Text("Cancel"))
+                ],
+              );
+            });
+          }
+      
         break;
       case 9:
         SharedPreferences prefs = await SharedPreferences.getInstance();

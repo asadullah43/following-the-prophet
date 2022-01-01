@@ -17,11 +17,28 @@ class _QuizMainPageState extends State<QuizMainPage> {
   List<QuizModel> quizData = [];
   List<Icon> scoorKeeper = [];
   Database _database = Database();
-  @override
-  void initState() {
-    getQuizData();
-    //setState(() {});
-    super.initState();
+   bool isLoading=true;
+  // @override
+  // void initState() {
+  //   getQuizData();
+  //   //setState(() {});
+  //   super.initState();
+  // }
+    bool _isInit=true;
+    void didChangeDependencies() async {
+    setState(() {
+      isLoading = true;
+    });
+    if (_isInit) {
+    await getQuizData();
+    
+    }
+    setState(() {
+      isLoading= false;
+    });
+    _isInit = false;
+
+    super.didChangeDependencies();
   }
 
   String selectedOption = "";
@@ -30,10 +47,12 @@ class _QuizMainPageState extends State<QuizMainPage> {
   int correct = 0;
   int check = 0;
   int total = 0;
-  bool pressed = false;
+  bool pressed = false; 
+ 
   @override
   Widget build(BuildContext context) {
-    correctedOption = quizData[indexNum].correctAnswer;
+    
+    isLoading==false&&quizData.length!=0?correctedOption = quizData[indexNum].correctAnswer:0;
     return Scaffold(
       appBar: AppBar(
         title: Center(
@@ -43,10 +62,14 @@ class _QuizMainPageState extends State<QuizMainPage> {
           ),
         ),
       ),
-      body: quizData == null
-          ? Container(
+      body:isLoading?
+           Container(
               child: Center(
                 child: CircularProgressIndicator(),
+              ),
+            ):quizData.length==0? Container(
+              child: Center(
+                child: Text("No Quiz"),
               ),
             )
           : Container(
@@ -212,7 +235,7 @@ class _QuizMainPageState extends State<QuizMainPage> {
   getQuizData() async {
     var firebaseDocs = await _database.quizYear(widget.age.toString());
     firebaseDocs.forEach((element) {
-      print(element.data());
+    
       try {
         quizData.add(new QuizModel(
           quizYear: element.data()['quizYear'],

@@ -10,8 +10,13 @@ class Firebase_Auth {
       UserCredential result = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
       return result.user.uid;
-    } catch (e) {
-      print(e);
+    } on FirebaseAuthException catch (error){
+
+      throw error;
+    }
+    catch (e) {
+    
+      throw e;
     }
   }
 

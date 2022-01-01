@@ -22,12 +22,29 @@ class _YearPageState extends State<YearPage> {
  // List<QuizModel> quizYearData =[] ;
   //end
   Database _database = Database();
+bool isLoading=true;
+  // @override
+  // void initState() {
+  //   _getData();
+  //   setState(() {});
+  // }
+   bool _isInit=true;
+    void didChangeDependencies() async {
+    setState(() {
+      isLoading = true;
+    });
+    if (_isInit) {
+    await  _getData();;
+    
+    }
+    setState(() {
+      isLoading= false;
+    });
+    _isInit = false;
 
-  @override
-  void initState() {
-    _getData();
-    setState(() {});
+    super.didChangeDependencies();
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -40,10 +57,10 @@ class _YearPageState extends State<YearPage> {
           ),
         ),
       ),
-      body: yearData.length == 0
+      body: isLoading?Center(child: CircularProgressIndicator()): yearData.length == 0
           ? Container(
               child: Center(
-                child: CircularProgressIndicator(),
+                child: Text("No data available at this moment"),
               ),
             )
           : Column(
@@ -111,7 +128,62 @@ class _YearPageState extends State<YearPage> {
                   height: 10,
                 ),
                 //added take quiz button
-                Row(
+              //till this
+                Container(
+                  height: MediaQuery.of(context).size.height * (0.68), //was 75//asad i reduce it from 0.69 to 0.50
+                  child: yearData == null
+                      ? Container(
+                          child: Center(
+                            child: CircularProgressIndicator(),
+                          ),
+                        )
+                      : /*child:*/ Container(
+                        child: ListView.builder(
+                            itemCount: yearData.length,
+                            itemBuilder: (context, index) {
+                              return Container(
+                               
+                                child: Column(
+                                  children: [
+                                    GestureDetector(
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => EventViewScreen(
+                                              data: yearData[index],
+                                              fromEvent: false,
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                      child: Container(
+                                        width: MediaQuery.of(context).size.width *
+                                            (0.90),
+                                        decoration: BoxDecoration(
+                                            color: Colors.brown,
+                                            borderRadius:
+                                                BorderRadius.circular(10)),
+                                        child: ListTile(
+                                          leading: Text("${index + 1}"),
+                                          title: Text(yearData[index].title,style: TextStyle(color: Colors.white70,fontWeight: FontWeight.bold),),
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 8,
+                                    ),
+                                  ],
+                                ),
+                              );
+                            },
+                            
+                          ),
+                      ),
+                        
+                        
+                ),
+                  Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
                     TextButton(
@@ -133,58 +205,12 @@ class _YearPageState extends State<YearPage> {
                         );
                       },
                       child: Text(
-                        "Quiz",
+                        " Attempt Quiz",
                         style: TextStyle(color: Colors.white, fontSize: 20,fontWeight: FontWeight.bold),
                       ),
                     ),
                   ],
-                ), //till this
-                Container(
-                  height: MediaQuery.of(context).size.height * (0.50), //was 75//asad i reduce it from 0.69 to 0.50
-                  child: yearData == null
-                      ? Container(
-                          child: Center(
-                            child: CircularProgressIndicator(),
-                          ),
-                        )
-                      : /*child:*/ ListView.builder(
-                          itemCount: yearData.length,
-                          itemBuilder: (context, index) {
-                            return Column(
-                              children: [
-                                GestureDetector(
-                                  onTap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => EventViewScreen(
-                                          data: yearData[index],
-                                          fromEvent: false,
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                  child: Container(
-                                    width: MediaQuery.of(context).size.width *
-                                        (0.90),
-                                    decoration: BoxDecoration(
-                                        color: Colors.brown,
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
-                                    child: ListTile(
-                                      leading: Text("${index + 1}"),
-                                      title: Text(yearData[index].title,style: TextStyle(color: Colors.white70,fontWeight: FontWeight.bold),),
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 8,
-                                ),
-                              ],
-                            );
-                          },
-                        ),
-                ),
+                ), 
               ],
             ),
     );

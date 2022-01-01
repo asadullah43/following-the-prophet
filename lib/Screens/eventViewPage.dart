@@ -39,20 +39,41 @@ class _EventViewScreenState extends State<EventViewScreen> {
     if (username != null) await isFav();
   }
 
-  @override
-  void initState() {
-    getEver();
+  // @override
+  // void initState() {
+  //     setState(() {
+  //       isLoading = true;
+  //     });
+  //   getEver();
+  //   if (widget.fromEvent) {
+  //     getData();
+   
+  //   }
+  //   setState(() {
+  //     isLoading = false;
+  //   });
+  //   super.initState();
+  // }
+  bool _isInit=true;
+  void didChangeDependencies() async {
+    setState(() {
+      isLoading = true;
+    });
+    if (_isInit) {
+     await getEver();
     if (widget.fromEvent) {
-      getData();
-      setState(() {
-        isLoading = false;
-      });
+      await getData();
+   
+    }
     }
     setState(() {
-      isLoading = false;
+      isLoading= false;
     });
-    super.initState();
+    _isInit = false;
+
+    super.didChangeDependencies();
   }
+
 
   var favButtonColor = Colors.white;
 

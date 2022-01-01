@@ -27,13 +27,16 @@ class _ViewdataviewState extends State<Viewdataview> {
           ListTile(
             leading: FittedBox(
               child: Text(
-                'Day: ${widget.comp.data()['day']}',
+                'Title:${widget.comp.data()['title']}',
                 style: TextStyle(
                   color: Colors.green,
                 ),
                 softWrap: true,
               ),
             ),
+          
+            
+            
             trailing: Container(
               width: 100,
               child: Row(
@@ -54,41 +57,13 @@ class _ViewdataviewState extends State<Viewdataview> {
               ),
             ),
           ),
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 4),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Container(
-                  child: FittedBox(
-                    fit: BoxFit.contain,
-                    child: Text(
-                      'title:${widget.comp.data()['title']}',
-                      softWrap: true,
-                      style: TextStyle(
-                        color: Colors.grey,
-                      ),
-                    ),
-                  ),
-                ),
-                Container(
-                  child: FittedBox(
-                    fit: BoxFit.contain,
-                    child: Text(
-                      'subtitle:${widget.comp.data()["subtitle"]}',
-                      softWrap: true,
-                      style: TextStyle(
-                        color: Colors.grey,
-                      ),
-                    ),
-                  ),
-                )
+       
+               
+                
               ],
             ),
-          )
-        ],
-      ),
-    );
+          );
+   
   }
 }
 
@@ -102,78 +77,80 @@ Widget editEmail(BuildContext context, data, id) {
     }
   }
 
-  return Padding(
-      padding: MediaQuery.of(context).viewInsets,
-      child: Container(
-          margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-          child: Column(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Text('Detail'),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                      'Status: ${data['status'] == "pending" ? "Not Approved yet" : "Approved and added"}',
-                      softWrap: true,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.grey,
-                      )),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text('Month:' + (data['month'].toString()),
-                      softWrap: true,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.grey,
-                      )),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text('Year:' + (data['year'].toString()),
-                      softWrap: true,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.grey,
-                      )),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text('youtubeLink:' + (data['youtubeLink']),
-                      softWrap: true,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.grey,
-                      )),
-                ),
-                IconButton(
-                  color: Colors.grey,
-                  icon: Icon(Icons.play_arrow),
-                  onPressed: () {
-                    launchURL(data['youtubeLink']);
-                  },
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text('details:' + (data['details']),
-                      softWrap: true,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.grey,
-                      )),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text('title:' + (data['title']),
-                      softWrap: true,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.grey,
-                      )),
-                ),
-              ])));
+  return SingleChildScrollView(
+    child: Padding(
+        padding: MediaQuery.of(context).viewInsets,
+        child: Container(
+            margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+            child: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Text('Detail'),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                        'Status: ${data['status'] == "pending" ? "Not Approved yet" : "Approved and added"}',
+                        softWrap: true,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey,
+                        )),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text('Month:' + (data['month'].toString()),
+                        softWrap: true,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey,
+                        )),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text('Year:' + (data['year'].toString()),
+                        softWrap: true,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey,
+                        )),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text('youtubeLink:' + (data['youtubeLink']),
+                        softWrap: true,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey,
+                        )),
+                  ),
+                  IconButton(
+                    color: Colors.grey,
+                    icon: Icon(Icons.play_arrow),
+                    onPressed: () {
+                      launchURL(data['youtubeLink']);
+                    },
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text('details:' + (data['details']),
+                        softWrap: true,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey,
+                        )),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text('title:' + (data['title']),
+                        softWrap: true,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey,
+                        )),
+                  ),
+                ]))),
+  );
 }
 // Padding(
 //     padding: const EdgeInsets.only(bottom: 8.0),

@@ -43,8 +43,8 @@ class _DailyEventState extends State<DailyEvent> {
               ? Column(
                   children: [
                     Text(widget.text),
-                    widget.hadees == null ? Text('') : Text(widget.hadees),
-                  ],
+                    widget.hadees == null ? Text('') :  Text(widget.hadees,overflow: TextOverflow.ellipsis)],
+                  
                 )
               : Column(
 // <<<<<<< HEAD
@@ -74,7 +74,7 @@ class _DailyEventState extends State<DailyEvent> {
           decoration: BoxDecoration(
             color: Color(0xFF9BBB94),
           ),
-          height: 140,
+          height: 80,
           width: 200,
         ),
       ),

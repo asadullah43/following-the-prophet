@@ -110,11 +110,11 @@ class _BodyState extends State<Body> {
     setState(() {
       loading = true;
     });
-    await _firebase_auth
-        .signInWithEmail(emailController.text, passwordController.text)
-        .then(
-          
-      (value) async {
+    try{
+  var value= await _firebase_auth
+        .signInWithEmail(emailController.text, passwordController.text);
+       
+    
         if (value != null) {
           try {
             String username = await _db.getUsername(emailController.text);
@@ -122,6 +122,8 @@ class _BodyState extends State<Body> {
           }on FirebaseAuthException catch (error) {
             Fluttertoast.showToast(msg: error.message??'',gravity: ToastGravity.TOP);
            // print(e);
+            loading = !loading;
+             setState(() {});
           }
           loading = false;
           Navigator.pushReplacement(
@@ -135,7 +137,17 @@ class _BodyState extends State<Body> {
           loading = !loading;
           setState(() {});
         }
-      },
-    );
+      }on FirebaseAuthException catch (error) {
+            Fluttertoast.showToast(msg: error.message??'',gravity: ToastGravity.TOP);
+           // print(e);
+            loading = !loading;
+             setState(() {});
+          }catch(error){
+             Fluttertoast.showToast(msg: 'Couldn\'t sign in');
+             Fluttertoast.showToast(msg: error.message??'',gravity: ToastGravity.TOP);
+              loading = !loading;
+             setState(() {});
+          }
   }
-}
+  }
+

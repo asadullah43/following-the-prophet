@@ -47,6 +47,7 @@ class RequestForData extends StatelessWidget {
       "Uid": FirebaseAuth.instance.currentUser.uid,
       "status": "pending",
       "email": FirebaseAuth.instance.currentUser.email,
+      "Main":"",
     }).catchError((e) {
       print(e);
       print(12);
