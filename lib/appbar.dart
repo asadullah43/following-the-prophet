@@ -323,16 +323,50 @@ class _MyAppBar extends State<MyAppBar> {
     Navigator.of(context).pop(); //close the navigation bar
     switch (index) {
       case 0:
-        Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => LastReadPage(userdata),
-        ));
+       SharedPreferences prefs = await SharedPreferences.getInstance();
+        var username = prefs.getString('username');
+        if (username != null) {
+          Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => LastReadPage(userdata),
+          ));
+        } else {
+              return showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text("Oho!"),
+                content: Text("Please Login First"),
+                actions: [
+                  TextButton(onPressed:()=>{ Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => LoginScreen(),
+          ))} , child: Text("Login")),
+                   TextButton(onPressed: ()=>{Navigator.of(context).pop(true)}, child: Text("Cancel"))
+                ],
+              );
+            });}
         break;
       case 1:
-        Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => FavoritePage(
-            user: userdata,
-          ),
-        ));
+       SharedPreferences prefs = await SharedPreferences.getInstance();
+        var username = prefs.getString('username');
+        if (username != null) {
+          Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => FavoritePage(user: userdata,),
+          ));
+        } else {
+              return showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text("Oho!"),
+                content: Text("Please Login First"),
+                actions: [
+                  TextButton(onPressed:()=>{ Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => LoginScreen(),
+          ))} , child: Text("Login")),
+                   TextButton(onPressed: ()=>{Navigator.of(context).pop(true)}, child: Text("Cancel"))
+                ],
+              );
+            });}
         break;
       // case 2:
       //   // Navigator.of(context).push(MaterialPageRoute(
@@ -408,24 +442,62 @@ class _MyAppBar extends State<MyAppBar> {
       case 9:
         SharedPreferences prefs = await SharedPreferences.getInstance();
         var username = prefs.getString('username');
-        if (username != null) {
+        // if (username != null) {
+        //   Navigator.of(context).push(MaterialPageRoute(
+        //     builder: (context) => sent(),
+        //   ));
+        // } else {
+        //   Fluttertoast.showToast(msg: "Please Login First");
+        // }
+         if (username != null) {
           Navigator.of(context).push(MaterialPageRoute(
             builder: (context) => sent(),
           ));
         } else {
-          Fluttertoast.showToast(msg: "Please Login First");
-        }
+              return showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text("Oho!"),
+                content: Text("Please Login First"),
+                actions: [
+                  TextButton(onPressed:()=>{ Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => LoginScreen(),
+          ))} , child: Text("Login")),
+                   TextButton(onPressed: ()=>{Navigator.of(context).pop(true)}, child: Text("Cancel"))
+                ],
+              );
+            });}
         break;
       case 10:
         SharedPreferences prefs = await SharedPreferences.getInstance();
         var username = prefs.getString('username');
+        // if (username != null) {
+        //   Navigator.of(context).push(MaterialPageRoute(
+        //     builder: (context) => request(),
+        //   ));
+        // } else {
+        //   Fluttertoast.showToast(msg: "Please Login First");
+        // }
         if (username != null) {
           Navigator.of(context).push(MaterialPageRoute(
             builder: (context) => request(),
           ));
         } else {
-          Fluttertoast.showToast(msg: "Please Login First");
-        }
+              return showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text("Oho!"),
+                content: Text("Please Login First"),
+                actions: [
+                  TextButton(onPressed:()=>{ Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => LoginScreen(),
+          ))} , child: Text("Login")),
+                   TextButton(onPressed: ()=>{Navigator.of(context).pop(true)}, child: Text("Cancel"))
+                ],
+              );
+            });}
 
         break;
     }

@@ -64,9 +64,9 @@ class _DailyEventState extends State<DailyEvent> {
                     widget.event == null || widget.event.title == null
                         ? Text('No Event occured on today date')
                         : Text(widget.event.title),
-                    widget.event == null || widget.event.title == null
-                        ? Text('')
-                        : Text(widget.event.year.toString()),
+                    // widget.event == null || widget.event.title == null
+                    //     ? Text('')
+                    //     : Text(widget.event.year.toString()),
                   ],
                 ),
 //>>>>>>> cb59be5995f04f45ba613ee95d9b8947e855d54b
@@ -130,7 +130,7 @@ class _DailyEventState extends State<DailyEvent> {
   showAlertDialog(BuildContext context) {
     // set up the button
     Widget okButton = TextButton(
-      child: Text("OK"),
+      child: Text("OK",style: TextStyle(color: Colors.white),),
       onPressed: () {
         Navigator.pop(context);
       },
