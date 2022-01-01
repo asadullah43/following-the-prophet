@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:following_the_prophet/Screens/eventViewPage.dart';
 import 'package:following_the_prophet/models/contentModel.dart';
 
-
 class DailyEvent extends StatefulWidget {
   DailyEvent({this.text, this.hadees, this.event});
   final String text;
@@ -12,11 +11,13 @@ class DailyEvent extends StatefulWidget {
   @override
   State<DailyEvent> createState() => _DailyEventState();
 }
+
 class _DailyEventState extends State<DailyEvent> {
   @override
   void initState() {
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -38,15 +39,15 @@ class _DailyEventState extends State<DailyEvent> {
           }
         },
         child: Container(
-
           child: (widget.text.compareTo('Today\'s Hadith') == 0)
               ? Column(
-            children: [
-              Text(widget.text),
-              widget.hadees == null ? Text('') : Text(widget.hadees),
-            ],
-          )
+                  children: [
+                    Text(widget.text),
+                    widget.hadees == null ? Text('') : Text(widget.hadees),
+                  ],
+                )
               : Column(
+<<<<<<< HEAD
             children: [
               Text(widget.text),
               widget.event == null || widget.event.title == null
@@ -57,6 +58,18 @@ class _DailyEventState extends State<DailyEvent> {
                   : Text(widget.event.year.toString()),
             ],
           ),
+=======
+                  children: [
+                    Text(widget.text),
+                    widget.event == null || widget.event.title == null
+                        ? Text('No Event occured on today date')
+                        : Text(widget.event.title),
+                    widget.event == null || widget.event.title == null
+                        ? Text('')
+                        : Text(widget.event.year.toString()),
+                  ],
+                ),
+>>>>>>> cb59be5995f04f45ba613ee95d9b8947e855d54b
           margin: EdgeInsets.all(5),
           decoration: BoxDecoration(
             color: Color(0xFF9BBB94),
@@ -114,7 +127,6 @@ class _DailyEventState extends State<DailyEvent> {
     );
   }*/
 
-
   showAlertDialog(BuildContext context) {
     // set up the button
     Widget okButton = TextButton(
@@ -125,16 +137,15 @@ class _DailyEventState extends State<DailyEvent> {
     );
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
-
       title: Center(
-
-        child: Text("Hadees",style: TextStyle(
-fontWeight: FontWeight.bold,
-
-        ),),
-
+        child: Text(
+          "Hadees",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
-      content: Text(widget.hadees==null?'':widget.hadees),
+      content: Text(widget.hadees == null ? '' : widget.hadees),
       backgroundColor: Colors.teal,
       actions: [
         okButton,

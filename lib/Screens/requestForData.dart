@@ -1,18 +1,67 @@
-
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:following_the_prophet/Screens/sentrequest.dart';
 
 class RequestForData extends StatelessWidget {
   TextEditingController _titleController = new TextEditingController();
   TextEditingController _discription = new TextEditingController();
 
   bool isloading = false;
+
+  submit(context) {
+    if (_titleController.text == "" || _discription.text == "") {
+      return showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text("Field Required"),
+              content: Text("All field is required"),
+            );
+          });
+    }
+    if (_titleController.text.length < 2 || _discription.text.length < 2) {
+      if (_titleController.text.length < 2) {
+        return showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text("oho!"),
+                content: Text("Title must be 2 character long"),
+              );
+            });
+      } else if (_discription.text.length < 2) {
+        return showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text("oho!"),
+                content: Text("Description must be 2 character long"),
+              );
+            });
+      }
+    }
+    FirebaseFirestore.instance.collection('UserrequestedData').add({
+      "Topic": _titleController.text,
+      "Description": _discription.text,
+      "Uid": FirebaseAuth.instance.currentUser.uid,
+      "status": "pending",
+      "email": FirebaseAuth.instance.currentUser.email,
+    }).catchError((e) {
+      print(e);
+      print(12);
+    });
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) => request()));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
           title: Text('RequestForData'),
-         // backgroundColor: Colors.green,
+          // backgroundColor: Colors.green,
         ),
         body: isloading
             ? Container(
@@ -94,7 +143,10 @@ class RequestForData extends StatelessWidget {
                       textStyle: TextStyle(),
                       backgroundColor: Colors.blue,
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      print(2);
+                      submit(context);
+                    },
                     child: Text(
                       "Send Request",
                       style: TextStyle(

@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Database {
   dataByYear(int year) async {
@@ -13,16 +14,17 @@ class Database {
   }
 
   //adding for quiz year
-   quizYear(String quizYear) async {
+  quizYear(String quizYear) async {
     var result = await FirebaseFirestore.instance
-    .collection('Quiz')
-    .where('quizYear', isEqualTo: quizYear)
-    .get()
-    .catchError((e){
+        .collection('Quiz')
+        .where('quizYear', isEqualTo: quizYear)
+        .get()
+        .catchError((e) {
       print(e.toString());
     });
     return result.docs;
   }
+
   //end quiz year here
   checkFav(String title, String username) async {
     var result = await FirebaseFirestore.instance
@@ -49,20 +51,45 @@ class Database {
         .catchError((e) {
       print(e);
     });
-    if(result.docs[0].data()==null){
+    if (result.docs[0].data() == null) {
       return null;
-    }else
+    } else
       return result.docs[0].data();
   }
 
   getHadees(int id) async {
-    var result = await FirebaseFirestore.instance
-        .collection('Hadees').where('id',isEqualTo: id)
-        .get()
-        .catchError((e) {
-      print(e);
-    });
-    return result.docs[0].data()['title'];
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var resul = await FirebaseFirestore.instance.collection('Hadees').get();
+    // var dateTime = DateTime.now();
+    // try {
+    //   if (prefs.getInt("today") != dateTime.day) {
+    //     prefs.setInt("today", dateTime.day);
+    //   }
+    // } catch (e) {
+    //   prefs.setInt("today", 0);
+
+    // }
+    if (resul.docs.last['id'] < id) {
+      prefs.setInt('hadeesId', 1);
+
+      var result = await FirebaseFirestore.instance
+          .collection('Hadees')
+          .where('id', isEqualTo: 1)
+          .get()
+          .catchError((e) {
+        print(e);
+      });
+      return result.docs[0].data()['title'];
+    } else {
+      var result = await FirebaseFirestore.instance
+          .collection('Hadees')
+          .where('id', isEqualTo: id)
+          .get()
+          .catchError((e) {
+        print(e);
+      });
+      return result.docs[0].data()['title'];
+    }
   }
 
   addLastRead(String title, String username) async {
@@ -85,8 +112,6 @@ class Database {
     });
     print('done');
   }
-
-  
 
   addFav(String title, String username) async {
     var result = await FirebaseFirestore.instance
