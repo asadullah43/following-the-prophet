@@ -47,18 +47,18 @@ class _DailyEventState extends State<DailyEvent> {
                   ],
                 )
               : Column(
-<<<<<<< HEAD
-            children: [
-              Text(widget.text),
-              widget.event == null || widget.event.title == null
-                  ? Center(child: Text('No Event occured on today date'))
-                  : Center(child: Text(widget.event.title)),
-              widget.event == null || widget.event.title == null
-                  ? Text('')
-                  : Text(widget.event.year.toString()),
-            ],
-          ),
-=======
+// <<<<<<< HEAD
+//             children: [
+//               Text(widget.text),
+//               widget.event == null || widget.event.title == null
+//                   ? Center(child: Text('No Event occured on today date'))
+//                   : Center(child: Text(widget.event.title)),
+//               widget.event == null || widget.event.title == null
+//                   ? Text('')
+//                   : Text(widget.event.year.toString()),
+//             ],
+//           ),
+// =======
                   children: [
                     Text(widget.text),
                     widget.event == null || widget.event.title == null
@@ -69,7 +69,7 @@ class _DailyEventState extends State<DailyEvent> {
                         : Text(widget.event.year.toString()),
                   ],
                 ),
->>>>>>> cb59be5995f04f45ba613ee95d9b8947e855d54b
+//>>>>>>> cb59be5995f04f45ba613ee95d9b8947e855d54b
           margin: EdgeInsets.all(5),
           decoration: BoxDecoration(
             color: Color(0xFF9BBB94),
