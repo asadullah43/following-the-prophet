@@ -43,9 +43,16 @@ class _MyAppBar extends State<MyAppBar> {
       loading = true;
     });
     if (_isInit) {
-      await getUserData();
-      await getHadees();
-      await getEvent();
+      try {
+        await getUserData();
+        await getHadees();
+        await getEvent();
+      } catch (e) {
+        print(e);
+        setState(() {
+          loading = false;
+        });
+      }
     }
     setState(() {
       loading = false;
@@ -87,12 +94,10 @@ class _MyAppBar extends State<MyAppBar> {
                               text: 'Today\'s Event',
                               event: event,
                             ),
-                            
-                              DailyEvent(
-                                text: 'Today\'s Hadith',
-                                hadees: hadees,
-                              ),
-                            
+                            DailyEvent(
+                              text: 'Today\'s Hadith',
+                              hadees: hadees,
+                            ),
                           ],
                         ),
                         Container(
@@ -208,7 +213,7 @@ class _MyAppBar extends State<MyAppBar> {
                 const SizedBox(
                   height: 5,
                 ),
-                 buildMenuItem(
+                buildMenuItem(
                     text: 'My Sended Data',
                     icon: Icons.upload_file,
                     onClicked: () => selectPage(context, 9)),
@@ -219,7 +224,7 @@ class _MyAppBar extends State<MyAppBar> {
                 const SizedBox(
                   height: 5,
                 ),
-               
+
                 const SizedBox(
                   height: 5,
                 ),
@@ -261,12 +266,15 @@ class _MyAppBar extends State<MyAppBar> {
                   size: 30.0,
                 ),
                 onPressed: () async {
-                  if (userdata.username == null) {
+                  SharedPreferences prefs =
+                      await SharedPreferences.getInstance();
+                  var username = prefs.getString('username');
+                  if (username == null) {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (context) {
-                          return LoginScreen();
+                          return LoginScreen("Login");
                         },
                       ),
                     );
@@ -323,50 +331,68 @@ class _MyAppBar extends State<MyAppBar> {
     Navigator.of(context).pop(); //close the navigation bar
     switch (index) {
       case 0:
-       SharedPreferences prefs = await SharedPreferences.getInstance();
+        SharedPreferences prefs = await SharedPreferences.getInstance();
         var username = prefs.getString('username');
         if (username != null) {
           Navigator.of(context).push(MaterialPageRoute(
             builder: (context) => LastReadPage(userdata),
           ));
         } else {
-              return showDialog(
-            context: context,
-            builder: (BuildContext context) {
-              return AlertDialog(
-                title: Text("Oho!"),
-                content: Text("Please Login First"),
-                actions: [
-                  TextButton(onPressed:()=>{ Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => LoginScreen(),
-          ))} , child: Text("Login")),
-                   TextButton(onPressed: ()=>{Navigator.of(context).pop(true)}, child: Text("Cancel"))
-                ],
-              );
-            });}
+          return showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  title: Text("Oho!"),
+                  content: Text("Please Login First"),
+                  actions: [
+                    TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop(true);
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => LoginScreen("LastRead"),
+                          ));
+                        },
+                        child: Text("Login")),
+                    TextButton(
+                        onPressed: () => {Navigator.of(context).pop(true)},
+                        child: Text("Cancel"))
+                  ],
+                );
+              });
+        }
         break;
       case 1:
-       SharedPreferences prefs = await SharedPreferences.getInstance();
+        SharedPreferences prefs = await SharedPreferences.getInstance();
         var username = prefs.getString('username');
         if (username != null) {
           Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => FavoritePage(user: userdata,),
+            builder: (context) => FavoritePage(
+              user: userdata,
+            ),
           ));
         } else {
-              return showDialog(
-            context: context,
-            builder: (BuildContext context) {
-              return AlertDialog(
-                title: Text("Oho!"),
-                content: Text("Please Login First"),
-                actions: [
-                  TextButton(onPressed:()=>{ Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => LoginScreen(),
-          ))} , child: Text("Login")),
-                   TextButton(onPressed: ()=>{Navigator.of(context).pop(true)}, child: Text("Cancel"))
-                ],
-              );
-            });}
+          return showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  title: Text("Oho!"),
+                  content: Text("Please Login First"),
+                  actions: [
+                    TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop(true);
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => LoginScreen("Fav"),
+                          ));
+                        },
+                        child: Text("Login")),
+                    TextButton(
+                        onPressed: () => {Navigator.of(context).pop(true)},
+                        child: Text("Cancel"))
+                  ],
+                );
+              });
+        }
         break;
       // case 2:
       //   // Navigator.of(context).push(MaterialPageRoute(
@@ -396,48 +422,61 @@ class _MyAppBar extends State<MyAppBar> {
             builder: (context) => SendData(),
           ));
         } else {
-              return showDialog(
-            context: context,
-            builder: (BuildContext context) {
-              return AlertDialog(
-                title: Text("Oho!"),
-                content: Text("Please Login First"),
-                actions: [
-                  TextButton(onPressed:()=>{ Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => LoginScreen(),
-          ))} , child: Text("Login")),
-                   TextButton(onPressed: ()=>{Navigator.of(context).pop(true)}, child: Text("Cancel"))
-                ],
-              );
-            });}
-        
+          return showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  title: Text("Oho!"),
+                  content: Text("Please Login First"),
+                  actions: [
+                    TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop(true);
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => LoginScreen("SendData"),
+                          ));
+                        },
+                        child: Text("Login")),
+                    TextButton(
+                        onPressed: () => {Navigator.of(context).pop(true)},
+                        child: Text("Cancel"))
+                  ],
+                );
+              });
+        }
+
         break;
       case 8:
-       
-             SharedPreferences prefs = await SharedPreferences.getInstance();
+        SharedPreferences prefs = await SharedPreferences.getInstance();
         var username = prefs.getString('username');
         if (username != null) {
           Navigator.of(context).push(MaterialPageRoute(
             builder: (context) => RequestForData(),
-          ));}
-      
-          else{
-              return showDialog(
-            context: context,
-             builder: (BuildContext context) {
-              return AlertDialog(
-                title: Text("Oho!"),
-                content: Text("Please Login First"),
-                actions: [
-                  TextButton(onPressed:()=>{ Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => LoginScreen(),
-          ))} , child: Text("Login")),
-                   TextButton(onPressed: ()=>{Navigator.of(context).pop(true)}, child: Text("Cancel"))
-                ],
-              );
-            });
-          }
-      
+          ));
+        } else {
+          return showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  title: Text("Oho!"),
+                  content: Text("Please Login First"),
+                  actions: [
+                    TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop(true);
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => LoginScreen("RequestForData"),
+                          ));
+                        },
+                        child: Text("Login")),
+                    TextButton(
+                        onPressed: () => {Navigator.of(context).pop(true)},
+                        child: Text("Cancel"))
+                  ],
+                );
+              });
+        }
+
         break;
       case 9:
         SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -449,25 +488,33 @@ class _MyAppBar extends State<MyAppBar> {
         // } else {
         //   Fluttertoast.showToast(msg: "Please Login First");
         // }
-         if (username != null) {
+        if (username != null) {
           Navigator.of(context).push(MaterialPageRoute(
             builder: (context) => sent(),
           ));
         } else {
-              return showDialog(
-            context: context,
-            builder: (BuildContext context) {
-              return AlertDialog(
-                title: Text("Oho!"),
-                content: Text("Please Login First"),
-                actions: [
-                  TextButton(onPressed:()=>{ Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => LoginScreen(),
-          ))} , child: Text("Login")),
-                   TextButton(onPressed: ()=>{Navigator.of(context).pop(true)}, child: Text("Cancel"))
-                ],
-              );
-            });}
+          return showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  title: Text("Oho!"),
+                  content: Text("Please Login First"),
+                  actions: [
+                    TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop(true);
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => LoginScreen("sent"),
+                          ));
+                        },
+                        child: Text("Login")),
+                    TextButton(
+                        onPressed: () => {Navigator.of(context).pop(true)},
+                        child: Text("Cancel"))
+                  ],
+                );
+              });
+        }
         break;
       case 10:
         SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -484,20 +531,28 @@ class _MyAppBar extends State<MyAppBar> {
             builder: (context) => request(),
           ));
         } else {
-              return showDialog(
-            context: context,
-            builder: (BuildContext context) {
-              return AlertDialog(
-                title: Text("Oho!"),
-                content: Text("Please Login First"),
-                actions: [
-                  TextButton(onPressed:()=>{ Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => LoginScreen(),
-          ))} , child: Text("Login")),
-                   TextButton(onPressed: ()=>{Navigator.of(context).pop(true)}, child: Text("Cancel"))
-                ],
-              );
-            });}
+          return showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  title: Text("Oho!"),
+                  content: Text("Please Login First"),
+                  actions: [
+                    TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop(true);
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => LoginScreen("request"),
+                          ));
+                        },
+                        child: Text("Login")),
+                    TextButton(
+                        onPressed: () => {Navigator.of(context).pop(true)},
+                        child: Text("Cancel"))
+                  ],
+                );
+              });
+        }
 
         break;
     }

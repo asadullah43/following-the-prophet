@@ -3,9 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:following_the_prophet/Screens/Login/login_screen.dart';
 
-
 class ResetScreen extends StatefulWidget {
-  
   @override
   _ResetScreenState createState() => _ResetScreenState();
 }
@@ -49,7 +47,10 @@ class _ResetScreenState extends State<ResetScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               RaisedButton(
-                child: Text('Send Request',style: TextStyle(color: Colors.white),),
+                child: Text(
+                  'Send Request',
+                  style: TextStyle(color: Colors.white),
+                ),
                 onPressed: () {
                   print("presss");
 
@@ -82,7 +83,7 @@ class _ResetScreenState extends State<ResetScreen> {
       onPressed: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => LoginScreen()),
+          MaterialPageRoute(builder: (context) => LoginScreen("Login")),
         );
       },
     );

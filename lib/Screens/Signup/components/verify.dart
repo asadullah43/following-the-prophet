@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:following_the_prophet/Screens/Login/login_screen.dart';
 
-
 class Verify extends StatefulWidget {
   //const Verify({ Key key }) : super(key: key);
 
@@ -15,8 +14,8 @@ class Verify extends StatefulWidget {
 
 class _VerifyState extends State<Verify> {
   final auth = FirebaseAuth.instance;
-   User user;
-   Timer timer;
+  User user;
+  Timer timer;
   @override
   void initState() {
     user = auth.currentUser;
@@ -48,9 +47,10 @@ class _VerifyState extends State<Verify> {
     await user.reload();
     if (user.emailVerified) {
       timer.cancel();
-      Fluttertoast.showToast(msg: "Account created successfully :",gravity: ToastGravity.CENTER);
-      Navigator.of(this.context)
-          .pushReplacement(MaterialPageRoute(builder: (context) => LoginScreen()));
+      Fluttertoast.showToast(
+          msg: "Account created successfully :", gravity: ToastGravity.CENTER);
+      Navigator.of(this.context).pushReplacement(
+          MaterialPageRoute(builder: (context) => LoginScreen("Login")));
     }
   }
 }

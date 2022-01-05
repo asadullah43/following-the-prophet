@@ -48,7 +48,11 @@ class _BodyState extends State<Body> {
                 children: <Widget>[
                   Text(
                     "SIGNUP",
-                    style: TextStyle(color:Colors.blue,fontWeight: FontWeight.bold,fontSize: 30,),
+                    style: TextStyle(
+                      color: Colors.blue,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 30,
+                    ),
                   ),
                   SizedBox(height: size.height * 0.03),
                   RoundedInputField(
@@ -76,13 +80,13 @@ class _BodyState extends State<Body> {
                         context,
                         MaterialPageRoute(
                           builder: (context) {
-                            return LoginScreen();
+                            return LoginScreen("Login");
                           },
                         ),
                       );
                     },
                   ),
-                 // OrDivider(),
+                  // OrDivider(),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[

@@ -43,8 +43,10 @@ class _DailyEventState extends State<DailyEvent> {
               ? Column(
                   children: [
                     Text(widget.text),
-                    widget.hadees == null ? Text('') :  Text(widget.hadees,overflow: TextOverflow.ellipsis)],
-                  
+                    widget.hadees == null
+                        ? Text('')
+                        : Text(widget.hadees, overflow: TextOverflow.ellipsis)
+                  ],
                 )
               : Column(
 // <<<<<<< HEAD
@@ -130,7 +132,10 @@ class _DailyEventState extends State<DailyEvent> {
   showAlertDialog(BuildContext context) {
     // set up the button
     Widget okButton = TextButton(
-      child: Text("OK",style: TextStyle(color: Colors.white),),
+      child: Text(
+        "OK",
+        style: TextStyle(color: Colors.white),
+      ),
       onPressed: () {
         Navigator.pop(context);
       },

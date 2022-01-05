@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:following_the_prophet/Screens/eventViewPage.dart';
+import 'package:following_the_prophet/appbar.dart';
 import 'package:following_the_prophet/helper/database.dart';
 import 'package:following_the_prophet/models/User.dart';
 import 'package:following_the_prophet/models/contentModel.dart';
@@ -37,51 +38,60 @@ class _FavoritePageState extends State<FavoritePage> {
                 child: CircularProgressIndicator(),
               ),
             )
-          : Container(
-              height: MediaQuery.of(context).size.height * (0.75),
-              child: (widget.user == null || widget.user.username == null)
-                  ? Container(
-                      child: Center(
-                        child: Text("Login first"),
-                      ),
-                    )
-                  : (widget.user.favorite == null ||
-                          widget.user.favorite[0] == '')
-                      ? Container(
-                          child: Center(
-                            child: Text("No Favorites"),
-                          ),
-                        )
-                      : /*child:*/ ListView.builder(
-                          itemCount: widget.user.favorite.length,
-                          itemBuilder: (context, index) {
-                            return Column(
-                              children: [
-                                GestureDetector(
-                                  onTap: () {
-                                    getDataAndRoute(
-                                        widget.user.favorite[index]);
-                                  },
-                                  child: Container(
-                                    width: MediaQuery.of(context).size.width *
-                                        (0.90),
-                                    decoration: BoxDecoration(
-                                        color: Colors.brown,
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
-                                    child: ListTile(
-                                      leading: Text("${index + 1}"),
-                                      title: Text(widget.user.favorite[index]),
+          : WillPopScope(
+              onWillPop: () {
+                return Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => MyAppBar()),
+                );
+              },
+              child: Container(
+                height: MediaQuery.of(context).size.height * (0.75),
+                child: (widget.user == null || widget.user.username == null)
+                    ? Container(
+                        child: Center(
+                          child: Text("Login first"),
+                        ),
+                      )
+                    : (widget.user.favorite == null ||
+                            widget.user.favorite[0] == '')
+                        ? Container(
+                            child: Center(
+                              child: Text("No Favorites"),
+                            ),
+                          )
+                        : /*child:*/ ListView.builder(
+                            itemCount: widget.user.favorite.length,
+                            itemBuilder: (context, index) {
+                              return Column(
+                                children: [
+                                  GestureDetector(
+                                    onTap: () {
+                                      getDataAndRoute(
+                                          widget.user.favorite[index]);
+                                    },
+                                    child: Container(
+                                      width: MediaQuery.of(context).size.width *
+                                          (0.90),
+                                      decoration: BoxDecoration(
+                                          color: Colors.brown,
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
+                                      child: ListTile(
+                                        leading: Text("${index + 1}"),
+                                        title:
+                                            Text(widget.user.favorite[index]),
+                                      ),
                                     ),
                                   ),
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                              ],
-                            );
-                          },
-                        ),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                ],
+                              );
+                            },
+                          ),
+              ),
             ),
     );
   }

@@ -161,6 +161,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:following_the_prophet/Screens/sentdata.dart';
+import 'package:following_the_prophet/appbar.dart';
 
 import "package:image_picker/image_picker.dart";
 
@@ -202,328 +203,331 @@ class _SendDataState extends State<SendData> {
                   child: CircularProgressIndicator(),
                 ),
               )
-            : ListView(
-                padding: const EdgeInsets.all(20),
-                children: [
-                  // Container(
-                  //   padding: EdgeInsets.only(top: 20),
-                  //   margin: EdgeInsets.only(right: 1200),
-                  //
-                  //   child: GestureDetector(
-                  //      onTap: () {
-                  //        setState(() {
-                  //          Navigator.pushReplacement(
-                  //            context,
-                  //            MaterialPageRoute(
-                  //              builder: (context) => HomePage(),
-                  //            ),
-                  //          );
-                  //        });
-                  //      },
-                  //      child: Icon(
-                  //        Icons.arrow_back,
-                  //        color: Colors.blue,
-                  //        size: 30.0,
-                  //      )
-                  //    ),
-                  // ),
+            : WillPopScope(
+                onWillPop: () {
+                  return Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => MyAppBar()),
+                  );
+                },
+                child: ListView(
+                  padding: const EdgeInsets.all(20),
+                  children: [
+                    // Container(
+                    //   padding: EdgeInsets.only(top: 20),
+                    //   margin: EdgeInsets.only(right: 1200),
+                    //
+                    //   child: GestureDetector(
+                    //      onTap: () {
+                    //        setState(() {
+                    //          Navigator.pushReplacement(
+                    //            context,
+                    //            MaterialPageRoute(
+                    //              builder: (context) => HomePage(),
+                    //            ),
+                    //          );
+                    //        });
+                    //      },
+                    //      child: Icon(
+                    //        Icons.arrow_back,
+                    //        color: Colors.blue,
+                    //        size: 30.0,
+                    //      )
+                    //    ),
+                    // ),
 
-                  //////////////
-                  Container(
-                    alignment: Alignment.center,
-                    child: Column(
-                      children: [
-                        Container(
-                          margin: EdgeInsets.all(15),
-                          padding: EdgeInsets.all(20),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "Title",
-                                style: TextStyle(
-                                  fontSize: 22,
-                                  color: Colors.amber,
-                                ),
-                              ),
-                              SizedBox(
-                                width: 12,
-                              ),
-                              Expanded(
-                                child: TextField(
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                  ),
-                                  controller: _titleController,
-                                  decoration: InputDecoration(
-                                    border: OutlineInputBorder(),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
+                    //////////////
+                    Container(
+                      alignment: Alignment.center,
+                      child: Column(
+                        children: [
+                          Container(
                             margin: EdgeInsets.all(15),
                             padding: EdgeInsets.all(20),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.center,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Row(
-                                  children: [
-                                    Text(
-                                      "Subtitle",
-                                      style: TextStyle(
-                                        fontSize: 22,
-                                        color: Colors.amber,
-                                      ),
-                                    ),
-                                       SizedBox(
-                                  width: 20,
-                                ),
-                                DropdownButton<String>(
-                                  value: subtitle,
-                                  icon: const Icon(
-                                    Icons.arrow_downward,
-                                    color: Colors.blue,
+                                Text(
+                                  "Title",
+                                  style: TextStyle(
+                                    fontSize: 22,
+                                    color: Colors.amber,
                                   ),
-                                  iconSize: 24,
-                                  elevation: 16,
-                                  style:
-                                      const TextStyle(color: Colors.deepPurple),
-                                  underline: Container(
-                                    height: 2,
-                                    color: Colors.redAccent,
-                                  ),
-                                  onChanged: (String newValue) {
-                                    setState(() {
-                                      subtitle = newValue;
-                                    });
-                                  },
-                                  items: <String>[
-                                    'Ghazwat',
-                                    'Makki life',
-                                    'Madni life',
-                                    'Hijrat',
-                                  ].map<DropdownMenuItem<String>>(
-                                      (String value) {
-                                    return DropdownMenuItem<String>(
-                                      value: value,
-                                      child: Text(value),
-                                    );
-                                  }).toList(),
                                 ),
-                                  ],
-                                ),
-                             
                                 SizedBox(
-                                  width: 40,
+                                  width: 12,
                                 ),
-                                
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                     
-                                            Text(
-                                              "Year",
-                                              style: TextStyle(
-                                                fontSize: 20,
-                                                color: Colors.amber,
-                                              ),
-                                            ),Container(
-                                          width: 40,
-                                          child: TextField(
-                                            keyboardType: TextInputType.number,
-                                            controller: yearController,
-                                          ),
-                                       
-                                        ),
-                                      
-                                        
-                                      ],
+                                Expanded(
+                                  child: TextField(
+                                    style: TextStyle(
+                                      fontSize: 18,
                                     ),
-                               
-                                    Row(
-                                      children: [
-                                        Text(
-                                          "Month",
-                                          style: TextStyle(
-                                            fontSize: 20,
-                                            color: Colors.amber,
-                                          ),
-                                        ),
-                                      
-                                        Container(
-                                          width: 40,
-                                          child: TextField(
-                                            keyboardType: TextInputType.number,
-                                            controller: monthController,
-                                          ),
-                                        ),
-                                      ],
+                                    controller: _titleController,
+                                    decoration: InputDecoration(
+                                      border: OutlineInputBorder(),
                                     ),
-                                 
-                                    Row(
-                                      children: [
-                                        Text(
-                                          "Day",
-                                          style: TextStyle(
-                                            fontSize: 20,
-                                            color: Colors.amber,
-                                          ),
-                                        ),
-                                    
-                                        Container(
-                                          width: 40,
-                                          child: TextField(
-                                            keyboardType: TextInputType.number,
-                                            controller: dateController,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
+                                  ),
                                 ),
                               ],
-                            )),
-                        SizedBox(
-                          height: 17,
-                        ),
-                        Container(
-                          margin: EdgeInsets.all(15),
-                          child: TextFormField(
-                            minLines: 1,
-                            maxLines: 10,
-                            //expands: true,
-                            decoration: InputDecoration(
-                              hintText: "Details",
-                              border: OutlineInputBorder(),
                             ),
-                            controller: _detailController,
                           ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Container(
-                          margin: EdgeInsets.all(15),
-                          padding: EdgeInsets.all(8),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          Container(
+                              margin: EdgeInsets.all(15),
+                              padding: EdgeInsets.all(20),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Text(
+                                        "Subtitle",
+                                        style: TextStyle(
+                                          fontSize: 22,
+                                          color: Colors.amber,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: 20,
+                                      ),
+                                      DropdownButton<String>(
+                                        value: subtitle,
+                                        icon: const Icon(
+                                          Icons.arrow_downward,
+                                          color: Colors.blue,
+                                        ),
+                                        iconSize: 24,
+                                        elevation: 16,
+                                        style: const TextStyle(
+                                            color: Colors.deepPurple),
+                                        underline: Container(
+                                          height: 2,
+                                          color: Colors.redAccent,
+                                        ),
+                                        onChanged: (String newValue) {
+                                          setState(() {
+                                            subtitle = newValue;
+                                          });
+                                        },
+                                        items: <String>[
+                                          'Ghazwat',
+                                          'Makki life',
+                                          'Madni life',
+                                          'Hijrat',
+                                        ].map<DropdownMenuItem<String>>(
+                                            (String value) {
+                                          return DropdownMenuItem<String>(
+                                            value: value,
+                                            child: Text(value),
+                                          );
+                                        }).toList(),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    width: 40,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            "Year",
+                                            style: TextStyle(
+                                              fontSize: 20,
+                                              color: Colors.amber,
+                                            ),
+                                          ),
+                                          Container(
+                                            width: 40,
+                                            child: TextField(
+                                              keyboardType:
+                                                  TextInputType.number,
+                                              controller: yearController,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      Row(
+                                        children: [
+                                          Text(
+                                            "Month",
+                                            style: TextStyle(
+                                              fontSize: 20,
+                                              color: Colors.amber,
+                                            ),
+                                          ),
+                                          Container(
+                                            width: 40,
+                                            child: TextField(
+                                              keyboardType:
+                                                  TextInputType.number,
+                                              controller: monthController,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      Row(
+                                        children: [
+                                          Text(
+                                            "Day",
+                                            style: TextStyle(
+                                              fontSize: 20,
+                                              color: Colors.amber,
+                                            ),
+                                          ),
+                                          Container(
+                                            width: 40,
+                                            child: TextField(
+                                              keyboardType:
+                                                  TextInputType.number,
+                                              controller: dateController,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              )),
+                          SizedBox(
+                            height: 17,
+                          ),
+                          Container(
+                            margin: EdgeInsets.all(15),
+                            child: TextFormField(
+                              minLines: 1,
+                              maxLines: 10,
+                              //expands: true,
+                              decoration: InputDecoration(
+                                hintText: "Details",
+                                border: OutlineInputBorder(),
+                              ),
+                              controller: _detailController,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Container(
+                            margin: EdgeInsets.all(15),
+                            padding: EdgeInsets.all(8),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Youtube Link",
+                                  style: TextStyle(
+                                    fontSize: 22,
+                                    color: Colors.amber,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 12,
+                                ),
+                                Expanded(
+                                  child: TextField(
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                    ),
+                                    controller: _linkController,
+                                    decoration: InputDecoration(
+                                      border: OutlineInputBorder(),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Container(
+                            height: _imageFileList == null ? 1 : 50,
+                            width: MediaQuery.of(context).size.width - 100,
+                            child: _imageFileList == null
+                                ? null
+                                : ListView.builder(
+                                    itemCount: _imageFileList.length,
+                                    scrollDirection: Axis.horizontal,
+                                    itemBuilder: (context, position) {
+                                      return Container(
+                                        margin: EdgeInsets.all(10),
+                                        width: 50,
+                                        child: Image.file(
+                                          File(_imageFileList[position].path),
+                                          fit: BoxFit.fill,
+                                        ),
+                                      );
+                                    }),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                "Youtube Link",
+                                "Image:",
                                 style: TextStyle(
                                   fontSize: 22,
                                   color: Colors.amber,
                                 ),
                               ),
                               SizedBox(
-                                width: 12,
+                                width: 10,
                               ),
-                              Expanded(
-                                child: TextField(
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                  ),
-                                  controller: _linkController,
-                                  decoration: InputDecoration(
-                                    border: OutlineInputBorder(),
-                                  ),
+                              GestureDetector(
+                                child: Icon(
+                                  Icons.upload_rounded,
+                                  color: Colors.blue,
                                 ),
-                              ),
-                              SizedBox(
-                                width: 5,
+                                onTap: () {
+                                  print("tapped");
+                                  getImages();
+                                },
                               ),
                             ],
                           ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Container(
-                          height: _imageFileList == null ? 1 : 50,
-                          width: MediaQuery.of(context).size.width - 100,
-                          child: _imageFileList == null
-                              ? null
-                              : ListView.builder(
-                                  itemCount: _imageFileList.length,
-                                  scrollDirection: Axis.horizontal,
-                                  itemBuilder: (context, position) {
-                                    return Container(
-                                      margin: EdgeInsets.all(10),
-                                      width: 50,
-                                      child: Image.file(
-                                        File(_imageFileList[position].path),
-                                        fit: BoxFit.fill,
-                                      ),
-                                    );
-                                  }),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Image:",
-                              style: TextStyle(
-                                fontSize: 22,
-                                color: Colors.amber,
+                          SizedBox(
+                            height: 10,
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              uploadToFireStore();
+                              setState(() {
+                                isloading = true;
+                              });
+                            },
+                            child: Container(
+                              margin: EdgeInsets.all(15),
+                              width: 130,
+                              height: 35,
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.blue.shade300,
                               ),
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            GestureDetector(
-                              child: Icon(
-                                Icons.upload_rounded,
-                                color: Colors.blue,
-                              ),
-                              onTap: () {
-                                print("tapped");
-                                getImages();
-                              },
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            uploadToFireStore();
-                            setState(() {
-                              isloading = true;
-                            });
-                          },
-                          child: Container(
-                            margin: EdgeInsets.all(15),
-                            width: 130,
-                            height: 35,
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Colors.blue.shade300,
-                            ),
-                            child: Text(
-                              "Submit",
-                              style: TextStyle(
-                                fontSize: 17,
+                              child: Text(
+                                "Submit",
+                                style: TextStyle(
+                                  fontSize: 17,
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
       ),
     );

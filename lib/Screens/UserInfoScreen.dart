@@ -24,7 +24,6 @@ class UserInfoScreen extends StatelessWidget {
           ],
           title: Text(
             "Signed In",
-
           ),
         ),
         body: Container(

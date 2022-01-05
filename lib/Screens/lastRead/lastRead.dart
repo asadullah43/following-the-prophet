@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:following_the_prophet/Screens/eventViewPage.dart';
+import 'package:following_the_prophet/appbar.dart';
 import 'package:following_the_prophet/helper/database.dart';
 import 'package:following_the_prophet/models/User.dart';
 import 'package:following_the_prophet/models/contentModel.dart';
@@ -32,35 +33,43 @@ class _LastReadPageState extends State<LastReadPage> {
         title: Text('Last Read'),
         backgroundColor: Colors.green,
       ),
-      body: Container(
-        child: (widget.user == null || widget.user.username == null)
-            ? Container(
-                child: Center(
-                  child: Text("Login first"),
-                ),
-              )
-            : (widget.user.lastRead == '')
-                ? Container(
-                    child: Center(
-                      child: Text("No Last Read"),
-                    ),
-                  )
-                : /*child:*/ Container(
-                    margin: EdgeInsets.all(10),
-                    width: MediaQuery.of(context).size.width * (0.90),
-                    decoration: BoxDecoration(
-                        color: Colors.brown,
-                        borderRadius: BorderRadius.circular(10)),
-                    child: GestureDetector(
-                      onTap: () {
-                        getDataAndRoute(widget.user.lastRead);
-                      },
-                      child: ListTile(
-                        leading: Text("1"),
-                        title: Text(widget.user.lastRead),
+      body: WillPopScope(
+        onWillPop: () {
+          return Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => MyAppBar()),
+          );
+        },
+        child: Container(
+          child: (widget.user == null || widget.user.username == null)
+              ? Container(
+                  child: Center(
+                    child: Text("Login first"),
+                  ),
+                )
+              : (widget.user.lastRead == '')
+                  ? Container(
+                      child: Center(
+                        child: Text("No Last Read"),
+                      ),
+                    )
+                  : /*child:*/ Container(
+                      margin: EdgeInsets.all(10),
+                      width: MediaQuery.of(context).size.width * (0.90),
+                      decoration: BoxDecoration(
+                          color: Colors.brown,
+                          borderRadius: BorderRadius.circular(10)),
+                      child: GestureDetector(
+                        onTap: () {
+                          getDataAndRoute(widget.user.lastRead);
+                        },
+                        child: ListTile(
+                          leading: Text("1"),
+                          title: Text(widget.user.lastRead),
+                        ),
                       ),
                     ),
-                  ),
+        ),
       ),
     );
   }

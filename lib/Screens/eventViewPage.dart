@@ -47,33 +47,38 @@ class _EventViewScreenState extends State<EventViewScreen> {
   //   getEver();
   //   if (widget.fromEvent) {
   //     getData();
-   
+
   //   }
   //   setState(() {
   //     isLoading = false;
   //   });
   //   super.initState();
   // }
-  bool _isInit=true;
+  bool _isInit = true;
   void didChangeDependencies() async {
     setState(() {
       isLoading = true;
     });
     if (_isInit) {
-     await getEver();
-    if (widget.fromEvent) {
-      await getData();
-   
-    }
+      try {
+        await getEver();
+        if (widget.fromEvent) {
+          await getData();
+        }
+      } catch (e) {
+        setState(() {
+          isLoading = false;
+        });
+        print(e);
+      }
     }
     setState(() {
-      isLoading= false;
+      isLoading = false;
     });
     _isInit = false;
 
     super.didChangeDependencies();
   }
-
 
   var favButtonColor = Colors.white;
 
@@ -82,7 +87,9 @@ class _EventViewScreenState extends State<EventViewScreen> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Center(child: Text(widget.data.title)),
+          title: Center(
+            child: !isLoading ? Text(widget.data.title) : Text(""),
+          ),
         ),
         body: isLoading
             ? Container(
@@ -90,96 +97,98 @@ class _EventViewScreenState extends State<EventViewScreen> {
                   child: CircularProgressIndicator(),
                 ),
               )
-            : Container(
-                margin: EdgeInsets.all(10),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            : widget.data != null
+                ? Container(
+                    margin: EdgeInsets.all(10),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Center(
-                          child: Text(
-                            "Details:",
-                            style: TextStyle(
-                              fontSize: 24,
-                            ),
-                          ),
-                        ),
                         Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            IconButton(
-                                onPressed: () {
-                                  IncreaseFontSize();
-                                },
-                                icon: Icon(Icons.add)),
-                            IconButton(
-                                onPressed: () {
-                                  DecreaseFontSize();
-                                },
-                                icon: Icon(Icons.remove))
-                          ],
-                        )
-                      ],
-                    ),
-                    Container(
-                      height: MediaQuery.of(context).size.height * (0.70),
-                      child: ListView(
-                        children: [
-                          Text(
-                            widget.data.details,
-                            style: TextStyle(
-                              fontSize: fontSize,
+                            Center(
+                              child: Text(
+                                "Details:",
+                                style: TextStyle(
+                                  fontSize: 24,
+                                ),
+                              ),
                             ),
-                          )
-                        ],
-                      ),
-                    ),
-                    // SizedBox(
-                    //   height: 60,
-                    // ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            _openYoutube();
-                          },
-                          child: Icon(
-                            FontAwesomeIcons.youtube,
-                            size: 40,
-                            color: Colors.red[100],
+                            Row(
+                              children: [
+                                IconButton(
+                                    onPressed: () {
+                                      IncreaseFontSize();
+                                    },
+                                    icon: Icon(Icons.add)),
+                                IconButton(
+                                    onPressed: () {
+                                      DecreaseFontSize();
+                                    },
+                                    icon: Icon(Icons.remove))
+                              ],
+                            )
+                          ],
+                        ),
+                        Container(
+                          height: MediaQuery.of(context).size.height * (0.70),
+                          child: ListView(
+                            children: [
+                              Text(
+                                widget.data.details,
+                                style: TextStyle(
+                                  fontSize: fontSize,
+                                ),
+                              )
+                            ],
                           ),
                         ),
-                        IconButton(
-                          onPressed: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) =>
-                                  GalleryPage(widget.data.title),
-                            ));
-                          },
-                          icon: Icon(
-                            Icons.collections,
-                            size: 35,
-                            color: Colors.lightBlueAccent,
-                          ),
-                        ),
-                        IconButton(
-                          onPressed: () {
-                            _favMethod();
-                          },
-                          icon: Icon(
-                            Icons.favorite,
-                            size: 30.0,
-                            color: favButtonColor,
-                          ),
+                        // SizedBox(
+                        //   height: 60,
+                        // ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                _openYoutube();
+                              },
+                              child: Icon(
+                                FontAwesomeIcons.youtube,
+                                size: 40,
+                                color: Colors.red[100],
+                              ),
+                            ),
+                            IconButton(
+                              onPressed: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) =>
+                                      GalleryPage(widget.data.title),
+                                ));
+                              },
+                              icon: Icon(
+                                Icons.collections,
+                                size: 35,
+                                color: Colors.lightBlueAccent,
+                              ),
+                            ),
+                            IconButton(
+                              onPressed: () {
+                                _favMethod();
+                              },
+                              icon: Icon(
+                                Icons.favorite,
+                                size: 30.0,
+                                color: favButtonColor,
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
-                  ],
-                ),
-              ),
+                  )
+                : Center(child: Container(child: Text("No event"))),
       ),
     );
   }
