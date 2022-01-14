@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:following_the_prophet/Screens/home/components/calenderButton.dart';
 import 'package:following_the_prophet/Screens/home/components/yearScreen.dart';
 
@@ -14,7 +13,10 @@ class _CalenderTopState extends State<CalenderTop> {
     return Container(
       alignment: Alignment.center,
       decoration: BoxDecoration(
-        color: Color(0xFF606060),
+        color: Colors.green[200],
+        border: Border.all(
+          color: Colors.green[700],
+        ),
         borderRadius: BorderRadius.circular(20),
       ),
 
@@ -30,11 +32,11 @@ class _CalenderTopState extends State<CalenderTop> {
             children: [
               CalenderTopColor(
                 text: 'Prophethood',
-                color: Color(0xFFD9D9D9),
+                color: Colors.cyan[200],
               ),
               CalenderTopColor(
                 text: 'Hijri',
-                color: Color(0xFFCDE300),
+                color: Colors.teal[100],
               ),
             ],
           ),
@@ -43,15 +45,15 @@ class _CalenderTopState extends State<CalenderTop> {
             children: [
               CalenderTopColor(
                 text: 'Age',
-                color: Color(0xFF9BBB94),
+                color: Colors.blueGrey[200],
               ),
               CalenderTopColor(
                 text: 'Julian',
-                color: Color(0xFFFD9727),
+                color: Colors.green[300],
               )
             ],
           ),
-         //SizedBox(height: 20.0),
+          //SizedBox(height: 20.0),
           Container(
             height: MediaQuery.of(context).size.height * (0.40),
             alignment: Alignment.center,
@@ -109,7 +111,7 @@ class CalenderTopColor extends StatelessWidget {
             text,
             style: const TextStyle(
               fontWeight: FontWeight.bold,
-              color: Colors.white60,
+              color: Colors.black87,
             ),
           ),
           Container(

@@ -14,13 +14,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-       // primarySwatch: Colors.red,
-        primaryColor: Color(0xFF645647),
+        // primarySwatch: Colors.red,
+        primaryColor: Colors.teal,
 
-        scaffoldBackgroundColor: Color(0xFF645647),
+        scaffoldBackgroundColor: Colors.white,
         textTheme: TextTheme(
           bodyText2: TextStyle(
-            color: Colors.white,
+            color: Colors.black,
           ),
         ),
       ),

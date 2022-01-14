@@ -81,7 +81,6 @@ class _MyAppBar extends State<MyAppBar> {
             : ListView(
                 children: [
                   Container(
-                    color: Color(0xFF645647),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -89,13 +88,14 @@ class _MyAppBar extends State<MyAppBar> {
                         QuickButton(),
                         Calender(),
                         Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             DailyEvent(
-                              text: 'Today\'s Event',
+                              text: '\nToday\'s Event',
                               event: event,
                             ),
                             DailyEvent(
-                              text: 'Today\'s Hadith',
+                              text: '\nToday\'s Hadith',
                               hadees: hadees,
                             ),
                           ],
@@ -149,17 +149,18 @@ class _MyAppBar extends State<MyAppBar> {
               ),
         drawer: Drawer(
           child: Material(
-            color: Color(0xFF645647),
+            color: Colors.green[200],
             child: ListView(
               children: [
                 const DrawerHeader(
                   decoration: BoxDecoration(
-                    color: Colors.blue,
+                    color: Colors.teal,
                   ),
                   child: Center(
                       child: Text('Following The Prophet(SAW)',
                           style: TextStyle(
                             fontSize: 20,
+                            color: Colors.white,
                           ))),
                 ),
 
@@ -249,12 +250,12 @@ class _MyAppBar extends State<MyAppBar> {
           ),
         ),
         appBar: AppBar(
+            backgroundColor: Colors.teal,
             title: Center(
               child: Text(
                 'FOLLOWING THE PROPHET',
                 style: TextStyle(
-                  fontSize: 20,
-                  color: Color(0xFFFD9727),
+                  fontSize: 16,
                 ),
               ),
             ),

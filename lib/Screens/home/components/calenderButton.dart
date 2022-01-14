@@ -24,7 +24,7 @@ class YearWise extends StatelessWidget {
                       child: Text(prophetHood),
                     ),
                     decoration: BoxDecoration(
-                      color: Color(0xFFD9D9D9),
+                      color: Colors.cyan[200],
                     ),
                   ),
                 ],
@@ -38,7 +38,7 @@ class YearWise extends StatelessWidget {
                       child: Text(age),
                     ),
                     decoration: BoxDecoration(
-                      color: Color(0xFF9BBB94),
+                      color: Colors.teal[100],
                     ),
                   ),
                 ],
@@ -56,7 +56,7 @@ class YearWise extends StatelessWidget {
                       child: Text(hijri),
                     ),
                     decoration: BoxDecoration(
-                      color: Color(0xFFCDE300),
+                      color: Colors.blueGrey[200],
                     ),
                   ),
                 ],
@@ -70,7 +70,7 @@ class YearWise extends StatelessWidget {
                       child: Text(juilan),
                     ),
                     decoration: BoxDecoration(
-                      color: Color(0xFFFD9727),
+                      color: Colors.green[300],
                     ),
                   ),
                 ],

@@ -31,9 +31,9 @@ class _SearchBarState extends State<SearchBar> {
           child: Container(
             padding: EdgeInsets.all(10),
             margin: EdgeInsets.fromLTRB(30, 5, 30, 5),
-            child: Text('Search'),
+            child: Text('Search', style: TextStyle(color: Colors.green[700])),
             decoration: BoxDecoration(
-                border: Border.all(color: Colors.white, width: 2),
+                border: Border.all(color: Colors.green[700], width: 2),
                 borderRadius: BorderRadius.circular(20)),
           ),
         ),
