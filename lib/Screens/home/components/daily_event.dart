@@ -66,6 +66,7 @@ class _DailyEventState extends State<DailyEvent> {
                     widget.event == null || widget.event.title == null
                         ? Text('No Event occured on today date')
                         : Text(widget.event.title),
+
                     // widget.event == null || widget.event.title == null
                     //     ? Text('')
                     //     : Text(widget.event.year.toString()),
