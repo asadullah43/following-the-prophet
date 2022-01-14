@@ -64,7 +64,10 @@ class _DailyEventState extends State<DailyEvent> {
                   children: [
                     Text(widget.text),
                     widget.event == null || widget.event.title == null
-                        ? Text('No Event occured on today date')
+                        ? Text(
+                            'No Event occured on today date',
+                            textAlign: TextAlign.center,
+                          )
                         : Text(widget.event.title),
                     // widget.event == null || widget.event.title == null
                     //     ? Text('')
@@ -74,7 +77,10 @@ class _DailyEventState extends State<DailyEvent> {
 //>>>>>>> cb59be5995f04f45ba613ee95d9b8947e855d54b
           margin: EdgeInsets.all(5),
           decoration: BoxDecoration(
-            color: Color(0xFF9BBB94),
+            border: Border.all(
+              color: Colors.green[700],
+            ),
+            color: Colors.green[200],
           ),
           height: 80,
           width: 200,

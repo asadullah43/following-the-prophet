@@ -26,15 +26,22 @@ class ButtonLayout extends StatelessWidget {
           },
           child: Container(
             margin: EdgeInsets.fromLTRB(5, 3, 5, 3),
-            child: Center(child: Text(text,style: TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-              
-            ),)),
+            child: Center(
+                child: Text(
+              text,
+              style: TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+              ),
+              textAlign: TextAlign.center,
+            )),
             //margin: EdgeInsets.all(3),
             decoration: BoxDecoration(
-             // color: Color(0xFF9BBB94),
+              // color: Color(0xFF9BBB94),
               color: Colors.green[200],
+              border: Border.all(
+                color: Colors.green[700],
+              ),
               borderRadius: BorderRadius.circular(20),
             ),
             height: 60,

@@ -7,7 +7,7 @@ class QuickButton extends StatelessWidget {
     return Container(
       margin: EdgeInsets.fromLTRB(5, 5, 5, 5),
       decoration: BoxDecoration(
-        color: Color(0xFF787777),
+        color: Colors.green[50],
       ),
       height: 80,
       width: 400,
@@ -15,8 +15,8 @@ class QuickButton extends StatelessWidget {
         children: [
           ButtonLayout(text: 'WARS'),
           ButtonLayout(text: 'HIJRAT'),
-          ButtonLayout(text: 'MADANI LIFE'),
-          ButtonLayout(text: 'MAKKI LIFE'),
+          ButtonLayout(text: 'MADANI\nLIFE'),
+          ButtonLayout(text: 'MAKKI\nLIFE'),
         ],
       ),
     );

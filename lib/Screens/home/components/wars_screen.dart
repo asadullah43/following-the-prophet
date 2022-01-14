@@ -27,7 +27,7 @@ class _WarsState extends State<Wars> {
       child: Scaffold(
         appBar: AppBar(
           title: Text('Wars'),
-          backgroundColor: Colors.green,
+          backgroundColor: Colors.teal,
         ),
         body: yearData.length == 0
             ? Container(
@@ -69,17 +69,20 @@ class _WarsState extends State<Wars> {
                                       width: MediaQuery.of(context).size.width *
                                           (0.90),
                                       decoration: BoxDecoration(
-                                          color: Colors.brown,
+                                          color: Colors.green[50],
                                           borderRadius:
                                               BorderRadius.circular(10)),
                                       child: ListTile(
-                                        leading: Text("${index + 1}"),
+                                        leading: Text(
+                                          "${index + 1}",
+                                          style: TextStyle(color: Colors.black),
+                                        ),
                                         title: Text(yearData[index].title),
                                       ),
                                     ),
                                   ),
                                   SizedBox(
-                                    height: 5,
+                                    height: 10,
                                   ),
                                 ],
                               );
