@@ -77,7 +77,7 @@ class _WarsState extends State<Wars> {
                                           (0.90),
                                       decoration: BoxDecoration(
                                           // color: Color(0xFF787777),
-                                          color: Colors.white,
+                                          color: Colors.white70,
                                           borderRadius:
                                               BorderRadius.circular(10)),
                                       child: ListTile(

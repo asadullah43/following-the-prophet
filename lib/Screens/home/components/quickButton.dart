@@ -19,8 +19,8 @@ class QuickButton extends StatelessWidget {
         children: [
           ButtonLayout(text: 'WARS'),
           ButtonLayout(text: 'HIJRAT'),
-          ButtonLayout(text: 'MADANI\nLIFE'),
-          ButtonLayout(text: 'MAKKI\nLIFE'),
+          ButtonLayout(text: 'MADANI LIFE'),
+          ButtonLayout(text: 'MAKKI LIFE'),
         ],
       ),
     );

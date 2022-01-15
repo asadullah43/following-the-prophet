@@ -626,6 +626,7 @@ class _MyAppBar extends State<MyAppBar> {
       hadees = await _db.getHadees(id);
     } else {
       prefs.setInt('hadeesId', 1);
+      setCurrentDate();
       var c = await _db.getHadees(1);
       setState(() {
         hadees = c;

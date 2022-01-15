@@ -73,7 +73,7 @@ class _HijrathState extends State<Hijrath> {
                                       width: MediaQuery.of(context).size.width *
                                           (0.90),
                                       decoration: BoxDecoration(
-                                          color: Colors.white,
+                                          color: Colors.white70,
                                           borderRadius:
                                               BorderRadius.circular(10)),
                                       child: ListTile(

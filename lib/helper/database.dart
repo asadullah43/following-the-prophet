@@ -69,7 +69,7 @@ class Database {
     //   prefs.setInt("today", 0);
 
     // }
-    if (resul.docs.last['id'] < id) {
+    if (resul.docs.length < id) {
       prefs.setInt('hadeesId', 1);
 
       var result = await FirebaseFirestore.instance

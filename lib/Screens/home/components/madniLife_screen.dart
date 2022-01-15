@@ -73,7 +73,7 @@ class _MadniLifeState extends State<MadniLife> {
                                       width: MediaQuery.of(context).size.width *
                                           (0.90),
                                       decoration: BoxDecoration(
-                                          color: Colors.brown,
+                                          color: Colors.white70,
                                           borderRadius:
                                               BorderRadius.circular(10)),
                                       child: ListTile(
