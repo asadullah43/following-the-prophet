@@ -136,7 +136,7 @@ class _BodyState extends State<Body> {
                   Text(
                     "LOGIN",
                     style: TextStyle(
-                        color: Colors.blue,
+                        color: Colors.green[400],
                         fontWeight: FontWeight.bold,
                         fontSize: 40),
                   ),
@@ -154,6 +154,7 @@ class _BodyState extends State<Body> {
                     press: () {
                       _signIn();
                     },
+                    color: Colors.green[400],
                   ),
                   SizedBox(height: size.height * 0.03),
                   AlreadyHaveAnAccountCheck(
@@ -183,10 +184,10 @@ class _BodyState extends State<Body> {
                         );
                       });
                     },
-                    child: const Text(
+                    child: Text(
                       "Forgot Password",
                       style: TextStyle(
-                        color: Colors.blueAccent,
+                        color: Colors.green[400],
                         fontSize: 15,
                         fontWeight: FontWeight.w600,
                       ),

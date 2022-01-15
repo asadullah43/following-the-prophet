@@ -47,9 +47,9 @@ class _BodyState extends State<Body> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    "SIGNUP",
+                    "SIGN UP",
                     style: TextStyle(
-                      color: Colors.blue,
+                      color: Colors.green[400],
                       fontWeight: FontWeight.bold,
                       fontSize: 30,
                     ),
@@ -67,10 +67,11 @@ class _BodyState extends State<Body> {
                     controller: passwordController,
                   ),
                   RoundedButton(
-                    text: "SIGNUP",
+                    text: "SIGN UP",
                     press: () {
                       _signUP();
                     },
+                    color: Colors.green[400],
                   ),
                   SizedBox(height: size.height * 0.03),
                   AlreadyHaveAnAccountCheck(

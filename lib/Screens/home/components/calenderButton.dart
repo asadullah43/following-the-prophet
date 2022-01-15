@@ -6,11 +6,10 @@ class YearWise extends StatelessWidget {
   final String age;
   final String hijri;
   final String juilan;
-
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.fromLTRB(10, 5, 10, 0),
+      padding: EdgeInsets.fromLTRB(15, 30, 10, 0),
       child: Column(
         children: [
           Row(
@@ -18,13 +17,16 @@ class YearWise extends StatelessWidget {
               Column(
                 children: [
                   Container(
-                    height: 28,
-                    width: 30,
+                    height: 30,
+                    width: 40,
                     child: Center(
-                      child: Text(prophetHood),
+                      child: Text(prophetHood,
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold)),
                     ),
                     decoration: BoxDecoration(
-                      color: Colors.cyan[200],
+                      color: Color(0xFFD9D9D9),
                     ),
                   ),
                 ],
@@ -32,13 +34,16 @@ class YearWise extends StatelessWidget {
               Column(
                 children: [
                   Container(
-                    height: 28,
-                    width: 30,
+                    height: 30,
+                    width: 40,
                     child: Center(
-                      child: Text(age),
+                      child: Text(age,
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold)),
                     ),
                     decoration: BoxDecoration(
-                      color: Colors.teal[100],
+                      color: Color(0xFF9BBB94),
                     ),
                   ),
                 ],
@@ -50,13 +55,16 @@ class YearWise extends StatelessWidget {
               Column(
                 children: [
                   Container(
-                    height: 28,
-                    width: 30,
+                    height: 30,
+                    width: 40,
                     child: Center(
-                      child: Text(hijri),
+                      child: Text(hijri,
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold)),
                     ),
                     decoration: BoxDecoration(
-                      color: Colors.blueGrey[200],
+                      color: Color(0xFFCDE300),
                     ),
                   ),
                 ],
@@ -64,13 +72,17 @@ class YearWise extends StatelessWidget {
               Column(
                 children: [
                   Container(
-                    height: 28,
-                    width: 30,
+                    height: 30,
+                    width: 40,
                     child: Center(
-                      child: Text(juilan),
+                      child: Text(
+                        juilan,
+                        style: TextStyle(
+                            color: Colors.black, fontWeight: FontWeight.bold),
+                      ),
                     ),
                     decoration: BoxDecoration(
-                      color: Colors.green[300],
+                      color: Color(0xFFFD9727),
                     ),
                   ),
                 ],

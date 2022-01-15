@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:following_the_prophet/Screens/home/components/calenderButton.dart';
 import 'package:following_the_prophet/Screens/home/components/yearScreen.dart';
 
@@ -13,11 +14,11 @@ class _CalenderTopState extends State<CalenderTop> {
     return Container(
       alignment: Alignment.center,
       decoration: BoxDecoration(
-        color: Colors.green[200],
-        border: Border.all(
-          color: Colors.green[700],
-        ),
-        borderRadius: BorderRadius.circular(20),
+        color: Color(0xFF606060),
+        borderRadius: BorderRadius.circular(1),
+        boxShadow: [
+          BoxShadow(color: Colors.white70, spreadRadius: 1),
+        ],
       ),
 
       margin: EdgeInsets.fromLTRB(25, 10, 25, 15),
@@ -32,11 +33,11 @@ class _CalenderTopState extends State<CalenderTop> {
             children: [
               CalenderTopColor(
                 text: 'Prophethood',
-                color: Colors.cyan[200],
+                color: Color(0xFFD9D9D9),
               ),
               CalenderTopColor(
                 text: 'Hijri',
-                color: Colors.teal[100],
+                color: Color(0xFFCDE300),
               ),
             ],
           ),
@@ -45,11 +46,11 @@ class _CalenderTopState extends State<CalenderTop> {
             children: [
               CalenderTopColor(
                 text: 'Age',
-                color: Colors.blueGrey[200],
+                color: Color(0xFF9BBB94),
               ),
               CalenderTopColor(
                 text: 'Julian',
-                color: Colors.green[300],
+                color: Color(0xFFFD9727),
               )
             ],
           ),
@@ -111,14 +112,15 @@ class CalenderTopColor extends StatelessWidget {
             text,
             style: const TextStyle(
               fontWeight: FontWeight.bold,
-              color: Colors.black87,
+              fontSize: 19,
+              color: Colors.white,
             ),
           ),
           Container(
             margin: EdgeInsets.only(left: 5),
             color: color,
-            height: 15,
-            width: 50,
+            height: 21,
+            width: 60,
           )
         ],
       ),

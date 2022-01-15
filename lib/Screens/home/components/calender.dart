@@ -9,10 +9,10 @@ class Calender extends StatelessWidget {
       alignment: Alignment.center,
       margin: EdgeInsets.all(5),
       decoration: BoxDecoration(
-        color: Colors.green[200],
-        border: Border.all(
-          color: Colors.green[700],
-        ),
+        color: Color(0xFF787777),
+        boxShadow: [
+          BoxShadow(color: Colors.white, spreadRadius: 2),
+        ],
         //borderRadius: BorderRadius.circular(20),
       ),
       height: MediaQuery.of(context).size.height * (0.61),

@@ -15,12 +15,14 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         // primarySwatch: Colors.red,
-        primaryColor: Colors.teal,
+        primaryColor: Color(0xFF645647),
 
-        scaffoldBackgroundColor: Colors.white,
+        scaffoldBackgroundColor:
+            //Color(0xFF787777),
+            Color(0xFF645647),
         textTheme: TextTheme(
           bodyText2: TextStyle(
-            color: Colors.black,
+            color: Colors.white,
           ),
         ),
       ),

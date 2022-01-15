@@ -26,8 +26,15 @@ class _WarsState extends State<Wars> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Wars'),
-          backgroundColor: Colors.teal,
+          title: Text(
+            'Wars',
+            style: TextStyle(
+              color: Color(0xFFFD9727),
+              fontSize: 22,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          backgroundColor: Color(0xFF645647),
         ),
         body: yearData.length == 0
             ? Container(
@@ -69,7 +76,8 @@ class _WarsState extends State<Wars> {
                                       width: MediaQuery.of(context).size.width *
                                           (0.90),
                                       decoration: BoxDecoration(
-                                          color: Colors.green[50],
+                                          // color: Color(0xFF787777),
+                                          color: Colors.white,
                                           borderRadius:
                                               BorderRadius.circular(10)),
                                       child: ListTile(

@@ -14,11 +14,27 @@ class UserInfoScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
+          backgroundColor: Color(0xFF645647),
           actions: <Widget>[
             PopupMenuButton<int>(
+              color: Color(0xFF645647),
+              shape: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.white, width: 1)),
+              //shape: ShapeBorder(),
               onSelected: (item) => handleClick(context),
               itemBuilder: (context) => [
-                PopupMenuItem<int>(value: 0, child: Text('Logout')),
+                PopupMenuItem<int>(
+                  value: 0,
+                  child: Center(
+                    child: Text(
+                      'Logout',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
           ],
@@ -34,7 +50,7 @@ class UserInfoScreen extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    "UserName: ",
+                    "User Name: ",
                     style: TextStyle(
                       fontSize: 22,
                     ),
@@ -43,7 +59,7 @@ class UserInfoScreen extends StatelessWidget {
                     user.username,
                     style: TextStyle(
                       fontSize: 30,
-                      fontWeight: FontWeight.bold,
+                      //fontWeight: FontWeight.bold,
                     ),
                   ),
                 ],

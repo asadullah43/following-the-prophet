@@ -23,12 +23,22 @@ class _EventViewScreenState extends State<EventViewScreen> {
   bool isLoading = false;
 
   IncreaseFontSize() {
-    this.fontSize = fontSize + 2;
+    print(fontSize);
+    if (fontSize > 26) {
+      this.fontSize = fontSize;
+    } else {
+      this.fontSize = fontSize + 2;
+    }
     setState(() {});
   }
 
   DecreaseFontSize() {
-    this.fontSize = fontSize - 2;
+    print(fontSize);
+    if (fontSize < 16) {
+      this.fontSize = fontSize;
+    } else {
+      this.fontSize = fontSize - 2;
+    }
     setState(() {});
   }
 
@@ -87,9 +97,17 @@ class _EventViewScreenState extends State<EventViewScreen> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Center(
-            child: !isLoading ? Text(widget.data.title) : Text(""),
-          ),
+          backgroundColor: Color(0xFF645647),
+          title: !isLoading
+              ? Text(
+                  widget.data.title,
+                  style: TextStyle(
+                    color: Color(0xFFFD9727),
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                  ),
+                )
+              : Text(""),
         ),
         body: isLoading
             ? Container(
@@ -111,7 +129,9 @@ class _EventViewScreenState extends State<EventViewScreen> {
                               child: Text(
                                 "Details:",
                                 style: TextStyle(
-                                  fontSize: 24,
+                                  fontSize: 25,
+                                  color: Color(0xFFFD9727),
+                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
                             ),
@@ -121,12 +141,18 @@ class _EventViewScreenState extends State<EventViewScreen> {
                                     onPressed: () {
                                       IncreaseFontSize();
                                     },
-                                    icon: Icon(Icons.add)),
+                                    icon: Icon(
+                                      Icons.add,
+                                      color: Colors.white,
+                                    )),
                                 IconButton(
                                     onPressed: () {
                                       DecreaseFontSize();
                                     },
-                                    icon: Icon(Icons.remove))
+                                    icon: Icon(
+                                      Icons.remove,
+                                      color: Colors.white,
+                                    ))
                               ],
                             )
                           ],
@@ -157,7 +183,7 @@ class _EventViewScreenState extends State<EventViewScreen> {
                               child: Icon(
                                 FontAwesomeIcons.youtube,
                                 size: 40,
-                                color: Colors.red[100],
+                                color: Colors.red[400],
                               ),
                             ),
                             IconButton(
@@ -170,7 +196,7 @@ class _EventViewScreenState extends State<EventViewScreen> {
                               icon: Icon(
                                 Icons.collections,
                                 size: 35,
-                                color: Colors.lightBlueAccent,
+                                color: Colors.lightBlueAccent[400],
                               ),
                             ),
                             IconButton(
@@ -213,7 +239,7 @@ class _EventViewScreenState extends State<EventViewScreen> {
 
   Future isFav() async {
     if (await db.checkFav(widget.data.title, username)) {
-      favButtonColor = Colors.red[100];
+      favButtonColor = Colors.red;
     } else {
       favButtonColor = Colors.white;
     }

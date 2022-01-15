@@ -23,8 +23,15 @@ class _MakkiLifeState extends State<MakkiLife> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Makki Life'),
-          backgroundColor: Colors.green,
+          title: Text(
+            'Makki Life',
+            style: TextStyle(
+              color: Color(0xFFFD9727),
+              fontSize: 22,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          backgroundColor: Color(0xFF645647),
         ),
         body: yearData.length == 0
             ? Container(
@@ -66,11 +73,14 @@ class _MakkiLifeState extends State<MakkiLife> {
                                       width: MediaQuery.of(context).size.width *
                                           (0.90),
                                       decoration: BoxDecoration(
-                                          color: Colors.brown,
+                                          color: Colors.white,
                                           borderRadius:
                                               BorderRadius.circular(10)),
                                       child: ListTile(
-                                        leading: Text("${index + 1}"),
+                                        leading: Text(
+                                          "${index + 1}",
+                                          style: TextStyle(color: Colors.black),
+                                        ),
                                         title: Text(yearData[index].title),
                                       ),
                                     ),

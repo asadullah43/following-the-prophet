@@ -31,17 +31,14 @@ class ButtonLayout extends StatelessWidget {
               text,
               style: TextStyle(
                 color: Colors.black,
+                fontSize: 15,
                 fontWeight: FontWeight.bold,
               ),
-              textAlign: TextAlign.center,
             )),
             //margin: EdgeInsets.all(3),
             decoration: BoxDecoration(
               // color: Color(0xFF9BBB94),
-              color: Colors.green[200],
-              border: Border.all(
-                color: Colors.green[700],
-              ),
+              color: Colors.green[300],
               borderRadius: BorderRadius.circular(20),
             ),
             height: 60,

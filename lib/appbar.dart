@@ -81,6 +81,7 @@ class _MyAppBar extends State<MyAppBar> {
             : ListView(
                 children: [
                   Container(
+                    color: Color(0xFF645647),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -88,14 +89,13 @@ class _MyAppBar extends State<MyAppBar> {
                         QuickButton(),
                         Calender(),
                         Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             DailyEvent(
-                              text: '\nToday\'s Event',
+                              text: 'Today\'s Event',
                               event: event,
                             ),
                             DailyEvent(
-                              text: '\nToday\'s Hadith',
+                              text: 'Today\'s Hadith',
                               hadees: hadees,
                             ),
                           ],
@@ -149,18 +149,17 @@ class _MyAppBar extends State<MyAppBar> {
               ),
         drawer: Drawer(
           child: Material(
-            color: Colors.green[200],
+            color: Color(0xFF645647),
             child: ListView(
               children: [
                 const DrawerHeader(
                   decoration: BoxDecoration(
-                    color: Colors.teal,
+                    color: Colors.white70,
                   ),
                   child: Center(
-                      child: Text('Following The Prophet(SAW)',
+                      child: Text('FOLLOWING THE PROPHET (SAW)',
                           style: TextStyle(
                             fontSize: 20,
-                            color: Colors.white,
                           ))),
                 ),
 
@@ -250,12 +249,15 @@ class _MyAppBar extends State<MyAppBar> {
           ),
         ),
         appBar: AppBar(
-            backgroundColor: Colors.teal,
+            backgroundColor: Color(0xFF645647),
             title: Center(
               child: Text(
                 'FOLLOWING THE PROPHET',
                 style: TextStyle(
-                  fontSize: 16,
+                  fontSize: 20,
+                  color: Colors.amber[800],
+                  fontWeight: FontWeight.bold,
+                  //Color(0xFFFD9727),
                 ),
               ),
             ),
@@ -264,7 +266,7 @@ class _MyAppBar extends State<MyAppBar> {
                 icon: Icon(
                   Icons.account_circle,
                   color: Colors.white,
-                  size: 30.0,
+                  size: 32.0,
                 ),
                 onPressed: () async {
                   SharedPreferences prefs =

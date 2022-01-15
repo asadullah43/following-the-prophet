@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 //const kPrimaryColor = Color(0xFF080603);
-const kPrimaryColor = Colors.blue;
+const kPrimaryColor = Color(0xFF787777);
 
 class RoundedButton extends StatelessWidget {
   final String text;
@@ -13,7 +13,7 @@ class RoundedButton extends StatelessWidget {
     this.text,
     this.press,
     this.color = kPrimaryColor,
-    this.textColor = Colors.white,
+    this.textColor = Colors.black,
   }) : super(key: key);
 
   @override

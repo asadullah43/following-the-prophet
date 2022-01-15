@@ -42,10 +42,21 @@ class _DailyEventState extends State<DailyEvent> {
           child: (widget.text.compareTo('Today\'s Hadith') == 0)
               ? Column(
                   children: [
-                    Text(widget.text),
+                    Text(
+                      widget.text,
+                      style: TextStyle(color: Colors.black, fontSize: 16),
+                    ),
+                    SizedBox(
+                      height: 6,
+                    ),
                     widget.hadees == null
                         ? Text('')
-                        : Text(widget.hadees, overflow: TextOverflow.ellipsis)
+                        : Text(widget.hadees,
+                            overflow: TextOverflow.ellipsis,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color: Colors.black,
+                            ))
                   ],
                 )
               : Column(
@@ -62,14 +73,25 @@ class _DailyEventState extends State<DailyEvent> {
 //           ),
 // =======
                   children: [
-                    Text(widget.text),
+                    Text(
+                      widget.text,
+                      style: TextStyle(color: Colors.black, fontSize: 16),
+                    ),
+                    SizedBox(
+                      height: 6,
+                    ),
                     widget.event == null || widget.event.title == null
                         ? Text(
                             'No Event occured on today date',
                             textAlign: TextAlign.center,
+                            style: TextStyle(color: Colors.black),
                           )
-                        : Text(widget.event.title),
-
+                        : Text(
+                            widget.event.title,
+                            overflow: TextOverflow.ellipsis,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(color: Colors.black),
+                          ),
                     // widget.event == null || widget.event.title == null
                     //     ? Text('')
                     //     : Text(widget.event.year.toString()),
@@ -78,10 +100,10 @@ class _DailyEventState extends State<DailyEvent> {
 //>>>>>>> cb59be5995f04f45ba613ee95d9b8947e855d54b
           margin: EdgeInsets.all(5),
           decoration: BoxDecoration(
-            border: Border.all(
-              color: Colors.green[700],
-            ),
-            color: Colors.green[200],
+            color: Colors.green[300],
+            boxShadow: [
+              BoxShadow(color: Colors.white, spreadRadius: 2),
+            ],
           ),
           height: 80,
           width: 200,

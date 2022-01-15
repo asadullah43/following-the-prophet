@@ -29,12 +29,15 @@ class _SearchBarState extends State<SearchBar> {
             );
           },
           child: Container(
-            padding: EdgeInsets.all(10),
-            margin: EdgeInsets.fromLTRB(30, 5, 30, 5),
-            child: Text('Search', style: TextStyle(color: Colors.green[700])),
+            padding: EdgeInsets.only(top: 8, left: 6),
+            margin: EdgeInsets.fromLTRB(24, 5, 24, 5),
+            child: Text(
+              'Search',
+              style: TextStyle(fontSize: 16),
+            ),
             decoration: BoxDecoration(
-                border: Border.all(color: Colors.green[700], width: 2),
-                borderRadius: BorderRadius.circular(20)),
+                border: Border.all(color: Colors.white, width: 2),
+                borderRadius: BorderRadius.circular(2)),
           ),
         ),
       ),
@@ -62,12 +65,21 @@ class _SearchScreenState extends State<SearchScreen> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text("Search"),
+          backgroundColor: Color(0xFF645647),
+          title: Text(
+            "Search",
+            style: TextStyle(
+              color: Color(0xFFFD9727),
+              fontSize: 22,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         ),
         body: Column(
           children: [
             Container(
-              margin: EdgeInsets.only(top: 15),
+              margin: EdgeInsets.fromLTRB(20, 20, 20, 5),
+              //margin: EdgeInsets.only(top: 15),
               child: SizedBox(
                 width: MediaQuery.of(context).size.width * (65),
                 height: 50.0,
@@ -81,13 +93,12 @@ class _SearchScreenState extends State<SearchScreen> {
                   // //  getDataAndRoute(value);
                   // },
                   decoration: new InputDecoration(
-                    icon: new Icon(
+                    prefixIcon: Icon(
                       Icons.search,
-                      color: Colors.white,
                     ),
                     hintText: "Search by title",
                     enabledBorder: const OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
                       borderSide: const BorderSide(
                         color: Colors.white,
                       ),
@@ -142,20 +153,26 @@ class _SearchScreenState extends State<SearchScreen> {
                                         );
                                       },
                                       child: Container(
+                                        margin:
+                                            EdgeInsets.fromLTRB(20, 5, 20, 5),
                                         width:
                                             MediaQuery.of(context).size.width *
                                                 (0.90),
                                         decoration: BoxDecoration(
-                                            color: Colors.brown,
+                                            color: Colors.white70,
                                             borderRadius:
                                                 BorderRadius.circular(10)),
                                         child: ListTile(
-                                          leading: Text((index + 1).toString()),
+                                          leading: Text(
+                                            (index + 1).toString(),
+                                            style:
+                                                TextStyle(color: Colors.black),
+                                          ),
                                           title: Text(
                                             snapshot.data.docs[index]
                                                 .data()['title'],
                                             style:
-                                                TextStyle(color: Colors.white),
+                                                TextStyle(color: Colors.black),
                                           ),
                                         ),
                                       ),
@@ -188,22 +205,27 @@ class _SearchScreenState extends State<SearchScreen> {
                                     );
                                   },
                                   child: Container(
+                                    margin: EdgeInsets.fromLTRB(20, 5, 20, 5),
                                     width: MediaQuery.of(context).size.width *
                                         (0.90),
                                     decoration: BoxDecoration(
-                                        color: Colors.brown,
+                                        color: Colors.white70,
                                         borderRadius:
                                             BorderRadius.circular(10)),
                                     child: ListTile(
-                                      leading: Text((index + 1).toString()),
+                                      leading: Text(
+                                        (index + 1).toString(),
+                                        style: TextStyle(color: Colors.black),
+                                      ),
                                       title: Text(
-                                          snapshot.data.docs[index]
-                                              .data()['title'],
-                                          style:
-                                              TextStyle(color: Colors.white)),
+                                        snapshot.data.docs[index]
+                                            .data()['title'],
+                                        style: TextStyle(color: Colors.black),
+                                      ),
                                     ),
                                   ),
                                 );
+                          // SizedBox(height: 10,),
                         });
                   }),
             ),
