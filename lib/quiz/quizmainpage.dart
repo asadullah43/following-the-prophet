@@ -55,11 +55,13 @@ class _QuizMainPageState extends State<QuizMainPage> {
         : 0;
     return Scaffold(
       appBar: AppBar(
-        title: Center(
-          child: Text(
-            "Quiz Of Year ${widget.age}",
-            style: TextStyle(fontSize: 20, color: Color(0xFFFD9727)),
-          ),
+        backgroundColor: Color(0xFF645647),
+        title: Text(
+          "Quiz Of Year ${widget.age}",
+          style: TextStyle(
+              fontSize: 20,
+              color: Color(0xFFFD9727),
+              fontWeight: FontWeight.bold),
         ),
       ),
       body: isLoading
@@ -223,7 +225,10 @@ class _QuizMainPageState extends State<QuizMainPage> {
                               ? "Submit"
                               : "Next Question",
                           //: "Submit",
-                          style: TextStyle(fontSize: 30),
+                          style: TextStyle(
+                            fontSize: 30,
+                            color: Color(0xFFFD9727),
+                          ),
                         ),
                       ),
                       Row(

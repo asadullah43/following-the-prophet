@@ -34,9 +34,6 @@ class _ViewdataviewState extends State<Viewdataview> {
                 softWrap: true,
               ),
             ),
-          
-            
-            
             trailing: Container(
               width: 100,
               child: Row(
@@ -57,13 +54,9 @@ class _ViewdataviewState extends State<Viewdataview> {
               ),
             ),
           ),
-       
-               
-                
-              ],
-            ),
-          );
-   
+        ],
+      ),
+    );
   }
 }
 
@@ -81,7 +74,8 @@ Widget editEmail(BuildContext context, data, id) {
     child: Padding(
         padding: MediaQuery.of(context).viewInsets,
         child: Container(
-            margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+            margin:
+                const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
             child: Column(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.spaceAround,

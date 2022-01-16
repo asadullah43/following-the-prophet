@@ -25,7 +25,13 @@ class _sentState extends State<sent> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xFF645647),
-        title: FittedBox(child: Text('My Content')),
+        title: FittedBox(
+            child: Text(
+          'My Content',
+          style: TextStyle(
+            color: Color(0xFFFD9727),
+          ),
+        )),
       ),
 
       // body: StreamBuilder<List<ComplaintsModel>>(
