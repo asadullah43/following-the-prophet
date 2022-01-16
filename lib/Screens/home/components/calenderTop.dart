@@ -21,7 +21,7 @@ class _CalenderTopState extends State<CalenderTop> {
         ],
       ),
 
-      margin: EdgeInsets.fromLTRB(25, 10, 25, 15),
+      margin: EdgeInsets.fromLTRB(20, 10, 25, 0),
       //padding: EdgeInsets.only(left: ),
       height: MediaQuery.of(context).size.height * (0.5),
       width: MediaQuery.of(context).size.width * (0.90),
@@ -112,15 +112,15 @@ class CalenderTopColor extends StatelessWidget {
             text,
             style: const TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: 19,
+              fontSize: 17,
               color: Colors.white,
             ),
           ),
           Container(
             margin: EdgeInsets.only(left: 5),
             color: color,
-            height: 21,
-            width: 60,
+            height: 20,
+            width: 50,
           )
         ],
       ),

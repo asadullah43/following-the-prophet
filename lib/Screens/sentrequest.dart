@@ -25,8 +25,12 @@ class _sentState extends State<request> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue,
-        title: FittedBox(child: Text('My Requested Data')),
+        backgroundColor: Color(0xFF645647),
+        title: FittedBox(child: Text('My Requested Data',style: TextStyle(
+          color: Color(0xFFFD9727),
+          fontSize: 22,
+          fontWeight: FontWeight.bold,
+        ),)),
       ),
 
       // body: StreamBuilder<List<ComplaintsModel>>(

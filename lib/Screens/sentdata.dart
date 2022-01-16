@@ -24,7 +24,7 @@ class _sentState extends State<sent> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blue,
+        backgroundColor: Color(0xFF645647),
         title: FittedBox(child: Text('My Content')),
       ),
 

@@ -60,10 +60,15 @@ class RequestForData extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Color(0xFF645647),
         appBar: AppBar(
-          title: Text('RequestForData'),
-          // backgroundColor: Colors.green,
+          title: Text('Request For Data',
+            style: TextStyle(
+              color: Color(0xFFFD9727),
+              fontSize: 22,
+              fontWeight: FontWeight.bold,
+            ),),
+           backgroundColor: Color(0xFF645647),
         ),
         body: isloading
             ? Container(
@@ -93,7 +98,7 @@ class RequestForData extends StatelessWidget {
                               style: TextStyle(
                                 fontSize: 22,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.amberAccent,
+                                color: Color(0xFFFD9727),
                               ),
                             ),
                             SizedBox(
@@ -106,8 +111,11 @@ class RequestForData extends StatelessWidget {
                                 ),
                                 controller: _titleController,
                                 decoration: InputDecoration(
-                                  border: OutlineInputBorder(
+                                  enabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
+                                    borderSide:  BorderSide(
+                                      color: Colors.white,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -116,27 +124,31 @@ class RequestForData extends StatelessWidget {
                         ),
                       ),
                       SizedBox(
-                        height: 17,
+                        height: 10,
                       ),
+                      // Container(
+                      //   child: Text(
+                      //     "Description:",
+                      //     style: TextStyle(
+                      //       fontSize: 20,
+                      //       fontWeight: FontWeight.bold,
+                      //       color: Colors.amberAccent,
+                      //     ),
+                      //   ),
+                      // ),
                       Container(
-                        child: Text(
-                          "Description:",
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.amberAccent,
-                          ),
-                        ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.all(15),
+                        margin: EdgeInsets.fromLTRB(24, 5, 24, 10),
                         child: TextFormField(
-                          maxLines: 5,
-                          minLines: 5,
+                          maxLines: 25,
+                          minLines: 15,
                           decoration: InputDecoration(
-                            hintText: "Description",
-                            border: OutlineInputBorder(
+                            hintText: "Details",
+                            enabledBorder:  OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10),
+                              borderSide:  BorderSide(
+                                color: Colors.white,
+                              ),
+
                             ),
                           ),
                           controller: _discription,
@@ -150,10 +162,10 @@ class RequestForData extends StatelessWidget {
                       style: TextButton.styleFrom(
                         padding: const EdgeInsets.all(16.0),
                         textStyle: TextStyle(),
-                        backgroundColor: Colors.blue,
+                        backgroundColor: Color(0xFFFD9727),
                       ),
                       onPressed: () {
-                        print(2);
+                        //print(2);
                         submit(context);
                       },
                       child: Text(

@@ -1,157 +1,3 @@
-// // ignore_for_file: file_names, prefer_const_constructors
-
-// import 'dart:io';
-
-// import 'package:flutter/material.dart';
-// import 'package:fluttertoast/fluttertoast.dart';
-
-// import "package:image_picker/image_picker.dart";
-
-// import 'package:path/path.dart' as path;
-// import 'package:file_picker/file_picker.dart';
-
-// class SendData extends StatefulWidget {
-//   const SendData({Key key}) : super(key: key);
-
-//   @override
-//   _SendDataState createState() => _SendDataState();
-// }
-
-// class _SendDataState extends State<SendData> {
-//   TextEditingController _titleController = new TextEditingController();
-//   TextEditingController _detailController = new TextEditingController();
-
-//   bool isloading = false;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return SafeArea(
-//       child: Scaffold(
-//         backgroundColor: Colors.white,
-//         appBar: AppBar(
-//           title: Center(child: Text("Insert Data")),
-//         ),
-//         body: isloading
-//             ? Container(
-//                 child: Center(
-//                   child: CircularProgressIndicator(),
-//                 ),
-//               )
-//             : ListView(
-//                 children: [
-//                   Container(
-//                     alignment: Alignment.center,
-//                     child: Column(
-//                       children: [
-//                         Container(
-//                           margin: EdgeInsets.all(15),
-//                           padding: EdgeInsets.all(8),
-//                           child: Row(
-//                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                             children: [
-//                               Text(
-//                                 "Title",
-//                                 style: TextStyle(
-//                                   fontSize: 22,
-//                                   fontWeight: FontWeight.bold,
-//                                   color: Colors.amberAccent,
-//                                 ),
-//                               ),
-//                               SizedBox(
-//                                 width: 20,
-//                               ),
-//                               Expanded(
-//                                 child: TextField(
-//                                   style: TextStyle(
-//                                     fontSize: 18,
-//                                   ),
-//                                   controller: _titleController,
-//                                   decoration: InputDecoration(
-//                                     border: OutlineInputBorder(
-//                                       borderRadius: BorderRadius.circular(10),
-//                                     ),
-//                                   ),
-//                                 ),
-//                               ),
-//                             ],
-//                           ),
-//                         ),
-//                         SizedBox(
-//                           height: 17,
-//                         ),
-//                         Container(
-//                           child: Text(
-//                             "Details:",
-//                             style: TextStyle(
-//                               fontSize: 20,
-//                               fontWeight: FontWeight.bold,
-//                               color: Colors.amberAccent,
-//                             ),
-//                           ),
-//                         ),
-//                         Container(
-//                           margin: EdgeInsets.all(15),
-//                           child: TextFormField(
-//                             maxLines: 10,
-//                             minLines: 10,
-//                             decoration: InputDecoration(
-//                               hintText: "Details",
-//                               border: OutlineInputBorder(
-//                                 borderRadius: BorderRadius.circular(10),
-//                               ),
-//                             ),
-//                             controller: _detailController,
-//                           ),
-//                         ),
-//                         SizedBox(
-//                           height: 10,
-//                         ),
-//                         ElevatedButton(
-//                           child: Text('Pick File'),
-//                           onPressed: () async {
-//                             FilePickerResult result =
-//                                 await FilePicker.platform.pickFiles();
-
-//                             if (result != null) {
-//                               File file = File(result.files.single.path);
-//                             } else {
-//                               // User canceled the picker
-//                             }
-//                           },
-//                         )
-//                       ],
-//                     ),
-//                   ),
-//                   Container(
-//                     padding: const EdgeInsets.fromLTRB(50, 16, 50, 0),
-//                     child: TextButton(
-//                       style: TextButton.styleFrom(
-//                         padding: const EdgeInsets.all(16.0),
-//                         textStyle: TextStyle(),
-//                         backgroundColor: Colors.blue,
-//                       ),
-//                       onPressed: () {
-//                         setState(
-//                           () {},
-//                         );
-//                       },
-//                       child: Text(
-//                         "Submit",
-//                         style: TextStyle(
-//                             color: Colors.white,
-//                             fontSize: 20,
-//                             fontWeight: FontWeight.bold),
-//                       ),
-//                     ),
-//                   ),
-//                 ],
-//               ),
-//       ),
-//     );
-//   }
-// }
-
-// ignore_for_file: file_names, prefer_const_constructors
 
 import 'dart:io';
 
@@ -193,9 +39,14 @@ class _SendDataState extends State<SendData> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Color(0xFF645647),
         appBar: AppBar(
-          title: Center(child: Text("Insert Data")),
+          backgroundColor: Color(0xFF645647),
+          title: Text("Insert Data",style: TextStyle(
+            color: Color(0xFFFD9727),
+            fontSize: 22,
+            fontWeight: FontWeight.bold,
+          ),),
         ),
         body: isloading
             ? Container(
@@ -242,8 +93,8 @@ class _SendDataState extends State<SendData> {
                       child: Column(
                         children: [
                           Container(
-                            margin: EdgeInsets.all(15),
-                            padding: EdgeInsets.all(20),
+                           // margin: EdgeInsets.fromLTRB(0,0,0,0),
+                            //padding: EdgeInsets.all(20),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -255,7 +106,7 @@ class _SendDataState extends State<SendData> {
                                   ),
                                 ),
                                 SizedBox(
-                                  width: 12,
+                                  width: 10,
                                 ),
                                 Expanded(
                                   child: TextField(
@@ -264,7 +115,11 @@ class _SendDataState extends State<SendData> {
                                     ),
                                     controller: _titleController,
                                     decoration: InputDecoration(
-                                      border: OutlineInputBorder(),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide:  BorderSide(
+                                          color: Colors.white,
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -272,8 +127,8 @@ class _SendDataState extends State<SendData> {
                             ),
                           ),
                           Container(
-                              margin: EdgeInsets.all(15),
-                              padding: EdgeInsets.all(20),
+                              margin: EdgeInsets.only(top: 12),
+                              //padding: EdgeInsets.all(20),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -294,15 +149,15 @@ class _SendDataState extends State<SendData> {
                                         value: subtitle,
                                         icon: const Icon(
                                           Icons.arrow_downward,
-                                          color: Colors.blue,
+                                          color: Color(0xFFFD9727),
                                         ),
                                         iconSize: 24,
                                         elevation: 16,
                                         style: const TextStyle(
-                                            color: Colors.deepPurple),
+                                            color: Colors.black),
                                         underline: Container(
                                           height: 2,
-                                          color: Colors.redAccent,
+                                          color: Colors.black45,
                                         ),
                                         onChanged: (String newValue) {
                                           setState(() {
@@ -325,7 +180,7 @@ class _SendDataState extends State<SendData> {
                                     ],
                                   ),
                                   SizedBox(
-                                    width: 40,
+                                    height: 15,
                                   ),
                                   Row(
                                     mainAxisAlignment:
@@ -395,27 +250,31 @@ class _SendDataState extends State<SendData> {
                                 ],
                               )),
                           SizedBox(
-                            height: 17,
+                            height: 15,
                           ),
                           Container(
-                            margin: EdgeInsets.all(15),
+                           // margin: EdgeInsets.all(15),
                             child: TextFormField(
                               minLines: 1,
                               maxLines: 10,
                               //expands: true,
                               decoration: InputDecoration(
                                 hintText: "Details",
-                                border: OutlineInputBorder(),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide:  BorderSide(
+                                    color: Colors.white,
+                                  ),
+                                ),
                               ),
                               controller: _detailController,
                             ),
                           ),
                           SizedBox(
-                            height: 10,
+                            height: 25,
                           ),
                           Container(
-                            margin: EdgeInsets.all(15),
-                            padding: EdgeInsets.all(8),
+                            // margin: EdgeInsets.all(15),
+                            // padding: EdgeInsets.all(8),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -431,23 +290,28 @@ class _SendDataState extends State<SendData> {
                                 ),
                                 Expanded(
                                   child: TextField(
+                                    minLines: 1,
+                                    maxLines: 2,
                                     style: TextStyle(
                                       fontSize: 16,
                                     ),
                                     controller: _linkController,
                                     decoration: InputDecoration(
-                                      border: OutlineInputBorder(),
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide:  BorderSide(
+                                          color: Colors.white,
+                                        ),
+                                      ),
+
                                     ),
                                   ),
                                 ),
-                                SizedBox(
-                                  width: 5,
-                                ),
+
                               ],
                             ),
                           ),
                           SizedBox(
-                            height: 10,
+                            height: 15,
                           ),
                           Container(
                             height: _imageFileList == null ? 1 : 50,
@@ -469,10 +333,10 @@ class _SendDataState extends State<SendData> {
                                     }),
                           ),
                           SizedBox(
-                            height: 10,
+                            height: 5,
                           ),
                           Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
+                           // mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
                                 "Image:",
@@ -482,12 +346,13 @@ class _SendDataState extends State<SendData> {
                                 ),
                               ),
                               SizedBox(
-                                width: 10,
+                                width: 15,
                               ),
                               GestureDetector(
                                 child: Icon(
                                   Icons.upload_rounded,
-                                  color: Colors.blue,
+                                  color: Colors.white,
+                                  size: 30,
                                 ),
                                 onTap: () {
                                   print("tapped");
@@ -497,7 +362,7 @@ class _SendDataState extends State<SendData> {
                             ],
                           ),
                           SizedBox(
-                            height: 10,
+                            height: 60,
                           ),
                           GestureDetector(
                             onTap: () {
@@ -507,18 +372,18 @@ class _SendDataState extends State<SendData> {
                               });
                             },
                             child: Container(
-                              margin: EdgeInsets.all(15),
-                              width: 130,
-                              height: 35,
+                              //margin: EdgeInsets.all(10),
+                              width: 230,
+                              height: 40,
                               alignment: Alignment.center,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
-                                color: Colors.blue.shade300,
+                                color: Color(0xFFFD9727),
                               ),
                               child: Text(
                                 "Submit",
                                 style: TextStyle(
-                                  fontSize: 17,
+                                  fontSize: 25,
                                 ),
                               ),
                             ),

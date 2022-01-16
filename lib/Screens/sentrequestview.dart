@@ -26,10 +26,10 @@ class _ViewdataviewState extends State<viewrequest> {
         children: <Widget>[
           ListTile(
             leading: Text(
-                      'Topic:${widget.comp.data()['Topic']}',
+                      'Topic: ${widget.comp.data()['Topic']}',
                       softWrap: true,
                       style: TextStyle(
-                        color: Colors.grey,
+                        color: Colors.green[400],
                       ),
                     ),
             trailing: Container(

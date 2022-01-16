@@ -30,8 +30,12 @@ class _LastReadPageState extends State<LastReadPage> {
     return Scaffold(
       //drawer: NavigationMenu(), //to add nav menu here in this page
       appBar: AppBar(
-        title: Text('Last Read'),
-        backgroundColor: Colors.green,
+        title: Text('Last Read',style: TextStyle(
+          color: Color(0xFFFD9727),
+          fontSize: 22,
+          fontWeight: FontWeight.bold,
+        ),),
+        backgroundColor: Color(0xFF645647),
       ),
       body: WillPopScope(
         onWillPop: () {
@@ -54,17 +58,17 @@ class _LastReadPageState extends State<LastReadPage> {
                       ),
                     )
                   : /*child:*/ Container(
-                      margin: EdgeInsets.all(10),
+                      margin: EdgeInsets.all(15),
                       width: MediaQuery.of(context).size.width * (0.90),
                       decoration: BoxDecoration(
-                          color: Colors.brown,
+                          color: Colors.white70,
                           borderRadius: BorderRadius.circular(10)),
                       child: GestureDetector(
                         onTap: () {
                           getDataAndRoute(widget.user.lastRead);
                         },
                         child: ListTile(
-                          leading: Text("1"),
+                          //leading: Text("",style: TextStyle(color: Colors.black),),
                           title: Text(widget.user.lastRead),
                         ),
                       ),

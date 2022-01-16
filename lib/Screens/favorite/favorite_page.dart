@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:following_the_prophet/Screens/eventViewPage.dart';
 import 'package:following_the_prophet/appbar.dart';
@@ -29,8 +30,13 @@ class _FavoritePageState extends State<FavoritePage> {
     return Scaffold(
       //drawer: NavigationMenu(), //to add nav menu here in this page
       appBar: AppBar(
-        title: Text('FavoritePage'),
-        backgroundColor: Colors.green,
+        title: Text('FavoritePage',
+          style: TextStyle(
+            color: Color(0xFFFD9727),
+            fontSize: 22,
+            fontWeight: FontWeight.bold,
+          ),),
+        backgroundColor: Color(0xFF645647),
       ),
       body: isLoading
           ? Container(
@@ -71,14 +77,15 @@ class _FavoritePageState extends State<FavoritePage> {
                                           widget.user.favorite[index]);
                                     },
                                     child: Container(
+                                      margin: EdgeInsets.fromLTRB(8, 7, 8, 0),
                                       width: MediaQuery.of(context).size.width *
                                           (0.90),
                                       decoration: BoxDecoration(
-                                          color: Colors.brown,
+                                          color: Colors.white70,
                                           borderRadius:
                                               BorderRadius.circular(10)),
                                       child: ListTile(
-                                        leading: Text("${index + 1}"),
+                                        leading: Text("${index + 1}",style: TextStyle(color: Colors.black),),
                                         title:
                                             Text(widget.user.favorite[index]),
                                       ),

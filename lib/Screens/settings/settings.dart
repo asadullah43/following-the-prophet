@@ -12,11 +12,10 @@ class _SettingScreenState extends State<SettingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(
-          child: Text(
-            'Settings',
-            style: TextStyle(fontSize: 20, color: Color(0xFFFD9727)),
-          ),
+        backgroundColor: Color(0xFF645647),
+        title: Text(
+          'Settings',
+          style: TextStyle(fontSize: 20, color: Color(0xFFFD9727)),
         ),
       ),
       body: Container(
@@ -29,35 +28,34 @@ class _SettingScreenState extends State<SettingScreen> {
           //   postWidget: DropDownBtn(),
           //   width: MediaQuery.of(context).size.width - 50,
           // ),
-          SizedBox(
-            height: 15,
-          ),
-          buildSettingItem(
-            text: 'Change Mode',
-            icon: Icons.brightness_4,
-
-
-            postWidget: SwitchButton(
-              text: 'Mode',
-            ),
-            width: MediaQuery.of(context).size.width - 50,
-          ),
-          SizedBox(
-            height: 5,
-          ),
+          // SizedBox(
+          //   height: 15,
+          // ),
           // buildSettingItem(
-          //   text: 'Font Size',
-          //   icon: Icons.format_indent_decrease,
-          //   postWidget: DropDownBtn(),
+          //   text: 'Change Mode',
+          //   icon: Icons.brightness_4,
+          //
+          //
+          //   postWidget: SwitchButton(
+          //     text: 'Mode',
+          //   ),
           //   width: MediaQuery.of(context).size.width - 50,
           // ),
           SizedBox(
-            height: 5,
+            height: 15,
           ),
+          // // buildSettingItem(
+          // //   text: 'Font Size',
+          // //   icon: Icons.format_indent_decrease,
+          // //   postWidget: DropDownBtn(),
+          // //   width: MediaQuery.of(context).size.width - 50,
+          // // ),
+          // SizedBox(
+          //   height: 5,
+          // ),
           buildSettingItem(
             text: 'Keep Screen On',
             icon: Icons.computer,
-
             postWidget: SwitchButton(
               text: "Screen",
             ),

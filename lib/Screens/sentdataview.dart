@@ -29,7 +29,7 @@ class _ViewdataviewState extends State<Viewdataview> {
               child: Text(
                 'Title:${widget.comp.data()['title']}',
                 style: TextStyle(
-                  color: Colors.green,
+                  color: Colors.green[400],
                 ),
                 softWrap: true,
               ),

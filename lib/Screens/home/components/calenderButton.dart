@@ -9,7 +9,7 @@ class YearWise extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.fromLTRB(15, 30, 10, 0),
+      padding: EdgeInsets.fromLTRB(10, 12, 10, 0),
       child: Column(
         children: [
           Row(
@@ -17,8 +17,8 @@ class YearWise extends StatelessWidget {
               Column(
                 children: [
                   Container(
-                    height: 30,
-                    width: 40,
+                    height: 28,
+                    width: 34,
                     child: Center(
                       child: Text(prophetHood,
                           style: TextStyle(
@@ -34,8 +34,8 @@ class YearWise extends StatelessWidget {
               Column(
                 children: [
                   Container(
-                    height: 30,
-                    width: 40,
+                    height: 28,
+                    width: 34,
                     child: Center(
                       child: Text(age,
                           style: TextStyle(
@@ -55,8 +55,8 @@ class YearWise extends StatelessWidget {
               Column(
                 children: [
                   Container(
-                    height: 30,
-                    width: 40,
+                    height: 28,
+                    width: 34,
                     child: Center(
                       child: Text(hijri,
                           style: TextStyle(
@@ -72,8 +72,8 @@ class YearWise extends StatelessWidget {
               Column(
                 children: [
                   Container(
-                    height: 30,
-                    width: 40,
+                    height: 28,
+                    width: 34,
                     child: Center(
                       child: Text(
                         juilan,
