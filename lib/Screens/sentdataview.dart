@@ -1,7 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Viewdataview extends StatefulWidget {
@@ -15,8 +13,6 @@ class Viewdataview extends StatefulWidget {
 }
 
 class _ViewdataviewState extends State<Viewdataview> {
-  var _expanded = false;
-
   @override
   Widget build(BuildContext context) {
     return Card(

@@ -2,19 +2,17 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import 'dart:convert';
-
 import 'package:following_the_prophet/Screens/sentdataview.dart';
 import 'package:following_the_prophet/appbar.dart';
 
-class sent extends StatefulWidget {
+class Sent extends StatefulWidget {
   static final routeName = 'CrimeRecord';
 
   @override
-  State<sent> createState() => _sentState();
+  State<Sent> createState() => _SentState();
 }
 
-class _sentState extends State<sent> {
+class _SentState extends State<Sent> {
   final stream = FirebaseFirestore.instance
       .collection('usersentcontent')
       .where("Uid", isEqualTo: FirebaseAuth.instance.currentUser.uid)
@@ -33,40 +31,6 @@ class _sentState extends State<sent> {
           ),
         )),
       ),
-
-      // body: StreamBuilder<List<ComplaintsModel>>(
-      //   stream: complaints.allcomplaints,
-      //   builder: (context, snapshot) {
-      //     if (snapshot.hasError) {
-      //       print(snapshot);
-      //       return Center(
-      //         child: Text("No Data is here"),
-      //       );
-      //     } else {
-      //       final com = snapshot.data;
-      //       return com!.isEmpty
-      //           ? Center(
-      //               child: Padding(
-      //                 padding: const EdgeInsets.all(8.0),
-      //                 child: FittedBox(
-      //                   fit: BoxFit.contain,
-      //                   child: Text(
-      //                     'Welcome! Pending Complaints will be shown here',
-      //                     textAlign: TextAlign.center,
-      //                   ),
-      //                 ),
-      //               ),
-      //             )
-      //           : ListView.builder(
-      //               itemCount: snapshot.data!.length,
-      //               itemBuilder: (ctx, i) =>
-      //                   (snapshot.data![i].status == 'pending'
-      //                       ? PendingCompalints(snapshot.data![i])
-      //                       : Container()),
-      //             );
-      //     }
-      //   },
-      // ),
       body: WillPopScope(
         onWillPop: () {
           return Navigator.pushReplacement(

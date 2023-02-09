@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:following_the_prophet/Screens/eventViewPage.dart';
 import 'package:following_the_prophet/appbar.dart';
@@ -7,6 +6,7 @@ import 'package:following_the_prophet/models/User.dart';
 import 'package:following_the_prophet/models/contentModel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+// ignore: must_be_immutable
 class FavoritePage extends StatefulWidget {
   UserModel user;
 
@@ -30,12 +30,14 @@ class _FavoritePageState extends State<FavoritePage> {
     return Scaffold(
       //drawer: NavigationMenu(), //to add nav menu here in this page
       appBar: AppBar(
-        title: Text('FavoritePage',
+        title: Text(
+          'FavoritePage',
           style: TextStyle(
             color: Color(0xFFFD9727),
             fontSize: 22,
             fontWeight: FontWeight.bold,
-          ),),
+          ),
+        ),
         backgroundColor: Color(0xFF645647),
       ),
       body: isLoading
@@ -85,7 +87,10 @@ class _FavoritePageState extends State<FavoritePage> {
                                           borderRadius:
                                               BorderRadius.circular(10)),
                                       child: ListTile(
-                                        leading: Text("${index + 1}",style: TextStyle(color: Colors.black),),
+                                        leading: Text(
+                                          "${index + 1}",
+                                          style: TextStyle(color: Colors.black),
+                                        ),
                                         title:
                                             Text(widget.user.favorite[index]),
                                       ),

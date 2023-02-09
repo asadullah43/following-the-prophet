@@ -6,6 +6,7 @@ import 'package:following_the_prophet/models/User.dart';
 import 'package:following_the_prophet/models/contentModel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+// ignore: must_be_immutable
 class LastReadPage extends StatefulWidget {
   UserModel user;
 
@@ -30,11 +31,14 @@ class _LastReadPageState extends State<LastReadPage> {
     return Scaffold(
       //drawer: NavigationMenu(), //to add nav menu here in this page
       appBar: AppBar(
-        title: Text('Last Read',style: TextStyle(
-          color: Color(0xFFFD9727),
-          fontSize: 22,
-          fontWeight: FontWeight.bold,
-        ),),
+        title: Text(
+          'Last Read',
+          style: TextStyle(
+            color: Color(0xFFFD9727),
+            fontSize: 22,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         backgroundColor: Color(0xFF645647),
       ),
       body: WillPopScope(

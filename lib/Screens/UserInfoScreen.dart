@@ -59,7 +59,6 @@ class UserInfoScreen extends StatelessWidget {
                     user.username,
                     style: TextStyle(
                       fontSize: 30,
-                      //fontWeight: FontWeight.bold,
                     ),
                   ),
                 ],
@@ -79,7 +78,6 @@ class UserInfoScreen extends StatelessWidget {
                     user.email,
                     style: TextStyle(
                       fontSize: 18,
-                      //fontWeight: FontWeight.bold,
                     ),
                   ),
                 ],

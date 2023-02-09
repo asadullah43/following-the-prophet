@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:following_the_prophet/Screens/Login/components/body.dart';
 import 'package:following_the_prophet/appbar.dart';
 
+// ignore: must_be_immutable
 class LoginScreen extends StatelessWidget {
   var name;
   LoginScreen(this.name);

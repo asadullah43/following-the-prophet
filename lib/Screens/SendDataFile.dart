@@ -1,4 +1,3 @@
-
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -42,11 +41,14 @@ class _SendDataState extends State<SendData> {
         backgroundColor: Color(0xFF645647),
         appBar: AppBar(
           backgroundColor: Color(0xFF645647),
-          title: Text("Insert Data",style: TextStyle(
-            color: Color(0xFFFD9727),
-            fontSize: 22,
-            fontWeight: FontWeight.bold,
-          ),),
+          title: Text(
+            "Insert Data",
+            style: TextStyle(
+              color: Color(0xFFFD9727),
+              fontSize: 22,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         ),
         body: isloading
             ? Container(
@@ -64,36 +66,12 @@ class _SendDataState extends State<SendData> {
                 child: ListView(
                   padding: const EdgeInsets.all(20),
                   children: [
-                    // Container(
-                    //   padding: EdgeInsets.only(top: 20),
-                    //   margin: EdgeInsets.only(right: 1200),
-                    //
-                    //   child: GestureDetector(
-                    //      onTap: () {
-                    //        setState(() {
-                    //          Navigator.pushReplacement(
-                    //            context,
-                    //            MaterialPageRoute(
-                    //              builder: (context) => HomePage(),
-                    //            ),
-                    //          );
-                    //        });
-                    //      },
-                    //      child: Icon(
-                    //        Icons.arrow_back,
-                    //        color: Colors.blue,
-                    //        size: 30.0,
-                    //      )
-                    //    ),
-                    // ),
-
-                    //////////////
                     Container(
                       alignment: Alignment.center,
                       child: Column(
                         children: [
                           Container(
-                           // margin: EdgeInsets.fromLTRB(0,0,0,0),
+                            // margin: EdgeInsets.fromLTRB(0,0,0,0),
                             //padding: EdgeInsets.all(20),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -116,7 +94,7 @@ class _SendDataState extends State<SendData> {
                                     controller: _titleController,
                                     decoration: InputDecoration(
                                       enabledBorder: OutlineInputBorder(
-                                        borderSide:  BorderSide(
+                                        borderSide: BorderSide(
                                           color: Colors.white,
                                         ),
                                       ),
@@ -253,7 +231,7 @@ class _SendDataState extends State<SendData> {
                             height: 15,
                           ),
                           Container(
-                           // margin: EdgeInsets.all(15),
+                            // margin: EdgeInsets.all(15),
                             child: TextFormField(
                               minLines: 1,
                               maxLines: 10,
@@ -261,7 +239,7 @@ class _SendDataState extends State<SendData> {
                               decoration: InputDecoration(
                                 hintText: "Details",
                                 enabledBorder: OutlineInputBorder(
-                                  borderSide:  BorderSide(
+                                  borderSide: BorderSide(
                                     color: Colors.white,
                                   ),
                                 ),
@@ -298,15 +276,13 @@ class _SendDataState extends State<SendData> {
                                     controller: _linkController,
                                     decoration: InputDecoration(
                                       enabledBorder: OutlineInputBorder(
-                                        borderSide:  BorderSide(
+                                        borderSide: BorderSide(
                                           color: Colors.white,
                                         ),
                                       ),
-
                                     ),
                                   ),
                                 ),
-
                               ],
                             ),
                           ),
@@ -336,7 +312,7 @@ class _SendDataState extends State<SendData> {
                             height: 5,
                           ),
                           Row(
-                           // mainAxisAlignment: MainAxisAlignment.center,
+                            // mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
                                 "Image:",
@@ -452,7 +428,7 @@ class _SendDataState extends State<SendData> {
       });
     }
 
-    await uploadContent(
+    uploadContent(
         _titleController.text,
         subtitle,
         int.parse(yearController.text == "" ? "0" : yearController.text),
@@ -468,7 +444,7 @@ class _SendDataState extends State<SendData> {
     Fluttertoast.showToast(
         msg: "Data send after approval from admin we will notify you");
     Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => sent()));
+        context, MaterialPageRoute(builder: (context) => Sent()));
   }
 
   getImages({BuildContext context}) async {

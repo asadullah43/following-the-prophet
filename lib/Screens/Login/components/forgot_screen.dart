@@ -53,7 +53,7 @@ class _ResetScreenState extends State<ResetScreen> {
             children: [
               Padding(
                 padding: const EdgeInsets.only(right: 26.0),
-                child: RaisedButton(
+                child: TextButton(
                   child: Center(
                     child: Text(
                       'Send Request',
@@ -65,7 +65,7 @@ class _ResetScreenState extends State<ResetScreen> {
                     sendMail(_email);
                     // showAlertDialog(context);
                   },
-                  color: Colors.green[400],
+                  //color: Colors.green[400],
                 ),
               ),
             ],

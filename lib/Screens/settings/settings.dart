@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:following_the_prophet/Screens/settings/dropdownbtn.dart';
+
 import 'package:following_the_prophet/Screens/settings/switchbtn.dart';
 
 class SettingScreen extends StatefulWidget {
@@ -73,7 +73,6 @@ class _SettingScreenState extends State<SettingScreen> {
 Widget buildSettingItem({
   String text,
   IconData icon,
-
   Widget postWidget,
   double width,
 }) {

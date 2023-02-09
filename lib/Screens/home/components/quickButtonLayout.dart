@@ -4,6 +4,7 @@ import 'package:following_the_prophet/Screens/home/components/madniLife_screen.d
 import 'package:following_the_prophet/Screens/home/components/makkiLife_screen.dart';
 import 'package:following_the_prophet/Screens/home/components/wars_screen.dart';
 
+// ignore: must_be_immutable
 class ButtonLayout extends StatelessWidget {
   Map<String, dynamic> routes = {
     "WARS": Wars(),

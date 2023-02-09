@@ -1,22 +1,16 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-import 'package:intl/intl.dart';
-import 'package:url_launcher/url_launcher.dart';
-
-class viewrequest extends StatefulWidget {
+class Viewrequest extends StatefulWidget {
   final comp;
   static final routeName = 'viewrequest';
 
-  viewrequest(this.comp);
+  Viewrequest(this.comp);
 
   @override
   _ViewdataviewState createState() => _ViewdataviewState();
 }
 
-class _ViewdataviewState extends State<viewrequest> {
-  var _expanded = false;
-
+class _ViewdataviewState extends State<Viewrequest> {
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -52,23 +46,6 @@ class _ViewdataviewState extends State<viewrequest> {
               ),
             ),
           ),
-          // Container(
-          //   padding: EdgeInsets.symmetric(horizontal: 15, vertical: 4),
-          //   child: Row(
-          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //     children: <Widget>[
-          //       Container(
-          //         child: FittedBox(
-          //           fit: BoxFit.contain,
-          //           child: Text(
-          //             'Topic:${widget.comp.data()['Topic']}',
-          //             softWrap: true,
-          //             style: TextStyle(
-          //               color: Colors.grey,
-          //             ),
-          //           ),
-          //         ),
-          //       ),
         ],
       ),
     );

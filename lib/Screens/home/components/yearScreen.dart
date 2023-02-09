@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:following_the_prophet/Screens/eventViewPage.dart';
-import 'package:following_the_prophet/Screens/home/components/quizPage.dart';
 import 'package:following_the_prophet/helper/database.dart';
 import 'package:following_the_prophet/models/contentModel.dart';
 import 'package:following_the_prophet/quiz/quizmainpage.dart';
@@ -38,7 +37,6 @@ class _YearPageState extends State<YearPage> {
     });
     if (_isInit) {
       await _getData();
-      ;
     }
     setState(() {
       isLoading = false;

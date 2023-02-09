@@ -1,8 +1,5 @@
-import 'dart:ui';
-
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:following_the_prophet/Screens/Login/login_screen.dart';
 import 'package:following_the_prophet/Screens/UserInfoScreen.dart';
 import 'package:following_the_prophet/Screens/favorite/favorite_page.dart';
@@ -14,10 +11,7 @@ import 'package:following_the_prophet/helper/database.dart';
 import 'package:following_the_prophet/models/User.dart';
 import 'package:following_the_prophet/models/contentModel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'Screens/RateUsPage.dart';
 import 'Screens/SendDataFile.dart';
-import 'Screens/contactUsPage.dart';
 import 'Screens/home/components/calender.dart';
 import 'Screens/home/components/daily_event.dart';
 import 'Screens/lastRead/lastRead.dart';
@@ -60,16 +54,6 @@ class _MyAppBar extends State<MyAppBar> {
     _isInit = false;
 
     super.didChangeDependencies();
-  }
-
-  //function for playstore rating
-  _launchURL() async {
-    const url = 'https://play.google.com/store/apps';
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
   }
 
   @override
@@ -162,7 +146,6 @@ class _MyAppBar extends State<MyAppBar> {
                             fontSize: 20,
                           ))),
                 ),
-
                 const SizedBox(
                   height: 48,
                 ),
@@ -180,29 +163,8 @@ class _MyAppBar extends State<MyAppBar> {
                 const SizedBox(
                   height: 5,
                 ),
-                // buildMenuItem(
-                //     text: 'Visit Our Website',
-                //     icon: Icons.language,
-                //     onClicked: () => selectPage(context, 2)),
-                // const SizedBox(
-                //   height: 5,
-                // ),
-                // buildMenuItem(
-                //     text: 'Contact Us',
-                //     icon: Icons.contact_mail,
-                //     onClicked: () async {
-                //       await _launchInBrowser("www.google.com");
-                //     }),
-                // const SizedBox(
-                //   height: 5,
-                // ),
                 buildMenuItem(
-                    text: 'Rate us',
-                    icon: Icons.rate_review,
-                    onClicked: () {
-                      _launchURL();
-                    }),
-
+                    text: 'Rate us', icon: Icons.rate_review, onClicked: () {}),
                 const SizedBox(
                   height: 5,
                 ),
@@ -224,7 +186,6 @@ class _MyAppBar extends State<MyAppBar> {
                 const SizedBox(
                   height: 5,
                 ),
-
                 const SizedBox(
                   height: 5,
                 ),
@@ -235,16 +196,11 @@ class _MyAppBar extends State<MyAppBar> {
                 const SizedBox(
                   height: 5,
                 ),
-                // buildMenuItem(
-                //   text: 'SignIn/Logout',
-                //   icon: Icons.account_circle,
-                //   onClicked: () => selectPage(context, 6),
-                // ),
                 const SizedBox(
                   height: 25,
                 ),
                 Divider(color: Colors.white70)
-              ], //childreen
+              ],
             ),
           ),
         ),
@@ -257,7 +213,6 @@ class _MyAppBar extends State<MyAppBar> {
                   fontSize: 20,
                   color: Colors.amber[800],
                   fontWeight: FontWeight.bold,
-                  //Color(0xFFFD9727),
                 ),
               ),
             ),
@@ -296,17 +251,6 @@ class _MyAppBar extends State<MyAppBar> {
             ]),
       ),
     );
-  }
-
-  Future<void> _launchInBrowser(String url) async {
-    if (!await launch(
-      url,
-      forceSafariVC: false,
-      forceWebView: false,
-      headers: <String, String>{'my_header_key': 'my_header_value'},
-    )) {
-      throw 'Could not launch $url';
-    }
   }
 
   Widget buildMenuItem({
@@ -493,7 +437,7 @@ class _MyAppBar extends State<MyAppBar> {
         // }
         if (username != null) {
           Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => sent(),
+            builder: (context) => Sent(),
           ));
         } else {
           return showDialog(
@@ -531,7 +475,7 @@ class _MyAppBar extends State<MyAppBar> {
         // }
         if (username != null) {
           Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => request(),
+            builder: (context) => Request(),
           ));
         } else {
           return showDialog(

@@ -4,7 +4,7 @@ import 'package:following_the_prophet/models/quizModel.dart';
 class QuizScore extends StatefulWidget {
   final int age;
   final int correct, total;
-  QuizScore({@required this.age, @required this.correct, @required this.total});
+  QuizScore({this.age, @required this.correct, @required this.total});
   @override
   State<QuizScore> createState() => _QuizScoreState();
 }
@@ -19,7 +19,7 @@ class _QuizScoreState extends State<QuizScore> {
       appBar: AppBar(
         backgroundColor: Color(0xFF645647),
         title: Text(
-          "Result",   
+          "Result",
           style: TextStyle(
               fontSize: 20,
               color: Color(0xFFFD9727),

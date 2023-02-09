@@ -2,20 +2,17 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import 'dart:convert';
-
-import 'package:following_the_prophet/Screens/sentdataview.dart';
 import 'package:following_the_prophet/Screens/sentrequestview.dart';
 import 'package:following_the_prophet/appbar.dart';
 
-class request extends StatefulWidget {
+class Request extends StatefulWidget {
   static final routeName = 'CrimeRecord';
 
   @override
-  State<request> createState() => _sentState();
+  State<Request> createState() => SentState();
 }
 
-class _sentState extends State<request> {
+class SentState extends State<Request> {
   final stream = FirebaseFirestore.instance
       .collection('UserrequestedData')
       .where("Uid", isEqualTo: FirebaseAuth.instance.currentUser.uid)
@@ -26,46 +23,16 @@ class _sentState extends State<request> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xFF645647),
-        title: FittedBox(child: Text('My Requested Data',style: TextStyle(
-          color: Color(0xFFFD9727),
-          fontSize: 22,
-          fontWeight: FontWeight.bold,
-        ),)),
+        title: FittedBox(
+            child: Text(
+          'My Requested Data',
+          style: TextStyle(
+            color: Color(0xFFFD9727),
+            fontSize: 22,
+            fontWeight: FontWeight.bold,
+          ),
+        )),
       ),
-
-      // body: StreamBuilder<List<ComplaintsModel>>(
-      //   stream: complaints.allcomplaints,
-      //   builder: (context, snapshot) {
-      //     if (snapshot.hasError) {
-      //       print(snapshot);
-      //       return Center(
-      //         child: Text("No Data is here"),
-      //       );
-      //     } else {
-      //       final com = snapshot.data;
-      //       return com!.isEmpty
-      //           ? Center(
-      //               child: Padding(
-      //                 padding: const EdgeInsets.all(8.0),
-      //                 child: FittedBox(
-      //                   fit: BoxFit.contain,
-      //                   child: Text(
-      //                     'Welcome! Pending Complaints will be shown here',
-      //                     textAlign: TextAlign.center,
-      //                   ),
-      //                 ),
-      //               ),
-      //             )
-      //           : ListView.builder(
-      //               itemCount: snapshot.data!.length,
-      //               itemBuilder: (ctx, i) =>
-      //                   (snapshot.data![i].status == 'pending'
-      //                       ? PendingCompalints(snapshot.data![i])
-      //                       : Container()),
-      //             );
-      //     }
-      //   },
-      // ),
       body: WillPopScope(
         onWillPop: () {
           return Navigator.pushReplacement(
@@ -131,9 +98,9 @@ class _sentState extends State<request> {
                                               .toLowerCase()
                                               .contains(
                                                   name.toString().toLowerCase())
-                                          ? viewrequest(snp.data.docs[i])
+                                          ? Viewrequest(snp.data.docs[i])
                                           : Container()
-                                      : viewrequest(snp.data.docs[i])));
+                                      : Viewrequest(snp.data.docs[i])));
                     }
                     return Center(
                       child: CircularProgressIndicator(

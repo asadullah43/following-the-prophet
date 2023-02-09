@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:following_the_prophet/Screens/eventViewPage.dart';
 import 'package:following_the_prophet/models/contentModel.dart';
 
+// ignore: must_be_immutable
 class DailyEvent extends StatefulWidget {
   DailyEvent({this.text, this.hadees, this.event});
   final String text;

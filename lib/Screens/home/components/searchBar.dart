@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:following_the_prophet/Screens/eventViewPage.dart';
-import 'package:following_the_prophet/helper/database.dart';
+
 import 'package:following_the_prophet/models/contentModel.dart';
 
 class SearchBar extends StatefulWidget {
@@ -54,8 +54,6 @@ class SearchScreen extends StatefulWidget {
 
 class _SearchScreenState extends State<SearchScreen> {
   var streams = FirebaseFirestore.instance.collection('content').snapshots();
-
-  Database _db = Database();
 
   String data = "";
   ContentModel model;

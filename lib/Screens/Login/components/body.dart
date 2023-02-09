@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:following_the_prophet/Screens/Login/components/background.dart';
 import 'package:following_the_prophet/Screens/Login/components/forgot_screen.dart';
 import 'package:following_the_prophet/Screens/SendDataFile.dart';
 import 'package:following_the_prophet/Screens/Signup/signup_screen.dart';
@@ -19,9 +18,9 @@ import 'package:following_the_prophet/components/rounded_password_field.dart';
 import 'package:following_the_prophet/helper/database.dart';
 import 'package:following_the_prophet/helper/firebaseAuth.dart';
 import 'package:following_the_prophet/models/User.dart';
-import 'package:following_the_prophet/models/contentModel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+// ignore: must_be_immutable
 class Body extends StatefulWidget {
   @override
   State<Body> createState() => _BodyState();
@@ -52,7 +51,7 @@ class _BodyState extends State<Body> {
       case "request":
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => request()),
+          MaterialPageRoute(builder: (context) => Request()),
         );
         break;
       case "SendData":
@@ -71,7 +70,7 @@ class _BodyState extends State<Body> {
       case "sent":
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => sent()),
+          MaterialPageRoute(builder: (context) => Sent()),
         );
         break;
       case "Fav":
@@ -128,73 +127,70 @@ class _BodyState extends State<Body> {
               child: CircularProgressIndicator(),
             ),
           )
-        : Background(
-            child: SingleChildScrollView(
-              child: Column(
-                //mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  Text(
-                    "LOGIN",
-                    style: TextStyle(
-                        color: Colors.green[400],
-                        fontWeight: FontWeight.bold,
-                        fontSize: 40),
-                  ),
-                  SizedBox(height: size.height * 0.03),
-                  SizedBox(height: size.height * 0.03),
-                  RoundedInputField(
-                    controller: emailController,
-                    hintText: "Your Email",
-                  ),
-                  RoundedPasswordField(
-                    controller: passwordController,
-                  ),
-                  RoundedButton(
-                    text: "LOGIN",
-                    press: () {
-                      _signIn();
-                    },
-                    color: Colors.green[400],
-                  ),
-                  SizedBox(height: size.height * 0.03),
-                  AlreadyHaveAnAccountCheck(
-                    press: () {
+        : SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                Text(
+                  "LOGIN",
+                  style: TextStyle(
+                      color: Colors.green[400],
+                      fontWeight: FontWeight.bold,
+                      fontSize: 40),
+                ),
+                SizedBox(height: size.height * 0.03),
+                SizedBox(height: size.height * 0.03),
+                RoundedInputField(
+                  controller: emailController,
+                  hintText: "Your Email",
+                ),
+                RoundedPasswordField(
+                  controller: passwordController,
+                ),
+                RoundedButton(
+                  text: "LOGIN",
+                  press: () {
+                    _signIn();
+                  },
+                  color: Colors.green[400],
+                ),
+                SizedBox(height: size.height * 0.03),
+                AlreadyHaveAnAccountCheck(
+                  press: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return SignUpScreen();
+                        },
+                      ),
+                    );
+                  },
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                //for forgot pass
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) {
-                            return SignUpScreen();
-                          },
+                          builder: (context) => ResetScreen(),
                         ),
                       );
-                    },
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  //for forgot pass
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => ResetScreen(),
-                          ),
-                        );
-                      });
-                    },
-                    child: Text(
-                      "Forgot Password",
-                      style: TextStyle(
-                        color: Colors.green[400],
-                        fontSize: 15,
-                        fontWeight: FontWeight.w600,
-                      ),
+                    });
+                  },
+                  child: Text(
+                    "Forgot Password",
+                    style: TextStyle(
+                      color: Colors.green[400],
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           );
   }

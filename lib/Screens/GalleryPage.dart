@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:following_the_prophet/helper/database.dart';
 
+// ignore: must_be_immutable
 class GalleryPage extends StatefulWidget {
   String title;
 

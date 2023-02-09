@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:following_the_prophet/Screens/sentrequest.dart';
 import 'package:following_the_prophet/appbar.dart';
 
+// ignore: must_be_immutable
 class RequestForData extends StatelessWidget {
   TextEditingController _titleController = new TextEditingController();
   TextEditingController _discription = new TextEditingController();
@@ -54,7 +55,7 @@ class RequestForData extends StatelessWidget {
       print(12);
     });
     Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => request()));
+        context, MaterialPageRoute(builder: (context) => Request()));
   }
 
   @override
@@ -62,13 +63,15 @@ class RequestForData extends StatelessWidget {
     return Scaffold(
         backgroundColor: Color(0xFF645647),
         appBar: AppBar(
-          title: Text('Request For Data',
+          title: Text(
+            'Request For Data',
             style: TextStyle(
               color: Color(0xFFFD9727),
               fontSize: 22,
               fontWeight: FontWeight.bold,
-            ),),
-           backgroundColor: Color(0xFF645647),
+            ),
+          ),
+          backgroundColor: Color(0xFF645647),
         ),
         body: isloading
             ? Container(
@@ -113,7 +116,7 @@ class RequestForData extends StatelessWidget {
                                 decoration: InputDecoration(
                                   enabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
-                                    borderSide:  BorderSide(
+                                    borderSide: BorderSide(
                                       color: Colors.white,
                                     ),
                                   ),
@@ -143,12 +146,11 @@ class RequestForData extends StatelessWidget {
                           minLines: 15,
                           decoration: InputDecoration(
                             hintText: "Details",
-                            enabledBorder:  OutlineInputBorder(
+                            enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10),
-                              borderSide:  BorderSide(
+                              borderSide: BorderSide(
                                 color: Colors.white,
                               ),
-
                             ),
                           ),
                           controller: _discription,

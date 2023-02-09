@@ -8,6 +8,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import 'GalleryPage.dart';
 
+// ignore: must_be_immutable
 class EventViewScreen extends StatefulWidget {
   ContentModel data;
   bool fromEvent = false;
@@ -22,7 +23,7 @@ class _EventViewScreenState extends State<EventViewScreen> {
   double fontSize = 16;
   bool isLoading = false;
 
-  IncreaseFontSize() {
+  increaseFontSize() {
     print(fontSize);
     if (fontSize > 26) {
       this.fontSize = fontSize;
@@ -32,7 +33,7 @@ class _EventViewScreenState extends State<EventViewScreen> {
     setState(() {});
   }
 
-  DecreaseFontSize() {
+  decreaseFontSize() {
     print(fontSize);
     if (fontSize < 16) {
       this.fontSize = fontSize;
@@ -49,21 +50,6 @@ class _EventViewScreenState extends State<EventViewScreen> {
     if (username != null) await isFav();
   }
 
-  // @override
-  // void initState() {
-  //     setState(() {
-  //       isLoading = true;
-  //     });
-  //   getEver();
-  //   if (widget.fromEvent) {
-  //     getData();
-
-  //   }
-  //   setState(() {
-  //     isLoading = false;
-  //   });
-  //   super.initState();
-  // }
   bool _isInit = true;
   void didChangeDependencies() async {
     setState(() {
@@ -139,7 +125,7 @@ class _EventViewScreenState extends State<EventViewScreen> {
                               children: [
                                 IconButton(
                                     onPressed: () {
-                                      IncreaseFontSize();
+                                      increaseFontSize();
                                     },
                                     icon: Icon(
                                       Icons.add,
@@ -147,7 +133,7 @@ class _EventViewScreenState extends State<EventViewScreen> {
                                     )),
                                 IconButton(
                                     onPressed: () {
-                                      DecreaseFontSize();
+                                      decreaseFontSize();
                                     },
                                     icon: Icon(
                                       Icons.remove,

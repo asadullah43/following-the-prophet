@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
-//import 'package:following_the_prophet/Screens/home/components/yearScreen.dart';
-import 'package:following_the_prophet/helper/database.dart';
+
 import 'package:following_the_prophet/models/contentModel.dart';
 
+// ignore: must_be_immutable
 class QuizPage extends StatelessWidget {
-  //const QuizPage({ Key? key }) : super(key: key);
   int age;
 
   QuizPage({this.age});
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       appBar: AppBar(
+      appBar: AppBar(
         title: Center(
           child: Text(
             'Quiz Page',
@@ -34,14 +33,14 @@ class QuizPageFul extends StatefulWidget {
 
 class _QuizPageFulState extends State<QuizPageFul> {
   List<ContentModel> yearData = [];
-  Database _database = Database();
 
   @override
   void initState() {
-    //_getData();
+    super.initState();
     setState(() {});
   }
-List<Icon> scoorKeeper = [];
+
+  List<Icon> scoorKeeper = [];
   List<String> questions = [
     'You can lead a cow down stairs but not up stairs.',
     'Approximately one quarter of human bones are in the feet.',
